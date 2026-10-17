@@ -8,8 +8,8 @@ const RUTA_NIVEL := "res://escenas/niveles/mundo_pruebas/mundo_pruebas.tscn"
 @onready var caja_1: Label = $Layout/Cajas/CajaIzquierda/Texto
 @onready var caja_2: Label = $Layout/Cajas/CajaDerecha/Texto
 @onready var caja_3: Label = $Layout/Cajas/CajaCentro/Texto
-@onready var boton_atras: Button = $Layout/Navegacion/BotonAtras
-@onready var boton_siguiente: Button = $Layout/Navegacion/BotonSiguiente
+@onready var boton_atras: Button = $BotonAtras
+@onready var boton_siguiente: Button = $BotonSiguiente
 
 var _paginas: Array = []
 var _indice: int = 0
@@ -52,8 +52,15 @@ func _mostrar_pagina(indice: int) -> void:
 	var es_ultima: bool = _indice == _paginas.size() - 1
 	if es_ultima:
 		boton_siguiente.text = "¡Jugar!"
+		var estilo_jugar := StyleBoxFlat.new()
+		estilo_jugar.bg_color = Color(0.55, 0.25, 0.85)
+		estilo_jugar.border_color = Color(0.25, 0.1, 0.4)
+		estilo_jugar.set_border_width_all(3)
+		estilo_jugar.set_content_margin_all(24)
+		boton_siguiente.add_theme_stylebox_override("normal", estilo_jugar)
 	else:
 		boton_siguiente.text = "Siguiente"
+		boton_siguiente.remove_theme_stylebox_override("normal")
 
 
 func _pagina_anterior() -> void:

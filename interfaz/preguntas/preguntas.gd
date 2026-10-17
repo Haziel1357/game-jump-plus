@@ -5,7 +5,9 @@ signal pregunta_contestada(es_correcta: bool)
 const RUTA_DATOS := "res://escenas/niveles/preguntas/datos_preguntas.json"
 
 @onready var popup: Control = $Popup
-@onready var label_pregunta: Label = $Popup/Centro/Caja/Pregunta
+@onready var caja_pregunta: Panel = $Popup/CajaPregunta
+@onready var label_pregunta: Label = $Popup/CajaPregunta/Pregunta
+@onready var opciones: VBoxContainer = $Popup/Opciones
 @onready var boton_correcto: Button = $Popup/Opciones/BotonCorrecto
 @onready var boton_incorrecto: Button = $Popup/Opciones/BotonIncorrecto
 @onready var banner: Label = $Banner
@@ -33,8 +35,8 @@ func _cargar_preguntas() -> void:
 	_preguntas = datos.get("preguntas", [])
 
 
-## Muestra una pregunta para el jugador indicado. {otro} se sustituye
-## por el nombre del compañero de partida.
+## Muestra una pregunta para el jugador indicado. La pregunta aparece
+## en SU mitad de pantalla; las opciones en la mitad del compañero.
 func mostrar_pregunta(jugador: int) -> void:
 	if _preguntas.is_empty():
 		push_error("No hay preguntas cargadas")
@@ -49,8 +51,34 @@ func mostrar_pregunta(jugador: int) -> void:
 
 	_respuesta_actual = bool(pregunta["respuesta_correcta"])
 	label_pregunta.text = str(pregunta["texto"]).replace("{otro}", nombre_otro)
+
+	_colocar_segun_turno(jugador)
 	popup.visible = true
 	boton_correcto.grab_focus()
+
+
+## Jugador 1 = mitad izquierda, Jugador 2 = mitad derecha.
+## La pregunta va en la mitad del que pregunta; las opciones en la del otro.
+func _colocar_segun_turno(jugador: int) -> void:
+	var tamano := get_viewport().get_visible_rect().size
+	var mitad := tamano.x * 0.5
+
+	if jugador == 1:
+		# Pregunta izquierda, opciones derecha
+		caja_pregunta.position = Vector2(80, tamano.y * 0.32)
+		caja_pregunta.size = Vector2(mitad - 160, 360)
+		opciones.anchor_left = 1.0
+		opciones.anchor_right = 1.0
+		opciones.offset_left = -380
+		opciones.offset_right = -80
+	else:
+		# Pregunta derecha, opciones izquierda
+		caja_pregunta.position = Vector2(mitad + 80, tamano.y * 0.32)
+		caja_pregunta.size = Vector2(mitad - 160, 360)
+		opciones.anchor_left = 0.0
+		opciones.anchor_right = 0.0
+		opciones.offset_left = 80
+		opciones.offset_right = 380
 
 
 func _responder(elegido_correcto: bool) -> void:

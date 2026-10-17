@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://chqwbv4pvljyl"]
 
-[ext_resource type="Script" path="res://interfaz/preguntas/preguntas.gd" id="1_preg01"]
+[ext_resource type="Script" uid="uid://ds60fbxrw44uo" path="res://interfaz/preguntas/preguntas.gd" id="1_preg01"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
 content_margin_left = 32.0
@@ -29,7 +29,6 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.1, 0.35, 0.15, 1)
-corner_radius = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_incorrecto"]
 content_margin_left = 24.0
@@ -42,21 +41,20 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.4, 0.08, 0.08, 1)
-corner_radius = 12
 
-[node name="Preguntas" type="CanvasLayer"]
+[node name="Preguntas" type="CanvasLayer" unique_id=61489788]
 layer = 10
 script = ExtResource("1_preg01")
 
-[node name="Popup" type="Control" parent="."]
-visible = false
+[node name="Popup" type="Control" parent="." unique_id=27094670]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Oscuro" type="ColorRect" parent="Popup"]
+[node name="Oscuro" type="ColorRect" parent="Popup" unique_id=1287847228]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,53 +63,58 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.45)
 
-[node name="Centro" type="CenterContainer" parent="Popup"]
+[node name="CajaPregunta" type="Panel" parent="Popup" unique_id=479309438]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 280.0
+offset_right = 860.0
+offset_bottom = 640.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
+
+[node name="Pregunta" type="Label" parent="Popup/CajaPregunta" unique_id=958935140]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = -24.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Caja" type="PanelContainer" parent="Popup/Centro"]
-custom_minimum_size = Vector2(900, 360)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
-
-[node name="Pregunta" type="Label" parent="Popup/Centro/Caja"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 32
 text = "Pregunta aquí"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Opciones" type="VBoxContainer" parent="Popup"]
+[node name="Opciones" type="VBoxContainer" parent="Popup" unique_id=1407369458]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -320.0
+offset_left = -380.0
 offset_top = 340.0
-offset_right = -120.0
-offset_bottom = 560.0
+offset_right = -80.0
+offset_bottom = 580.0
 theme_override_constants/separation = 20
+alignment = 1
 
-[node name="BotonCorrecto" type="Button" parent="Popup/Opciones"]
-custom_minimum_size = Vector2(200, 90)
+[node name="BotonCorrecto" type="Button" parent="Popup/Opciones" unique_id=387940476]
+custom_minimum_size = Vector2(300, 90)
 layout_mode = 2
-text = "Correcto"
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_correcto")
+text = "Correcto"
 
-[node name="BotonIncorrecto" type="Button" parent="Popup/Opciones"]
-custom_minimum_size = Vector2(200, 90)
+[node name="BotonIncorrecto" type="Button" parent="Popup/Opciones" unique_id=1166742668]
+custom_minimum_size = Vector2(300, 90)
 layout_mode = 2
-text = "Incorrecto"
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_incorrecto")
+text = "Incorrecto"
 
-[node name="Banner" type="Label" parent="."]
+[node name="Banner" type="Label" parent="." unique_id=2101355641]
 visible = false
 anchors_preset = 10
 anchor_right = 1.0

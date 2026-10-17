@@ -38,6 +38,18 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.45, 0.25, 0.05, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jugar"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.55, 0.25, 0.85, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.25, 0.1, 0.4, 1)
+
 [node name="Tutorial" type="Control" unique_id=769514744]
 layout_mode = 3
 anchors_preset = 15
@@ -135,21 +147,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Navegacion" type="HBoxContainer" parent="Layout" unique_id=834530907]
-layout_mode = 2
-theme_override_constants/separation = 40
-alignment = 1
-
-[node name="BotonAtras" type="Button" parent="Layout/Navegacion" unique_id=1446640554]
-custom_minimum_size = Vector2(240, 72)
-layout_mode = 2
+[node name="BotonAtras" type="Button" parent="." unique_id=1446640554]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -100.0
+offset_right = 280.0
+offset_bottom = -28.0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_atras")
 text = "Atrás"
 
-[node name="BotonSiguiente" type="Button" parent="Layout/Navegacion" unique_id=1455466724]
-custom_minimum_size = Vector2(240, 72)
-layout_mode = 2
+[node name="BotonSiguiente" type="Button" parent="." unique_id=1455466724]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -100.0
+offset_right = -40.0
+offset_bottom = -28.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_siguiente")
 text = "Siguiente"

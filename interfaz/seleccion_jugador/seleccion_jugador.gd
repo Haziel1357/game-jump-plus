@@ -90,10 +90,22 @@ func _alternar_listo(jugador: int) -> void:
 	var boton: Button = boton_listo_1 if jugador == 1 else boton_listo_2
 	if bool(datos["listo"]):
 		boton.text = "¡Listo!"
+		boton.add_theme_stylebox_override("normal", _estilo_listo_activo())
 	else:
 		boton.text = "Listo"
+		boton.remove_theme_stylebox_override("normal")
 
 	_comprobar_inicio()
+
+
+func _estilo_listo_activo() -> StyleBoxFlat:
+	var estilo := StyleBoxFlat.new()
+	estilo.bg_color = Color(0.95, 0.75, 0.15)
+	estilo.border_color = Color(0.45, 0.35, 0.05)
+	estilo.set_border_width_all(3)
+	estilo.set_corner_radius_all(12)
+	estilo.set_content_margin_all(20)
+	return estilo
 
 
 func _comprobar_inicio() -> void:

@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-@onready var label_vidas_1: Label = $Panel/VidaJugador1/TextoVidas
-@onready var label_vidas_2: Label = $Panel/VidaJugador2/TextoVidas
-@onready var boton_fallo_1: Button = $Panel/Prueba/BotonFallo1
-@onready var boton_fallo_2: Button = $Panel/Prueba/BotonFallo2
-@onready var boton_pregunta: Button = $Panel/Prueba/BotonPregunta
+@onready var label_vidas_1: Label = $VidaJugador1/TextoVidas
+@onready var label_vidas_2: Label = $VidaJugador2/TextoVidas
+@onready var boton_fallo_1: Button = $Prueba/BotonFallo1
+@onready var boton_fallo_2: Button = $Prueba/BotonFallo2
+@onready var boton_pregunta: Button = $Prueba/BotonPregunta
 
 var _turno: int = 1
 
