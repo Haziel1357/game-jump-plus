@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c2bk75qajtlpe"]
+
+[ext_resource type="PackedScene" uid="uid://d2038uw2kc1qe" path="res://Jugadores/Jugador 1/ROBOT!_3.blend" id="1_7j7yj"]
+
+[node name="ROBOT!_3" unique_id=827052337 instance=ExtResource("1_7j7yj")]
