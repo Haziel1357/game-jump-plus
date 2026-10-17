@@ -1,0 +1,44 @@
+{
+	"paginas": [
+		{
+			"titulo": "Historia",
+			"cajas": [
+				"Bienvenidos a la isla de las amistades.",
+				"En esta isla, dos jugadores compiten en un duelo de preguntas.",
+				"El más atento se llevará la victoria."
+			]
+		},
+		{
+			"titulo": "El dado",
+			"cajas": [
+				"Al empezar, se lanza un dado para decidir quién va primero.",
+				"El jugador con el número más alto comienza la partida.",
+				"En caso de empate, se vuelve a lanzar."
+			]
+		},
+		{
+			"titulo": "Las casillas",
+			"cajas": [
+				"Por turnos, cada jugador avanza por el tablero.",
+				"En cada casilla aparece una pregunta sobre el otro jugador.",
+				"El tablero tiene un número fijo de casillas para llegar a la meta."
+			]
+		},
+		{
+			"titulo": "Preguntas",
+			"cajas": [
+				"Las preguntas son sobre tu compañero de partida.",
+				"Si aciertas, avanzas la casilla.",
+				"Si fallas, te quedas donde estabas. ¡Sin avanzar!"
+			]
+		},
+		{
+			"titulo": "¡A jugar!",
+			"cajas": [
+				"El juego termina cuando un jugador llega a la meta.",
+				"El que llegue primero ¡gana la partida!",
+				"¿Listos? Pulse Jugar cuando estéis preparados."
+			]
+		}
+	]
+}

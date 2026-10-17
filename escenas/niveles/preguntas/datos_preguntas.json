@@ -1,0 +1,12 @@
+{
+	"preguntas": [
+		"¿A {otro} le gusta la pizza?",
+		"¿{otro} es fan de los videojuegos?",
+		"¿{otro} tiene miedo a las alturas?",
+		"¿{otro} prefiere el mar sobre la montaña?",
+		"¿{otro} nunca ha visto una película de terror?",
+		"¿A {otro} le gusta el chocolate?",
+		"¿{otro} duerme más de 8 horas al día?",
+		"¿{otro} sabe cocinar al menos un plato?"
+	]
+}
