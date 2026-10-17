@@ -16,7 +16,7 @@ transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.707106
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="Cámara y luz" unique_id=21022145]
-transform = Transform3D(-0.9998552, 0.017010856, -0.00047785565, 0.0050226226, 0.3218136, 0.94678974, 0.016259484, 0.94665027, -0.32185242, -7.0486217, 17.534008, 8.877371)
+transform = Transform3D(-0.81279975, -0.4000696, 0.42343956, -0.07703366, 0.7943123, 0.60260606, -0.5774276, 0.4571789, -0.67643553, 3.8054404, 9.407942, 0.9805603)
 fov = 92.95577
 
 [node name="Jugador1" type="CharacterBody3D" parent="." unique_id=951876062 node_paths=PackedStringArray("camino_node")]
