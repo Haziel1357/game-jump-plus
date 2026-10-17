@@ -10,14 +10,9 @@ mi-juego/
 │   │   └── modelo/
 │   │       ├── jugador.blend
 │   │       └── jugador_textura_color.png
-│   ├── enemigos/
-│   │   └── slime/
-│   │       ├── slime.tscn
-│   │       └── slime.gd
-│   ├── objetos/              # Monedas, cofres, puertas, etc.
-│   │   └── moneda/
-│   │       ├── moneda.tscn
-│   │       └── moneda.gd
+│   ├── objetos/              # Dados/vidas
+│   │   └── vidas/
+│   │       └── vida.png
 │   └── niveles/
 │       ├── nivel_01/
 │       │   └── nivel_01.tscn
