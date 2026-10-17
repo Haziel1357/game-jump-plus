@@ -3,6 +3,8 @@ extends CanvasLayer
 # Duración total de la animación y cada cuánto cambia el número (en segundos).
 @export var duracion_animacion: float = 2.0
 @export var intervalo_numeros: float = 0.08
+# Casillas que avanza el ganador de cada ronda.
+@export var casillas_por_victoria: int = 1
 
 # Referencias a los nodos hijos ($ significa "busca este hijo por su nombre").
 @onready var etiqueta_numero_1: Label = $EtiquetaNumero
@@ -10,20 +12,32 @@ extends CanvasLayer
 @onready var etiqueta_numero_2: Label = $EtiquetaNumero2
 @onready var boton_lanzar_2: Button = $BotonLanzar2
 @onready var etiqueta_resultado: Label = $EtiquetaResultado
+@onready var ventana_resultado: Panel = $VentanaResultado
+@onready var boton_omitir: Button = $VentanaResultado/BotonOmitir
 
-# Guardan el número final que sacó cada jugador.
+# Guardan el número final que sacó cada jugador en la ronda actual.
 var resultado_1: int = 0
 var resultado_2: int = 0
 
 
 func _ready() -> void:
-	# Al empezar solo se ve lo del jugador 1; lo del jugador 2 y el resultado se ocultan.
-	etiqueta_numero_2.hide()
-	boton_lanzar_2.hide()
-	etiqueta_resultado.hide()
+	# Al empezar solo se ve lo del jugador 1; lo demás se oculta.
+	_preparar_ronda()
 
 	boton_lanzar_1.pressed.connect(_lanzar_jugador_1)
 	boton_lanzar_2.pressed.connect(_lanzar_jugador_2)
+	boton_omitir.pressed.connect(_al_pulsar_omitir)
+
+
+# Deja la interfaz lista para una ronda nueva.
+func _preparar_ronda() -> void:
+	etiqueta_numero_1.text = "0"
+	etiqueta_numero_2.text = "0"
+	etiqueta_numero_2.hide()
+	boton_lanzar_2.hide()
+	etiqueta_resultado.hide()
+	ventana_resultado.hide()
+	boton_lanzar_1.show()
 
 
 func _lanzar_jugador_1() -> void:
@@ -56,12 +70,27 @@ func _animar_dado(etiqueta: Label) -> int:
 	return numero_final
 
 
-# Compara los dos resultados y escribe quién ganó.
+# Compara los dos resultados, anota el avance del ganador y muestra la ventana.
 func _mostrar_ganador() -> void:
 	if resultado_1 > resultado_2:
 		etiqueta_resultado.text = "¡Gana el jugador 1!"
+		EstadoJuego.avanzar(1, casillas_por_victoria)
 	elif resultado_2 > resultado_1:
 		etiqueta_resultado.text = "¡Gana el jugador 2!"
+		EstadoJuego.avanzar(2, casillas_por_victoria)
 	else:
+		# En empate nadie avanza.
 		etiqueta_resultado.text = "¡Empate!"
+
+	# Mostramos las casillas de cada jugador para comprobar que se guardan.
+	etiqueta_resultado.text += "\nCasillas J1: %d | J2: %d" % [
+		EstadoJuego.obtener_casillas(1),
+		EstadoJuego.obtener_casillas(2),
+	]
 	etiqueta_resultado.show()
+	ventana_resultado.show()
+
+
+# Al pulsar "Omitir" se cierra la ventana y empieza una ronda nueva.
+func _al_pulsar_omitir() -> void:
+	_preparar_ronda()
