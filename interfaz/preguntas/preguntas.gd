@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-signal pregunta_contestada(es_correcta: bool)
+signal resultado_marcado(es_correcto: bool)
 
 const RUTA_DATOS := "res://escenas/niveles/preguntas/datos_preguntas.json"
 
@@ -14,7 +14,6 @@ const RUTA_DATOS := "res://escenas/niveles/preguntas/datos_preguntas.json"
 
 var _preguntas: Array = []
 var _indice_siguiente: int = 0
-var _respuesta_actual: bool = false
 var _turno_jugador: int = 1
 
 
@@ -22,8 +21,8 @@ func _ready() -> void:
 	_cargar_preguntas()
 	popup.visible = false
 	banner.visible = false
-	boton_correcto.pressed.connect(_responder.bind(true))
-	boton_incorrecto.pressed.connect(_responder.bind(false))
+	boton_correcto.pressed.connect(_marcarResultado.bind(true))
+	boton_incorrecto.pressed.connect(_marcarResultado.bind(false))
 
 
 func _cargar_preguntas() -> void:
@@ -37,6 +36,7 @@ func _cargar_preguntas() -> void:
 
 ## Muestra una pregunta para el jugador indicado. La pregunta aparece
 ## en SU mitad de pantalla; las opciones en la mitad del compañero.
+## Los jugadores responden en voz real y se marca el resultado con los botones.
 func mostrar_pregunta(jugador: int) -> void:
 	if _preguntas.is_empty():
 		push_error("No hay preguntas cargadas")
@@ -46,12 +46,10 @@ func mostrar_pregunta(jugador: int) -> void:
 	var otro_jugador: int = 2 if jugador == 1 else 1
 	var nombre_otro: String = EstadoJuego.nombre_de(otro_jugador)
 
-	var pregunta: Dictionary = _preguntas[_indice_siguiente]
+	var texto: String = str(_preguntas[_indice_siguiente])
 	_indice_siguiente = (_indice_siguiente + 1) % _preguntas.size()
 
-	_respuesta_actual = bool(pregunta["respuesta_correcta"])
-	label_pregunta.text = str(pregunta["texto"]).replace("{otro}", nombre_otro)
-
+	label_pregunta.text = texto.replace("{otro}", nombre_otro)
 	_colocar_segun_turno(jugador)
 	popup.visible = true
 	boton_correcto.grab_focus()
@@ -64,7 +62,6 @@ func _colocar_segun_turno(jugador: int) -> void:
 	var mitad := tamano.x * 0.5
 
 	if jugador == 1:
-		# Pregunta izquierda, opciones derecha
 		caja_pregunta.position = Vector2(80, tamano.y * 0.32)
 		caja_pregunta.size = Vector2(mitad - 160, 360)
 		opciones.anchor_left = 1.0
@@ -72,7 +69,6 @@ func _colocar_segun_turno(jugador: int) -> void:
 		opciones.offset_left = -380
 		opciones.offset_right = -80
 	else:
-		# Pregunta derecha, opciones izquierda
 		caja_pregunta.position = Vector2(mitad + 80, tamano.y * 0.32)
 		caja_pregunta.size = Vector2(mitad - 160, 360)
 		opciones.anchor_left = 0.0
@@ -81,19 +77,20 @@ func _colocar_segun_turno(jugador: int) -> void:
 		opciones.offset_right = 380
 
 
-func _responder(elegido_correcto: bool) -> void:
+## El resultado lo marcan los jugadores con los botones.
+## Si es incorrecto, se resta vida al jugador de turno.
+func _marcarResultado(es_correcto: bool) -> void:
 	popup.visible = false
-	var es_correcta: bool = elegido_correcto == _respuesta_actual
 
-	if not es_correcta:
+	if not es_correcto:
 		EstadoJuego.restar_vida(_turno_jugador)
 
-	_mostrar_banner(es_correcta)
-	pregunta_contestada.emit(es_correcta)
+	_mostrar_banner(es_correcto)
+	resultado_marcado.emit(es_correcto)
 
 
-func _mostrar_banner(es_correcta: bool) -> void:
-	if es_correcta:
+func _mostrar_banner(es_correcto: bool) -> void:
+	if es_correcto:
 		banner.text = "CORRECTO"
 		banner.add_theme_color_override("font_color", Color(0.25, 0.85, 0.35))
 	else:
