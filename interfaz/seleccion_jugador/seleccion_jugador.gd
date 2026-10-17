@@ -1,5 +1,6 @@
 extends Control
 
+# Apuntamos a la pantalla del tutorial de tu compañero
 const RUTA_TUTORIAL := "res://interfaz/tutorial/tutorial.tscn"
 
 @onready var preview_1: ColorRect = $Layout/Paneles/PanelJugador1/Contenido/Preview/ColorPersonaje
@@ -45,7 +46,6 @@ func _cambiar_personaje(paso: int, jugador: int) -> void:
 		return
 
 	var datos: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
-	# Un jugador no puede tomar el personaje del otro si el otro ya está listo.
 	var otro: Dictionary = EstadoJuego.jugador_2 if jugador == 1 else EstadoJuego.jugador_1
 	var indice: int = int(datos["personaje"]) + paso
 
@@ -112,8 +112,8 @@ func _comprobar_inicio() -> void:
 	if _partida_iniciada or not EstadoJuego.ambos_listos():
 		return
 	_partida_iniciada = true
-	# Pequeña espera para que se vea el estado "¡Listo!" de ambos.
 	await get_tree().create_timer(0.8).timeout
+	# Redirige a la pantalla del tutorial de tu compañero
 	get_tree().change_scene_to_file(RUTA_TUTORIAL)
 
 
