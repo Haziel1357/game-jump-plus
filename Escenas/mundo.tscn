@@ -23,6 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 1")
 habilitar_tecla_prueba = true
+tecla_salto = "ui_up"
 
 [node name="ROBOT!_3" parent="Jugador1" unique_id=827052337 instance=ExtResource("2_ly0wt")]
 
