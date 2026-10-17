@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://dtpd74kd2c7lc"]
 
 [ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_6ba58"]
+[ext_resource type="Script" uid="uid://b4pjaqu5p1yw8" path="res://escenas/objetos/boton_dado/boton_dado.gd" id="2_lgngo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_012i1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mg33e"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mg33e"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mg33e"]
 
 [node name="Mundo" type="Node3D" unique_id=476666403]
 
@@ -28,3 +33,13 @@ shape = SubResource("CapsuleShape3D_mg33e")
 
 [node name="Camera3D" type="Camera3D" parent="Jugador" unique_id=21022145]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 3, 5)
+
+[node name="BotonDado" type="Area3D" parent="." unique_id=325053774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0)
+script = ExtResource("2_lgngo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BotonDado" unique_id=1159399474]
+shape = SubResource("CylinderShape3D_mg33e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BotonDado" unique_id=2055314967]
+mesh = SubResource("CylinderMesh_mg33e")
