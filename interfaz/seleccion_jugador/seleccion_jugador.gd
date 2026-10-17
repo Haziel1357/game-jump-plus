@@ -1,6 +1,6 @@
 extends Control
 
-const RUTA_NIVEL := "res://escenas/niveles/mundo_pruebas/mundo_pruebas.tscn"
+const RUTA_TUTORIAL := "res://interfaz/tutorial/tutorial.tscn"
 
 @onready var preview_1: ColorRect = $Layout/Paneles/PanelJugador1/Contenido/Preview/ColorPersonaje
 @onready var nombre_personaje_1: Label = $Layout/Paneles/PanelJugador1/Contenido/Preview/NombrePersonaje
@@ -102,7 +102,7 @@ func _comprobar_inicio() -> void:
 	_partida_iniciada = true
 	# Pequeña espera para que se vea el estado "¡Listo!" de ambos.
 	await get_tree().create_timer(0.8).timeout
-	get_tree().change_scene_to_file(RUTA_NIVEL)
+	get_tree().change_scene_to_file(RUTA_TUTORIAL)
 
 
 func _volver_al_menu() -> void:

@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://b8c4hce36hqx5"]
+
+[ext_resource type="Script" uid="uid://qog27hnhvgnp" path="res://interfaz/tutorial/tutorial.gd" id="1_tut01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_caja"]
+bg_color = Color(0.2, 0.35, 0.75, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1, 0.15, 0.35, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atras"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.95, 0.55, 0.15, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.45, 0.25, 0.05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_siguiente"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.95, 0.55, 0.15, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.45, 0.25, 0.05, 1)
+
+[node name="Tutorial" type="Control" unique_id=769514744]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tut01")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=917001956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3, 0.72, 0.35, 1)
+
+[node name="Layout" type="VBoxContainer" parent="." unique_id=188235710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Titulo" type="Label" parent="Layout" unique_id=819294569]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Historia"
+horizontal_alignment = 1
+
+[node name="IndicadorPagina" type="Label" parent="Layout" unique_id=686996587]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Página 1 / 5"
+horizontal_alignment = 1
+
+[node name="Cajas" type="Control" parent="Layout" unique_id=901521532]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CajaIzquierda" type="PanelContainer" parent="Layout/Cajas" unique_id=1215062873]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 20.0
+offset_right = 620.0
+offset_bottom = 320.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_caja")
+
+[node name="Texto" type="Label" parent="Layout/Cajas/CajaIzquierda" unique_id=1627037274]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Texto de la narrativa"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CajaDerecha" type="PanelContainer" parent="Layout/Cajas" unique_id=328473261]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -620.0
+offset_top = 20.0
+offset_right = -80.0
+offset_bottom = 320.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_caja")
+
+[node name="Texto" type="Label" parent="Layout/Cajas/CajaDerecha" unique_id=2020853604]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Texto de la narrativa"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CajaCentro" type="PanelContainer" parent="Layout/Cajas" unique_id=70239864]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 280.0
+offset_right = 320.0
+offset_bottom = 620.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_caja")
+
+[node name="Texto" type="Label" parent="Layout/Cajas/CajaCentro" unique_id=998076756]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Texto de la narrativa"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Navegacion" type="HBoxContainer" parent="Layout" unique_id=834530907]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="BotonAtras" type="Button" parent="Layout/Navegacion" unique_id=1446640554]
+custom_minimum_size = Vector2(240, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_atras")
+text = "Atrás"
+
+[node name="BotonSiguiente" type="Button" parent="Layout/Navegacion" unique_id=1455466724]
+custom_minimum_size = Vector2(240, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_siguiente")
+text = "Siguiente"
