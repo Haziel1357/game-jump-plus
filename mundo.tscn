@@ -28,3 +28,16 @@ shape = SubResource("CapsuleShape3D_mg33e")
 
 [node name="Camera3D" type="Camera3D" parent="Jugador" unique_id=21022145]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 3, 5)
+
+[node name="Jugador2" type="CharacterBody3D" parent="." unique_id=259074793]
+transform = Transform3D(1, 0, 0, 0, 0.99870205, 0.050932974, 0, -0.050932974, 0.99870205, 3.1115434, 0.87744546, 0)
+script = ExtResource("1_6ba58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Jugador2" unique_id=2115197873]
+mesh = SubResource("CapsuleMesh_012i1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador2" unique_id=805780944]
+shape = SubResource("CapsuleShape3D_mg33e")
+
+[node name="Camera3D" type="Camera3D" parent="Jugador2" unique_id=762332105]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 3, 5)
