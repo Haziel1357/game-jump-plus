@@ -1,16 +1,11 @@
 [gd_scene format=3 uid="uid://dtpd74kd2c7lc"]
 
 [ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_6ba58"]
-[ext_resource type="Script" uid="uid://b4pjaqu5p1yw8" path="res://escenas/objetos/boton_dado/boton_dado.gd" id="2_lgngo"]
 [ext_resource type="Script" uid="uid://b4shd62i5cp6b" path="res://interfaz/hud/hud.gd" id="3_fw4w5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_012i1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mg33e"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_mg33e"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_mg33e"]
 
 [node name="Mundo" type="Node3D" unique_id=476666403]
 
@@ -35,29 +30,45 @@ shape = SubResource("CapsuleShape3D_mg33e")
 [node name="Camera3D" type="Camera3D" parent="Jugador" unique_id=21022145]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 3, 5)
 
-[node name="BotonDado" type="Area3D" parent="." unique_id=325053774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0)
-script = ExtResource("2_lgngo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BotonDado" unique_id=1159399474]
-shape = SubResource("CylinderShape3D_mg33e")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BotonDado" unique_id=2055314967]
-mesh = SubResource("CylinderMesh_mg33e")
-
 [node name="Hud" type="CanvasLayer" parent="." unique_id=1290444354]
 script = ExtResource("3_fw4w5")
 
 [node name="EtiquetaNumero" type="Label" parent="Hud" unique_id=615488801]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 273.0
+offset_top = 104.0
+offset_right = 313.0
+offset_bottom = 171.0
 theme_override_font_sizes/font_size = 48
 text = "0"
 horizontal_alignment = 1
 
 [node name="BotonLanzar" type="Button" parent="Hud" unique_id=1871966591]
-offset_left = 423.0
-offset_top = 564.0
-offset_right = 614.0
-offset_bottom = 595.0
+offset_left = 201.0
+offset_top = 553.0
+offset_right = 392.0
+offset_bottom = 584.0
 text = "Lanza el dado jugador 1"
+icon_alignment = 1
+
+[node name="EtiquetaNumero2" type="Label" parent="Hud" unique_id=1418010952]
+offset_left = 910.0
+offset_top = 103.0
+offset_right = 950.0
+offset_bottom = 170.0
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="BotonLanzar2" type="Button" parent="Hud" unique_id=330619873]
+offset_left = 821.0
+offset_top = 557.0
+offset_right = 1012.0
+offset_bottom = 588.0
+text = "Lanza el dado jugador 2"
+
+[node name="EtiquetaResultado" type="Label" parent="Hud" unique_id=1598712288]
+offset_left = 400.0
+offset_top = 42.0
+offset_right = 632.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 48
+text = "Resultado"
