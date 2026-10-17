@@ -1,0 +1,250 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://interfaz/seleccion_jugador/seleccion_jugador.gd" id="1_sel01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.16, 0.18, 0.22, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0.15)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_preview"]
+bg_color = Color(0.9, 0.3, 0.3, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.1, 0.1, 0.12, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_listo"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.2, 0.65, 0.35, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1, 0.3, 0.15, 1)
+corner_radius = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nick"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1, 0.11, 0.14, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.25)
+corner_radius = 8
+
+[node name="SeleccionJugador" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sel01")
+
+[node name="Fondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13, 0.2, 0.28, 1)
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Titulo" type="Label" parent="Layout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Selecciona tu jugador"
+horizontal_alignment = 1
+
+[node name="Paneles" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="PanelJugador1" type="PanelContainer" parent="Layout/Paneles"]
+custom_minimum_size = Vector2(720, 820)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Contenido" type="VBoxContainer" parent="Layout/Paneles/PanelJugador1"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="NombreJugador" type="Label" parent="Layout/Paneles/PanelJugador1/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Jugador 1"
+horizontal_alignment = 1
+
+[node name="Preview" type="Panel" parent="Layout/Paneles/PanelJugador1/Contenido"]
+custom_minimum_size = Vector2(620, 400)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_preview")
+
+[node name="ColorPersonaje" type="ColorRect" parent="Layout/Paneles/PanelJugador1/Contenido/Preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9, 0.3, 0.3, 1)
+
+[node name="NombrePersonaje" type="Label" parent="Layout/Paneles/PanelJugador1/Contenido/Preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 56
+text = "Rojo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Flechas" type="HBoxContainer" parent="Layout/Paneles/PanelJugador1/Contenido"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BotonAnterior" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido/Flechas"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+text = "<"
+
+[node name="BotonSiguiente" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido/Flechas"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+text = ">"
+
+[node name="CampoNick" type="LineEdit" parent="Layout/Paneles/PanelJugador1/Contenido"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+placeholder_text = "Escribe tu nick..."
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_nick")
+
+[node name="BotonListo" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Listo"
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_listo")
+
+[node name="PanelJugador2" type="PanelContainer" parent="Layout/Paneles"]
+custom_minimum_size = Vector2(720, 820)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Contenido" type="VBoxContainer" parent="Layout/Paneles/PanelJugador2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="NombreJugador" type="Label" parent="Layout/Paneles/PanelJugador2/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Jugador 2"
+horizontal_alignment = 1
+
+[node name="Preview" type="Panel" parent="Layout/Paneles/PanelJugador2/Contenido"]
+custom_minimum_size = Vector2(620, 400)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_preview")
+
+[node name="ColorPersonaje" type="ColorRect" parent="Layout/Paneles/PanelJugador2/Contenido/Preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.6, 0.85, 1)
+
+[node name="NombrePersonaje" type="Label" parent="Layout/Paneles/PanelJugador2/Contenido/Preview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 56
+text = "Azul"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Flechas" type="HBoxContainer" parent="Layout/Paneles/PanelJugador2/Contenido"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BotonAnterior" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido/Flechas"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+text = "<"
+
+[node name="BotonSiguiente" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido/Flechas"]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 2
+text = ">"
+
+[node name="CampoNick" type="LineEdit" parent="Layout/Paneles/PanelJugador2/Contenido"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+placeholder_text = "Escribe tu nick..."
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_nick")
+
+[node name="BotonListo" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Listo"
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_listo")
+
+[node name="BotonVolver" type="Button" parent="."]
+custom_minimum_size = Vector2(220, 64)
+layout_mode = 1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 260.0
+offset_bottom = 104.0
+text = "Volver"
+theme_override_font_sizes/font_size = 28

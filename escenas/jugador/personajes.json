@@ -1,0 +1,12 @@
+{
+	"personajes": [
+		{
+			"nombre": "Rojo",
+			"color": "#e74c3c"
+		},
+		{
+			"nombre": "Azul",
+			"color": "#3498db"
+		}
+	]
+}

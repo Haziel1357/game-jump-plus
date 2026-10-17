@@ -16,8 +16,7 @@ func _ready() -> void:
 
 
 func _on_boton_nuevo_juego_pressed() -> void:
-	# TODO: cargar la escena del juego (mundo_pruebas.tscn).
-	print("TODO: Nuevo Juego")
+	get_tree().change_scene_to_file("res://interfaz/seleccion_jugador/seleccion_jugador.tscn")
 
 
 func _on_boton_creditos_pressed() -> void:
