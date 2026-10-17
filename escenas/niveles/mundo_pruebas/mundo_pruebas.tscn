@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtpd74kd2c7lc"]
+
+[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_6ba58"]
+[ext_resource type="Script" path="res://escenas/niveles/mundo_pruebas/mundo_pruebas.gd" id="2_nivel"]
+[ext_resource type="PackedScene" path="res://interfaz/hud/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://interfaz/preguntas/preguntas.tscn" id="4_preg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_012i1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mg33e"]
+
+[node name="MundoPruebas" type="Node3D" unique_id=476666403]
+script = ExtResource("2_nivel")
+
+[node name="Suelo" type="CSGBox3D" parent="." unique_id=1194407556]
+use_collision = true
+size = Vector3(20, 1, 20)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=237858065]
+transform = Transform3D(0.8660254, -0.35355338, 0.35355338, 0, 0.70710677, 0.70710677, -0.5, -0.6123724, 0.6123724, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Jugador" type="CharacterBody3D" parent="." unique_id=951876062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_6ba58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Jugador" unique_id=1096796444]
+mesh = SubResource("CapsuleMesh_012i1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador" unique_id=337979765]
+shape = SubResource("CapsuleShape3D_mg33e")
+
+[node name="Camera3D" type="Camera3D" parent="Jugador" unique_id=21022145]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 3, 5)
+
+[node name="Jugador2" type="CharacterBody3D" parent="." unique_id=259074793]
+transform = Transform3D(1, 0, 0, 0, 0.99870205, 0.050932974, 0, -0.050932974, 0.99870205, 3.1115434, 0.87744546, 0)
+script = ExtResource("1_6ba58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Jugador2" unique_id=2115197873]
+mesh = SubResource("CapsuleMesh_012i1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador2" unique_id=805780944]
+shape = SubResource("CapsuleShape3D_mg33e")
+
+[node name="Camera3D" type="Camera3D" parent="Jugador2" unique_id=762332105]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 3, 5)
+
+[node name="Hud" parent="." instance=ExtResource("3_hud")]
+
+[node name="Preguntas" parent="." instance=ExtResource("4_preg")]

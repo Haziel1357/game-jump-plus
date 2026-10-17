@@ -1,5 +1,10 @@
 # Carpeta de caché de Godot 4
 .godot/
+addons/orca
+
+#vscode
+.vscode/
+
 
 # Exportaciones del juego
 /build/

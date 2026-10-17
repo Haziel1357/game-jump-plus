@@ -1,43 +1,58 @@
-mi-juego/
-├── CLAUDE.md
-├── project.godot
-├── .gitignore
-│
-├── escenas/                  # Todo lo que es "una cosa" del juego
-│   ├── jugador/
-│   │   ├── jugador.tscn
-│   │   ├── jugador.gd
-│   │   └── modelo/
-│   │       ├── jugador.blend
-│   │       └── jugador_textura_color.png
-│   ├── objetos/              # Dados/vidas
-│   │   └── vidas/
-│   │       └── vida.png
-│   └── niveles/
-│       ├── nivel_01/
-│       │   └── nivel_01.tscn
-│       └── mundo_pruebas/
-│           └── mundo_pruebas.tscn
-│
-├── interfaz/                 # Menús y HUD
-│   ├── menu_principal/
-│   │   ├── menu_principal.tscn
-│   │   └── menu_principal.gd
-│   └── hud/
-│       ├── hud.tscn
-│       └── hud.gd
-│
-├── recursos/                 # Assets compartidos entre varias escenas
-│   ├── materiales/
-│   ├── texturas/
-│   ├── modelos/              # Modelos de escenario: árboles, rocas, casas
-│   ├── audio/
-│   │   ├── musica/
-│   │   └── efectos/
-│   └── fuentes/
-│
-├── scripts/                  # Código que no pertenece a una escena concreta
-│   └── globales/             # Autoloads (singletons): datos del juego, sonido...
-│       └── estado_juego.gd
-│
-└── addons/                   # Plugins de terceros (Godot la exige con este nombre)
+# GameJamPlus
+
+Juego de fiesta estilo Mario Party para 2 jugadores en local.
+
+## Convenciones de nombres
+
+| Qué | Formato | Ejemplo |
+|---|---|---|
+| Carpetas | snake_case | `menu_principal/` |
+| Archivos (`.tscn`, `.gd`, `.png` ...) | snake_case | `jugador.gd`, `nivel_01.tscn` |
+| Nodos en el árbol de escena | PascalCase | `Jugador`, `CamaraSeguimiento` |
+| Variables y funciones | snake_case | `velocidad`, `recibir_dano()` |
+| Constantes | MAYUSCULAS | `VELOCIDAD_MAXIMA` |
+| Señales | snake_case en pasado | `vida_cambiada`, `jugador_murio` |
+| Nombres de clase (`class_name`) | PascalCase | `class_name Jugador` |
+
+## Estructura del proyecto
+
+```
+escenas/                  # Todo lo que es "una cosa" del juego
+├── jugador/
+│   ├── jugador.gd
+│   └── modelo/
+├── enemigos/
+│   └── slime/
+├── objetos/
+│   └── moneda/
+└── niveles/
+    ├── nivel_01/
+    └── mundo_pruebas/
+
+interfaz/                 # Menús y HUD
+├── menu_principal/
+├── seleccion_jugador/
+├── creditos/
+├── dado/                 # Lanzamiento de dados de los 2 jugadores
+└── hud/
+
+recursos/                 # Assets compartidos
+├── materiales/
+├── texturas/
+├── modelos/
+├── audio/
+│   ├── musica/
+│   └── efectos/
+└── fuentes/
+
+scripts/                  # Código que no pertenece a una escena concreta
+└── globales/             # Autoloads (singletons)
+```
+
+## Controles (prueba)
+
+| Acción | Tecla |
+|---|---|
+| Mover / saltar | Flechas + Espacio |
+| Volver al menú (en nivel) | ESC |
+| Detener juego (en editor) | F8 (con el editor enfocado) |
