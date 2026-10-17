@@ -1,0 +1,10 @@
+# Carpeta de caché de Godot 4
+.godot/
+
+# Exportaciones del juego
+/build/
+/export/
+
+# Respaldos automáticos de Blender
+*.blend1
+*.blend2
