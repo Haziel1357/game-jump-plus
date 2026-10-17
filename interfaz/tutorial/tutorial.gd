@@ -1,7 +1,8 @@
 extends Control
 
 const RUTA_DATOS := "res://interfaz/tutorial/datos_tutorial.json"
-const RUTA_NIVEL := "res://escenas/niveles/mundo_pruebas/mundo_pruebas.tscn"
+# Actualizado para que al terminar el tutorial dirija a tu escena de la isla
+const RUTA_NIVEL := "res://Escenas/mundo.tscn"
 
 @onready var label_titulo: Label = $Layout/Titulo
 @onready var label_pagina: Label = $Layout/IndicadorPagina
