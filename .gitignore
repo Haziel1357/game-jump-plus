@@ -1,5 +1,7 @@
 # Carpeta de caché de Godot 4
 .godot/
+addons/orca
+
 
 # Exportaciones del juego
 /build/
