@@ -8,6 +8,8 @@ signal vidas_cambiadas(jugador: int, vidas: int)
 signal casillas_cambiadas(jugador: int, total: int)
 
 const VIDAS_INICIALES := 3
+# Casillas que debe recorrer un jugador para ganar la partida.
+const CASILLAS_PARA_GANAR := 6
 
 var personajes: Array = []
 

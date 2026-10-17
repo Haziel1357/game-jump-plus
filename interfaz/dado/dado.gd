@@ -1,10 +1,13 @@
+class_name Dado
 extends CanvasLayer
+
+# Se emite al pulsar "Omitir" cuando hay un ganador (1 o 2).
+# En caso de empate no se emite: simplemente se repiten los dados.
+signal ronda_terminada(ganador: int)
 
 # Duración total de la animación y cada cuánto cambia el número (en segundos).
 @export var duracion_animacion: float = 2.0
 @export var intervalo_numeros: float = 0.08
-# Casillas que avanza el ganador de cada ronda.
-@export var casillas_por_victoria: int = 1
 
 # Referencias a los nodos hijos ($ significa "busca este hijo por su nombre").
 @onready var etiqueta_numero_1: Label = $EtiquetaNumero
@@ -18,19 +21,22 @@ extends CanvasLayer
 # Guardan el número final que sacó cada jugador en la ronda actual.
 var resultado_1: int = 0
 var resultado_2: int = 0
+# Jugador que ganó los dados (0 = empate).
+var ganador: int = 0
 
 
 func _ready() -> void:
-	# Al empezar solo se ve lo del jugador 1; lo demás se oculta.
-	_preparar_ronda()
-
 	boton_lanzar_1.pressed.connect(_lanzar_jugador_1)
 	boton_lanzar_2.pressed.connect(_lanzar_jugador_2)
 	boton_omitir.pressed.connect(_al_pulsar_omitir)
+	iniciar_ronda()
 
 
-# Deja la interfaz lista para una ronda nueva.
-func _preparar_ronda() -> void:
+# Muestra el dado y lo deja listo para que el jugador 1 lance.
+# Lo llama quien coordina los turnos cuando hay que volver a tirar.
+func iniciar_ronda() -> void:
+	visible = true
+	etiqueta_numero_1.show()
 	etiqueta_numero_1.text = "0"
 	etiqueta_numero_2.text = "0"
 	etiqueta_numero_2.hide()
@@ -38,6 +44,18 @@ func _preparar_ronda() -> void:
 	etiqueta_resultado.hide()
 	ventana_resultado.hide()
 	boton_lanzar_1.show()
+
+
+# Muestra un mensaje final (por ejemplo, quién ganó la partida) y oculta el resto.
+func mostrar_fin(texto: String) -> void:
+	visible = true
+	etiqueta_numero_1.hide()
+	etiqueta_numero_2.hide()
+	boton_lanzar_1.hide()
+	boton_lanzar_2.hide()
+	ventana_resultado.hide()
+	etiqueta_resultado.text = texto
+	etiqueta_resultado.show()
 
 
 func _lanzar_jugador_1() -> void:
@@ -70,27 +88,26 @@ func _animar_dado(etiqueta: Label) -> int:
 	return numero_final
 
 
-# Compara los dos resultados, anota el avance del ganador y muestra la ventana.
+# Compara los dos resultados, decide quién empieza y muestra la ventana.
 func _mostrar_ganador() -> void:
 	if resultado_1 > resultado_2:
-		etiqueta_resultado.text = "¡Gana el jugador 1!"
-		EstadoJuego.avanzar(1, casillas_por_victoria)
+		ganador = 1
+		etiqueta_resultado.text = "¡Empieza el jugador 1!"
 	elif resultado_2 > resultado_1:
-		etiqueta_resultado.text = "¡Gana el jugador 2!"
-		EstadoJuego.avanzar(2, casillas_por_victoria)
+		ganador = 2
+		etiqueta_resultado.text = "¡Empieza el jugador 2!"
 	else:
-		# En empate nadie avanza.
-		etiqueta_resultado.text = "¡Empate!"
-
-	# Mostramos las casillas de cada jugador para comprobar que se guardan.
-	etiqueta_resultado.text += "\nCasillas J1: %d | J2: %d" % [
-		EstadoJuego.obtener_casillas(1),
-		EstadoJuego.obtener_casillas(2),
-	]
+		ganador = 0
+		etiqueta_resultado.text = "¡Empate! Se repite el dado"
 	etiqueta_resultado.show()
 	ventana_resultado.show()
 
 
-# Al pulsar "Omitir" se cierra la ventana y empieza una ronda nueva.
+# Al pulsar "Omitir": si hubo ganador, se oculta el dado y se avisa a quien
+# coordina los turnos; si fue empate, se vuelve a tirar.
 func _al_pulsar_omitir() -> void:
-	_preparar_ronda()
+	if ganador == 0:
+		iniciar_ronda()
+		return
+	visible = false
+	ronda_terminada.emit(ganador)
