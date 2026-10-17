@@ -1,0 +1,123 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://interfaz/preguntas/preguntas.gd" id="1_preg01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
+content_margin_left = 32.0
+content_margin_top = 24.0
+content_margin_right = 32.0
+content_margin_bottom = 24.0
+bg_color = Color(0.96, 0.87, 0.7, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.45, 0.3, 0.12, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_correcto"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.2, 0.75, 0.3, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1, 0.35, 0.15, 1)
+corner_radius = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_incorrecto"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.85, 0.2, 0.2, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.08, 0.08, 1)
+corner_radius = 12
+
+[node name="Preguntas" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_preg01")
+
+[node name="Popup" type="Control" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Oscuro" type="ColorRect" parent="Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="Centro" type="CenterContainer" parent="Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Caja" type="PanelContainer" parent="Popup/Centro"]
+custom_minimum_size = Vector2(900, 360)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
+
+[node name="Pregunta" type="Label" parent="Popup/Centro/Caja"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Pregunta aquí"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Opciones" type="VBoxContainer" parent="Popup"]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 340.0
+offset_right = -120.0
+offset_bottom = 560.0
+theme_override_constants/separation = 20
+
+[node name="BotonCorrecto" type="Button" parent="Popup/Opciones"]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+text = "Correcto"
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_correcto")
+
+[node name="BotonIncorrecto" type="Button" parent="Popup/Opciones"]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+text = "Incorrecto"
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_incorrecto")
+
+[node name="Banner" type="Label" parent="."]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 90.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 56
+text = "CORRECTO"
+horizontal_alignment = 1
