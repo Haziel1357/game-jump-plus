@@ -6,9 +6,14 @@ extends CanvasLayer
 
 const RUTA_MENU := "res://interfaz/menu_principal/menu_principal.tscn"
 
-const COLOR_GANA := Color(0.25, 0.85, 0.35)
-const COLOR_PIERDE := Color(0.95, 0.3, 0.3)
+# Colores de fondo de cada ventana. Se pueden cambiar desde el Inspector.
+@export var color_fondo_gana: Color = Color(0.1, 0.6, 0.2, 0.92)
+@export var color_fondo_pierde: Color = Color(0.7, 0.12, 0.12, 0.92)
+# Color del texto, para que se lea bien sobre el fondo verde o rojo.
+@export var color_texto: Color = Color.WHITE
 
+@onready var panel_1: ColorRect = $PanelJugador1
+@onready var panel_2: ColorRect = $PanelJugador2
 @onready var titulo_1: Label = $PanelJugador1/Titulo
 @onready var resumen_1: Label = $PanelJugador1/Resumen
 @onready var titulo_2: Label = $PanelJugador2/Titulo
@@ -26,16 +31,19 @@ func _ready() -> void:
 
 # Muestra las dos ventanas: la del 'ganador' dice "¡Ganaste!" y la otra "Perdiste".
 func mostrar(ganador: int) -> void:
-	_rellenar(titulo_1, resumen_1, 1, ganador == 1)
-	_rellenar(titulo_2, resumen_2, 2, ganador == 2)
+	_rellenar(panel_1, titulo_1, resumen_1, 1, ganador == 1)
+	_rellenar(panel_2, titulo_2, resumen_2, 2, ganador == 2)
 	visible = true
 	boton_reiniciar.grab_focus()
 
 
-# Escribe el título y el resumen de un jugador.
-func _rellenar(titulo: Label, resumen: Label, jugador: int, gano: bool) -> void:
+# Pinta la ventana de un jugador (verde si ganó, roja si perdió) y escribe
+# su título y su resumen.
+func _rellenar(panel: ColorRect, titulo: Label, resumen: Label, jugador: int, gano: bool) -> void:
+	panel.color = color_fondo_gana if gano else color_fondo_pierde
 	titulo.text = "¡Ganaste!" if gano else "Perdiste"
-	titulo.add_theme_color_override("font_color", COLOR_GANA if gano else COLOR_PIERDE)
+	titulo.add_theme_color_override("font_color", color_texto)
+	resumen.add_theme_color_override("font_color", color_texto)
 
 	var vidas: int = EstadoJuego.vidas_de(jugador)
 	var vidas_perdidas: int = EstadoJuego.VIDAS_INICIALES - vidas
