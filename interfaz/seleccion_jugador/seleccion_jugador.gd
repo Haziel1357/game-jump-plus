@@ -3,19 +3,27 @@ extends Control
 # Apuntamos a la pantalla del tutorial de tu compañero
 const RUTA_TUTORIAL := "res://interfaz/tutorial/tutorial.tscn"
 
+const MODELOS := [
+	"res://Jugadores/Jugador 1/robot!_3.tscn",
+	"res://Jugadores/Jugador 2/robot.tscn",
+]
+
 @onready var preview_1: ColorRect = $Layout/Paneles/PanelJugador1/Contenido/Preview/ColorPersonaje
 @onready var nombre_personaje_1: Label = $Layout/Paneles/PanelJugador1/Contenido/Preview/NombrePersonaje
 @onready var nick_1: LineEdit = $Layout/Paneles/PanelJugador1/Contenido/CampoNick
 @onready var boton_listo_1: Button = $Layout/Paneles/PanelJugador1/Contenido/BotonListo
+@onready var contenedor_modelo_1: Node3D = $Layout/Paneles/PanelJugador1/Contenido/Preview/ViewportPersonaje/SubViewport/ContenedorModelo
 
 @onready var preview_2: ColorRect = $Layout/Paneles/PanelJugador2/Contenido/Preview/ColorPersonaje
 @onready var nombre_personaje_2: Label = $Layout/Paneles/PanelJugador2/Contenido/Preview/NombrePersonaje
 @onready var nick_2: LineEdit = $Layout/Paneles/PanelJugador2/Contenido/CampoNick
 @onready var boton_listo_2: Button = $Layout/Paneles/PanelJugador2/Contenido/BotonListo
+@onready var contenedor_modelo_2: Node3D = $Layout/Paneles/PanelJugador2/Contenido/Preview/ViewportPersonaje/SubViewport/ContenedorModelo
 
 @onready var boton_volver: Button = $BotonVolver
 
 var _partida_iniciada: bool = false
+var _modelos_cargados: Dictionary = {}
 
 
 func _ready() -> void:
@@ -39,6 +47,11 @@ func _ready() -> void:
 	_refrescar_vista(1)
 	_refrescar_vista(2)
 
+	# Con solo 2 personajes las flechas no sirven (cada uno tiene el suyo).
+	if EstadoJuego.personajes.size() <= 2:
+		$Layout/Paneles/PanelJugador1/Contenido/Flechas.visible = false
+		$Layout/Paneles/PanelJugador2/Contenido/Flechas.visible = false
+
 
 func _cambiar_personaje(paso: int, jugador: int) -> void:
 	var total: int = EstadoJuego.personajes.size()
@@ -51,7 +64,7 @@ func _cambiar_personaje(paso: int, jugador: int) -> void:
 
 	for _intento in range(total):
 		indice = wrapi(indice, 0, total)
-		if not (bool(otro["listo"]) and int(otro["personaje"]) == indice):
+		if int(otro["personaje"]) != indice:
 			break
 		indice += paso
 
@@ -61,16 +74,72 @@ func _cambiar_personaje(paso: int, jugador: int) -> void:
 
 func _refrescar_vista(jugador: int) -> void:
 	var datos: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
-	var personaje: Dictionary = EstadoJuego.personajes[int(datos["personaje"])]
+	var indice: int = int(datos["personaje"])
+	var personaje: Dictionary = EstadoJuego.personajes[indice]
 	var color: Color = Color(personaje.get("color", "#ffffff"))
 	var texto: String = str(personaje.get("nombre", "?"))
 
 	if jugador == 1:
 		preview_1.color = color
 		nombre_personaje_1.text = texto
+		_cargar_modelo(contenedor_modelo_1, indice, color)
 	else:
 		preview_2.color = color
 		nombre_personaje_2.text = texto
+		_cargar_modelo(contenedor_modelo_2, indice, color)
+
+
+## Instancia el modelo 3D del personaje y le aplica el color como tinte.
+func _cargar_modelo(contenedor: Node3D, indice: int, color: Color) -> void:
+	# free() en vez de queue_free() para que no se acumulen modelos entre frames.
+	for hijo in contenedor.get_children():
+		hijo.free()
+
+	if indice < 0 or indice >= MODELOS.size():
+		push_warning("Índice de modelo fuera de rango: %d" % indice)
+		return
+
+	var modelo: PackedScene
+	if _modelos_cargados.has(indice):
+		modelo = _modelos_cargados[indice]
+	else:
+		modelo = load(MODELOS[indice])
+		if modelo == null:
+			push_error("No se pudo cargar: " + MODELOS[indice])
+			return
+		_modelos_cargados[indice] = modelo
+
+	var instancia: Node3D = modelo.instantiate()
+	instancia.position = Vector3.ZERO
+	_desactivar_nodos_incasados(instancia)
+	contenedor.add_child(instancia)
+	_aplicar_tinte(instancia, color)
+
+
+## Algunos .blend traen su propia cámara y luces; en el preview usamos las nuestras.
+func _desactivar_nodos_incasados(nodo: Node) -> void:
+	# free() porque esto se ejecuta antes de add_child (nodo aún fuera del árbol).
+	for hijo in nodo.get_children().duplicate():
+		if hijo is Camera3D or hijo is Light3D:
+			hijo.free()
+		else:
+			_desactivar_nodos_incasados(hijo)
+
+
+## Recorre todos los materiales del modelo y les pone el color de personaje.
+func _aplicar_tinte(nodo: Node, color: Color) -> void:
+	if nodo is MeshInstance3D:
+		var mesh_instance := nodo as MeshInstance3D
+		for i in mesh_instance.get_surface_override_material_count():
+			var mat_original: Material = mesh_instance.get_surface_override_material(i)
+			if mat_original == null and mesh_instance.mesh:
+				mat_original = mesh_instance.mesh.surface_get_material(i)
+			if mat_original is BaseMaterial3D:
+				var mat: BaseMaterial3D = (mat_original as BaseMaterial3D).duplicate()
+				mat.albedo_color = color
+				mesh_instance.set_surface_override_material(i, mat)
+	for hijo in nodo.get_children():
+		_aplicar_tinte(hijo, color)
 
 
 func _actualizar_nick(texto: String, jugador: int) -> void:
