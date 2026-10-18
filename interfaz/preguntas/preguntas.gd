@@ -11,6 +11,8 @@ const RUTA_DATOS := "res://escenas/niveles/preguntas/datos_preguntas.json"
 @onready var boton_correcto: Button = $Popup/Opciones/BotonCorrecto
 @onready var boton_incorrecto: Button = $Popup/Opciones/BotonIncorrecto
 @onready var banner: Label = $Banner
+@onready var sfx_pregunta: AudioStreamPlayer2D = $Popup/CajaPregunta/SFXPregunta
+
 
 var _preguntas: Array = []
 var _indice_siguiente: int = 0
@@ -52,6 +54,7 @@ func mostrar_pregunta(jugador: int) -> void:
 	label_pregunta.text = texto.replace("{otro}", nombre_otro)
 	_colocar_segun_turno(jugador)
 	popup.visible = true
+	sfx_pregunta.play()
 	boton_correcto.grab_focus()
 
 
