@@ -2,11 +2,13 @@
 	"personajes": [
 		{
 			"nombre": "Rojo",
-			"color": "#e74c3c"
+			"color": "#e74c3c",
+			"modelo": "res://jugadores/jugador_1/robot!_3.tscn"
 		},
 		{
 			"nombre": "Azul",
-			"color": "#3498db"
+			"color": "#3498db",
+			"modelo": "res://jugadores/jugador_2/robot.tscn"
 		}
 	]
 }

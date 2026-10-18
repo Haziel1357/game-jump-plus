@@ -29,25 +29,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Contenido" type="VBoxContainer" parent="Centro" unique_id=1259405133]
+[node name="Marco" type="PanelContainer" parent="Centro"]
+theme = ExtResource("99_tema")
+theme_type_variation = &"PanelBurbuja"
+layout_mode = 2
+
+[node name="Contenido" type="VBoxContainer" parent="Centro/Marco" unique_id=1259405133]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Titulo" type="Label" parent="Centro/Contenido" unique_id=537486049]
+[node name="Titulo" type="Label" parent="Centro/Marco/Contenido" unique_id=537486049]
+theme_type_variation = &"TextoOscuro"
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Créditos"
 horizontal_alignment = 1
 
-[node name="Equipo" type="VBoxContainer" parent="Centro/Contenido" unique_id=1790918927]
+[node name="Equipo" type="VBoxContainer" parent="Centro/Marco/Contenido" unique_id=1790918927]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Separador" type="Control" parent="Centro/Contenido" unique_id=1072226155]
+[node name="Separador" type="Control" parent="Centro/Marco/Contenido" unique_id=1072226155]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="BotonVolver" type="Button" parent="Centro/Contenido" unique_id=1201489151]
+[node name="BotonVolver" type="Button" parent="Centro/Marco/Contenido" unique_id=1201489151]
 theme = ExtResource("99_tema")
 theme_type_variation = &"Boton1"
 custom_minimum_size = Vector2(300, 80)

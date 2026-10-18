@@ -36,6 +36,7 @@ func _ready() -> void:
 		push_error("CicloRonda: asigna Jugador 1 y Jugador 2 en el Inspector.")
 		return
 	_jugadores = {1: jugador_1, 2: jugador_2}
+	_poner_personajes_elegidos()
 	# Los jugadores ya no se mueven con la tecla de prueba: solo al acertar.
 	for jugador in _jugadores:
 		_jugadores[jugador].set("habilita_tecla_prueba", false)
@@ -45,6 +46,38 @@ func _ready() -> void:
 		camara_general.make_current()
 	# call_deferred espera a que todos los nodos estén listos antes de empezar.
 	dado.iniciar_ronda.call_deferred()
+
+
+# Cambia el modelo de cada jugador por el personaje que eligió en la selección.
+# El jugador 1 (izquierda) recibe su personaje en su nodo, y el 2 (derecha) en el suyo.
+func _poner_personajes_elegidos() -> void:
+	for jugador in _jugadores:
+		var datos: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
+		var indice: int = int(datos["personaje"])
+		if indice < 0 or indice >= EstadoJuego.personajes.size():
+			continue
+
+		var ruta: String = str(EstadoJuego.personajes[indice].get("modelo", ""))
+		var escena: PackedScene = load(ruta) as PackedScene
+		if escena == null:
+			push_warning("CicloRonda: no se pudo cargar el modelo '%s'" % ruta)
+			continue
+
+		var nodo: Node = _jugadores[jugador]
+		# Posición/altura con la que el nivel colocó el modelo de este jugador.
+		# El nuevo modelo la hereda (por ejemplo, el jugador 2 va más alto).
+		var transformacion: Transform3D = Transform3D.IDENTITY
+		# El modelo es el hijo que no es colisión ni cámara; lo reemplazamos.
+		for hijo in nodo.get_children():
+			if not (hijo is CollisionShape3D or hijo is Camera3D):
+				if hijo is Node3D:
+					transformacion = (hijo as Node3D).transform
+				nodo.remove_child(hijo)
+				hijo.queue_free()
+		var modelo: Node3D = escena.instantiate() as Node3D
+		modelo.transform = transformacion
+		nodo.add_child(modelo)
+		nodo.move_child(modelo, 0)
 
 
 # El dado ya decidió quién empieza: preguntamos a ese jugador y luego al otro.
@@ -72,8 +105,12 @@ func _preguntar(jugador: int) -> void:
 	# La cámara se cambia al jugador que está respondiendo.
 	_poner_camara(jugador)
 	preguntas.mostrar_pregunta(jugador)
+	# Mientras la pregunta está en pantalla suena su loop y baja la música de fondo.
+	Sonidos.pregunta_empezar()
 	# Esperamos a que marquen Correcto/Incorrecto; la señal trae la respuesta.
 	var es_correcto: bool = await preguntas.resultado_marcado
+	Sonidos.pregunta_terminar()
+	Sonidos.sfx("correcto" if es_correcto else "incorrecto")
 
 	# Si fue incorrecto, preguntas.gd ya le restó 1 vida y aquí no se mueve.
 	if es_correcto:
@@ -120,3 +157,9 @@ func _poner_camara(jugador: int) -> void:
 func _poner_camara_general() -> void:
 	if camara_general != null:
 		camara_general.make_current()
+
+
+# Si se sale del nivel a mitad de una pregunta (por ejemplo, al reiniciar desde la
+# pausa), hay que devolver la música a su volumen y apagar el loop.
+func _exit_tree() -> void:
+	Sonidos.pregunta_terminar()

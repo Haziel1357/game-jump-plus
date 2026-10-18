@@ -2,23 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ds60fbxrw44uo" path="res://interfaz/preguntas/preguntas.gd" id="1_preg01"]
 [ext_resource type="AudioStream" uid="uid://naohehj8qenr" path="res://recursos/audio/efectos/sonido_salto_prueba.mp3" id="2_oqlur"]
-[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
-content_margin_left = 32.0
-content_margin_top = 24.0
-content_margin_right = 32.0
-content_margin_bottom = 24.0
-bg_color = Color(0.96, 0.87, 0.7, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.45, 0.3, 0.12, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+[ext_resource type="Theme" uid="uid://cod5ws21hnqvm" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 
 [node name="Preguntas" type="CanvasLayer" unique_id=61489788]
 layer = 10
@@ -47,19 +31,21 @@ offset_left = 80.0
 offset_top = 280.0
 offset_right = 860.0
 offset_bottom = 640.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
+theme = ExtResource("99_tema")
+theme_type_variation = &"Burbuja"
 
 [node name="Pregunta" type="Label" parent="Popup/CajaPregunta" unique_id=958935140]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 16.0
-offset_right = -24.0
-offset_bottom = -16.0
+offset_left = 70.0
+offset_top = 40.0
+offset_right = -70.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"TextoOscuro"
 theme_override_font_sizes/font_size = 32
 text = "Pregunta aquí"
 horizontal_alignment = 1
@@ -83,28 +69,36 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="BotonCorrecto" type="Button" parent="Popup/Opciones" unique_id=387940476]
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 2
 theme = ExtResource("99_tema")
 theme_type_variation = &"Boton2Correcto"
-custom_minimum_size = Vector2(300, 90)
-layout_mode = 2
+theme_override_constants/h_separation = 4
 theme_override_font_sizes/font_size = 30
 text = "Correcto"
+metadata/sin_clic = true
 
 [node name="BotonIncorrecto" type="Button" parent="Popup/Opciones" unique_id=1166742668]
-theme = ExtResource("99_tema")
-theme_type_variation = &"Boton2Incorrecto"
 custom_minimum_size = Vector2(300, 90)
 layout_mode = 2
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2Incorrecto"
 theme_override_font_sizes/font_size = 30
 text = "Incorrecto"
+metadata/sin_clic = true
 
 [node name="Banner" type="Label" parent="." unique_id=2101355641]
 visible = false
-anchors_preset = 10
-anchor_right = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
 offset_top = 90.0
+offset_right = 150.0
 offset_bottom = 170.0
 grow_horizontal = 2
+theme = ExtResource("99_tema")
+theme_type_variation = &"EtiquetaBurbuja"
 theme_override_font_sizes/font_size = 56
 text = "CORRECTO"
 horizontal_alignment = 1

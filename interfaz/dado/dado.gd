@@ -71,6 +71,7 @@ func _lanzar_jugador_2() -> void:
 # y devuelve el número final. Usa 'await', así que es una función que "espera".
 func _animar_dado(dado: TextureRect) -> int:
 	var tiempo: float = 0.0
+	Sonidos.iniciar_loop("lanzar_dado")
 	while tiempo < duracion_animacion:
 		_mostrar_cara(dado, randi_range(1, 6))
 		# Esperamos un ratito sin congelar el juego.
@@ -79,6 +80,9 @@ func _animar_dado(dado: TextureRect) -> int:
 
 	var numero_final: int = randi_range(1, 6)
 	_mostrar_cara(dado, numero_final)
+	# Termina de rodar: se corta el loop y suena el sonido del número final.
+	Sonidos.detener_loop("lanzar_dado")
+	Sonidos.sfx("resultado")
 	return numero_final
 
 
@@ -101,6 +105,10 @@ func _mostrar_ganador() -> void:
 		ganador = 0
 		etiqueta_resultado.text = "¡Empate! Se repite el dado"
 
+	# Si hay ganador suena su sonido (en un empate no suena nada).
+	if ganador != 0:
+		Sonidos.sfx("ganador_ronda")
+
 	# El botón dice qué pasará al pulsarlo: empezar la ronda o volver a lanzar.
 	boton_omitir.text = "Iniciar Ronda" if ganador != 0 else "Vuelvan a Lanzar"
 	etiqueta_resultado.show()
@@ -115,3 +123,9 @@ func _al_pulsar_omitir() -> void:
 		return
 	visible = false
 	ronda_terminada.emit(ganador)
+
+
+# Si se sale de la escena a mitad de una tirada (por ejemplo, al reiniciar desde la
+# pausa), el loop de los dados no debe quedarse sonando.
+func _exit_tree() -> void:
+	Sonidos.detener_loop("lanzar_dado")

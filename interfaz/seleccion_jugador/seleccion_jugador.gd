@@ -3,18 +3,11 @@ extends Control
 # Apuntamos a la pantalla del tutorial de tu compañero
 const RUTA_TUTORIAL := "res://interfaz/tutorial/tutorial.tscn"
 
-const MODELOS := [
-	"res://jugadores/jugador_1/robot!_3.tscn",
-	"res://jugadores/jugador_2/robot.tscn",
-]
-
-@onready var preview_1: ColorRect = $Layout/Paneles/PanelJugador1/Contenido/Preview/ColorPersonaje
 @onready var nombre_personaje_1: Label = $Layout/Paneles/PanelJugador1/Contenido/Preview/NombrePersonaje
 @onready var nick_1: LineEdit = $Layout/Paneles/PanelJugador1/Contenido/CampoNick
 @onready var boton_listo_1: Button = $Layout/Paneles/PanelJugador1/Contenido/BotonListo
 @onready var contenedor_modelo_1: Node3D = $Layout/Paneles/PanelJugador1/Contenido/Preview/ViewportPersonaje/SubViewport/ContenedorModelo
 
-@onready var preview_2: ColorRect = $Layout/Paneles/PanelJugador2/Contenido/Preview/ColorPersonaje
 @onready var nombre_personaje_2: Label = $Layout/Paneles/PanelJugador2/Contenido/Preview/NombrePersonaje
 @onready var nick_2: LineEdit = $Layout/Paneles/PanelJugador2/Contenido/CampoNick
 @onready var boton_listo_2: Button = $Layout/Paneles/PanelJugador2/Contenido/BotonListo
@@ -78,36 +71,36 @@ func _refrescar_vista(jugador: int) -> void:
 	var personaje: Dictionary = EstadoJuego.personajes[indice]
 	var color: Color = Color(personaje.get("color", "#ffffff"))
 	var texto: String = str(personaje.get("nombre", "?"))
+	# La ruta del modelo viene de personajes.json (la misma que usa el nivel).
+	var ruta: String = str(personaje.get("modelo", ""))
 
 	if jugador == 1:
-		preview_1.color = color
 		nombre_personaje_1.text = texto
-		_cargar_modelo(contenedor_modelo_1, indice, color)
+		_cargar_modelo(contenedor_modelo_1, ruta, color)
 	else:
-		preview_2.color = color
 		nombre_personaje_2.text = texto
-		_cargar_modelo(contenedor_modelo_2, indice, color)
+		_cargar_modelo(contenedor_modelo_2, ruta, color)
 
 
 ## Instancia el modelo 3D del personaje y le aplica el color como tinte.
-func _cargar_modelo(contenedor: Node3D, indice: int, color: Color) -> void:
+func _cargar_modelo(contenedor: Node3D, ruta: String, color: Color) -> void:
 	# free() en vez de queue_free() para que no se acumulen modelos entre frames.
 	for hijo in contenedor.get_children():
 		hijo.free()
 
-	if indice < 0 or indice >= MODELOS.size():
-		push_warning("Índice de modelo fuera de rango: %d" % indice)
+	if ruta.is_empty():
+		push_warning("Este personaje no tiene 'modelo' en personajes.json")
 		return
 
 	var modelo: PackedScene
-	if _modelos_cargados.has(indice):
-		modelo = _modelos_cargados[indice]
+	if _modelos_cargados.has(ruta):
+		modelo = _modelos_cargados[ruta]
 	else:
-		modelo = load(MODELOS[indice])
+		modelo = load(ruta)
 		if modelo == null:
-			push_error("No se pudo cargar: " + MODELOS[indice])
+			push_error("No se pudo cargar: " + ruta)
 			return
-		_modelos_cargados[indice] = modelo
+		_modelos_cargados[ruta] = modelo
 
 	var instancia: Node3D = modelo.instantiate()
 	instancia.position = Vector3.ZERO
@@ -159,6 +152,7 @@ func _alternar_listo(jugador: int) -> void:
 	var boton: Button = boton_listo_1 if jugador == 1 else boton_listo_2
 	if bool(datos["listo"]):
 		boton.text = "¡Listo!"
+		Sonidos.sfx("listo")
 		# La versión más adornada del botón marca que este jugador ya está listo.
 		boton.theme_type_variation = &"Boton3"
 	else:
