@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://noh7qonpquc2"
-path.s3tc="res://.godot/imported/Material_BaseColor.png-c5f3513bf96e74499da78170a349a368.s3tc.ctex"
+uid="uid://cpr17blsk7vhh"
+path.s3tc="res://.godot/imported/DefaultMaterial_Emission.png-f207eec2ffdb297f2bc2d7b6fb8ae12c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://jugadores/jugador_1/textures/Material_BaseColor.png"
-dest_files=["res://.godot/imported/Material_BaseColor.png-c5f3513bf96e74499da78170a349a368.s3tc.ctex"]
+source_file="res://jugadores/jugador_1/textures/DefaultMaterial_Emission.png"
+dest_files=["res://.godot/imported/DefaultMaterial_Emission.png-f207eec2ffdb297f2bc2d7b6fb8ae12c.s3tc.ctex"]
 
 [params]
 
