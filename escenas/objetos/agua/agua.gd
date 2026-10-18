@@ -5,9 +5,10 @@ extends MeshInstance3D
 # Va en un MeshInstance3D con una malla plana (PlaneMesh) grande.
 
 # Altura (eje Y) del agua al empezar la partida.
-@export var altura_inicial: float = 0.5
-# Cuánto sube el agua por cada vida perdida.
-@export var altura_por_nivel: float = 0.8
+@export var altura_inicial: float = 1.0
+# Altura a la que llega el agua cuando ya se perdieron todas las vidas posibles
+# antes del final (las subidas se reparten en partes iguales hasta aquí).
+@export var altura_maxima: float = 2.2
 # Segundos que tarda en subir un nivel.
 @export var duracion_subida: float = 1.2
 # Segundos que tarda la inundación final (cuando un jugador pierde todas sus vidas).
@@ -46,8 +47,16 @@ func _nivel_actual() -> int:
 	return vidas_totales - EstadoJuego.vidas_de(1) - EstadoJuego.vidas_de(2)
 
 
+# Cuántas subidas caben antes de que alguien pierda la partida: con 3 vidas cada
+# uno son 5 (la sexta vida perdida ya provoca la inundación final).
+func _niveles_maximos() -> int:
+	return EstadoJuego.VIDAS_INICIALES * 2 - 1
+
+
+# Altura del agua para un nivel: reparte el recorrido entre inicial y máxima.
 func _altura_del_nivel(nivel: int) -> float:
-	return altura_inicial + nivel * altura_por_nivel
+	var avance: float = clampf(float(nivel) / _niveles_maximos(), 0.0, 1.0)
+	return lerpf(altura_inicial, altura_maxima, avance)
 
 
 # Se llama cada vez que un jugador pierde una vida: el agua sube un nivel.
@@ -58,7 +67,9 @@ func _al_cambiar_vidas(_jugador: int, _vidas: int) -> void:
 # Inundación final: sube hasta la altura de la casilla de un jugador.
 # Usa 'await' para que quien la llame pueda esperar a que termine.
 func inundar_hasta(altura_casilla: float) -> void:
-	await _mover_a(altura_casilla + margen_inundacion, duracion_inundacion)
+	# maxf evita que el agua baje si la casilla está más abajo del nivel actual.
+	var altura: float = maxf(altura_casilla + margen_inundacion, global_position.y)
+	await _mover_a(altura, duracion_inundacion)
 
 
 # Sube (o baja) suavemente hasta 'altura' en 'segundos'.

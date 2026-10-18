@@ -68,7 +68,7 @@ func _animar_dado(etiqueta: Label) -> int:
 	while tiempo < duracion_animacion:
 		etiqueta.text = str(randi_range(1, 6))
 		# Esperamos un ratito sin congelar el juego.
-		await get_tree().create_timer(intervalo_numeros).timeout
+		await get_tree().create_timer(intervalo_numeros, false).timeout
 		tiempo += intervalo_numeros
 
 	var numero_final: int = randi_range(1, 6)

@@ -81,7 +81,7 @@ func _preguntar(jugador: int) -> void:
 		# El personaje salta a la siguiente casilla de su camino.
 		_jugadores[jugador].call("avanzar_siguiente_punto")
 
-	await get_tree().create_timer(pausa_tras_respuesta).timeout
+	await get_tree().create_timer(pausa_tras_respuesta, false).timeout
 
 	# ¿Llegó a la meta? Gana ese jugador, aunque el otro no haya contestado aún.
 	if EstadoJuego.obtener_casillas(jugador) >= EstadoJuego.CASILLAS_PARA_GANAR:
