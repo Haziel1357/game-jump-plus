@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d2038uw2kc1qe"
-path="res://.godot/imported/ROBOT!_3.blend-96ab41c7c0329b6074df23f86412c42e.scn"
+uid="uid://domxwfuo2p21c"
+path="res://.godot/imported/Robot.blend-d6bd7a8335bd74458bf78516ddd59b90.scn"
 
 [deps]
 
-source_file="res://jugadores/jugador_1/ROBOT!_3.blend"
-dest_files=["res://.godot/imported/ROBOT!_3.blend-96ab41c7c0329b6074df23f86412c42e.scn"]
+source_file="res://jugadores/jugador_1/Robot.blend"
+dest_files=["res://.godot/imported/Robot.blend-d6bd7a8335bd74458bf78516ddd59b90.scn"]
 
 [params]
 
