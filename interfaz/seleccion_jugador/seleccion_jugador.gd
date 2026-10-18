@@ -8,6 +8,17 @@ const MODELOS := [
 	"res://jugadores/jugador_2/robot.tscn",
 ]
 
+# Compartido con el nivel (isla) para que el coloreado sea idéntico.
+const TintePersonaje := preload("res://scripts/globales/tinte_personaje.gd")
+
+# Texturas de botones del menú para estilo consistente
+const TEXTURA_BOTON1_NORMAL := preload("res://recursos/ui/botones/boton1_normal.png")
+const TEXTURA_BOTON1_CLIC := preload("res://recursos/ui/botones/boton1_clic.png")
+const TEXTURA_BOTON2_NORMAL := preload("res://recursos/ui/botones/boton2_normal.png")
+const TEXTURA_BOTON2_CLIC := preload("res://recursos/ui/botones/boton2_clic.png")
+const TEXTURA_BOTON3_NORMAL := preload("res://recursos/ui/botones/boton3_normal.png")
+const TEXTURA_BOTON3_CLIC := preload("res://recursos/ui/botones/boton3_clic.png")
+
 @onready var preview_1: ColorRect = $Layout/Paneles/PanelJugador1/Contenido/Preview/ColorPersonaje
 @onready var nombre_personaje_1: Label = $Layout/Paneles/PanelJugador1/Contenido/Preview/NombrePersonaje
 @onready var nick_1: LineEdit = $Layout/Paneles/PanelJugador1/Contenido/CampoNick
@@ -44,6 +55,11 @@ func _ready() -> void:
 	nick_1.text_changed.connect(_actualizar_nick.bind(1))
 	nick_2.text_changed.connect(_actualizar_nick.bind(2))
 
+	# Estilos de botones con texturas del menú
+	_estilo_boton(boton_listo_1, TEXTURA_BOTON2_NORMAL, TEXTURA_BOTON2_CLIC)
+	_estilo_boton(boton_listo_2, TEXTURA_BOTON2_NORMAL, TEXTURA_BOTON2_CLIC)
+	_estilo_boton(boton_volver, TEXTURA_BOTON1_NORMAL, TEXTURA_BOTON1_CLIC)
+
 	_refrescar_vista(1)
 	_refrescar_vista(2)
 
@@ -73,17 +89,21 @@ func _cambiar_personaje(paso: int, jugador: int) -> void:
 
 
 func _refrescar_vista(jugador: int) -> void:
-	var datos: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
-	var indice: int = int(datos["personaje"])
+	# INVERTIDO: cada panel muestra el personaje del OTRO jugador
+	var datos_propio: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
+	var datos_otro: Dictionary = EstadoJuego.jugador_2 if jugador == 1 else EstadoJuego.jugador_1
+	var indice: int = int(datos_otro["personaje"])
 	var personaje: Dictionary = EstadoJuego.personajes[indice]
 	var color: Color = Color(personaje.get("color", "#ffffff"))
 	var texto: String = str(personaje.get("nombre", "?"))
 
 	if jugador == 1:
+		# Panel 1 muestra personaje del Jugador 2
 		preview_1.color = color
 		nombre_personaje_1.text = texto
 		_cargar_modelo(contenedor_modelo_1, indice, color)
 	else:
+		# Panel 2 muestra personaje del Jugador 1
 		preview_2.color = color
 		nombre_personaje_2.text = texto
 		_cargar_modelo(contenedor_modelo_2, indice, color)
@@ -95,25 +115,32 @@ func _cargar_modelo(contenedor: Node3D, indice: int, color: Color) -> void:
 	for hijo in contenedor.get_children():
 		hijo.free()
 
-	if indice < 0 or indice >= MODELOS.size():
-		push_warning("Índice de modelo fuera de rango: %d" % indice)
+	if MODELOS.is_empty():
+		push_warning("No hay modelos de personaje definidos en MODELOS.")
+		return
+	if indice < 0 or indice >= EstadoJuego.personajes.size():
+		push_warning("Índice de personaje fuera de rango: %d" % indice)
 		return
 
+	# Hay más personajes (colores) que modelos: se reciclan con el resto
+	# para que Verde vuelva a usar el modelo 0 y Amarillo el modelo 1.
+	var indice_modelo: int = indice % MODELOS.size()
+
 	var modelo: PackedScene
-	if _modelos_cargados.has(indice):
-		modelo = _modelos_cargados[indice]
+	if _modelos_cargados.has(indice_modelo):
+		modelo = _modelos_cargados[indice_modelo]
 	else:
-		modelo = load(MODELOS[indice])
+		modelo = load(MODELOS[indice_modelo])
 		if modelo == null:
-			push_error("No se pudo cargar: " + MODELOS[indice])
+			push_error("No se pudo cargar: " + MODELOS[indice_modelo])
 			return
-		_modelos_cargados[indice] = modelo
+		_modelos_cargados[indice_modelo] = modelo
 
 	var instancia: Node3D = modelo.instantiate()
 	instancia.position = Vector3.ZERO
 	_desactivar_nodos_incasados(instancia)
 	contenedor.add_child(instancia)
-	_aplicar_tinte(instancia, color)
+	TintePersonaje.aplicar(instancia, color)
 
 
 ## Algunos .blend traen su propia cámara y luces; en el preview usamos las nuestras.
@@ -124,22 +151,6 @@ func _desactivar_nodos_incasados(nodo: Node) -> void:
 			hijo.free()
 		else:
 			_desactivar_nodos_incasados(hijo)
-
-
-## Recorre todos los materiales del modelo y les pone el color de personaje.
-func _aplicar_tinte(nodo: Node, color: Color) -> void:
-	if nodo is MeshInstance3D:
-		var mesh_instance := nodo as MeshInstance3D
-		for i in mesh_instance.get_surface_override_material_count():
-			var mat_original: Material = mesh_instance.get_surface_override_material(i)
-			if mat_original == null and mesh_instance.mesh:
-				mat_original = mesh_instance.mesh.surface_get_material(i)
-			if mat_original is BaseMaterial3D:
-				var mat: BaseMaterial3D = (mat_original as BaseMaterial3D).duplicate()
-				mat.albedo_color = color
-				mesh_instance.set_surface_override_material(i, mat)
-	for hijo in nodo.get_children():
-		_aplicar_tinte(hijo, color)
 
 
 func _actualizar_nick(texto: String, jugador: int) -> void:
@@ -159,22 +170,29 @@ func _alternar_listo(jugador: int) -> void:
 	var boton: Button = boton_listo_1 if jugador == 1 else boton_listo_2
 	if bool(datos["listo"]):
 		boton.text = "¡Listo!"
-		boton.add_theme_stylebox_override("normal", _estilo_listo_activo())
+		# Usa botón 3 (más destacado) para estado "listo"
+		boton.self_modulate = Color(0.85, 0.72, 1.0)
+		_estilo_boton(boton, TEXTURA_BOTON3_NORMAL, TEXTURA_BOTON3_CLIC)
 	else:
 		boton.text = "Listo"
-		boton.remove_theme_stylebox_override("normal")
+		# Vuelve a botón 2 (melocotón)
+		boton.self_modulate = Color(1.0, 0.86, 0.66)
+		_estilo_boton(boton, TEXTURA_BOTON2_NORMAL, TEXTURA_BOTON2_CLIC)
 
 	_comprobar_inicio()
 
 
-func _estilo_listo_activo() -> StyleBoxFlat:
-	var estilo := StyleBoxFlat.new()
-	estilo.bg_color = Color(0.95, 0.75, 0.15)
-	estilo.border_color = Color(0.45, 0.35, 0.05)
-	estilo.set_border_width_all(3)
-	estilo.set_corner_radius_all(12)
-	estilo.set_content_margin_all(20)
-	return estilo
+## Aplica textura a los cuatro estados visibles del botón con márgenes 40/30
+func _estilo_boton(boton: Button, textura_normal: Texture2D, textura_clic: Texture2D) -> void:
+	for estado in ["normal", "hover", "pressed", "focus"]:
+		var textura := textura_normal if estado == "normal" else textura_clic
+		var estilo := StyleBoxTexture.new()
+		estilo.texture = textura
+		estilo.content_margin_left = 40.0
+		estilo.content_margin_top = 30.0
+		estilo.content_margin_right = 40.0
+		estilo.content_margin_bottom = 30.0
+		boton.add_theme_stylebox_override(estado, estilo)
 
 
 func _comprobar_inicio() -> void:
