@@ -7,8 +7,8 @@ extends Node
 
 # Casillas que avanza un jugador cuando su respuesta es correcta.
 @export var casillas_por_acierto: int = 1
-# Pausa tras marcar la respuesta, para que se vea el banner de "CORRECTO/INCORRECTO".
-@export var pausa_tras_respuesta: float = 1.8
+# Pausa breve al terminar la animación del personaje, antes de seguir con el turno.
+@export var pausa_tras_animacion: float = 0.4
 
 # Los personajes se asignan en el Inspector (así sirve en cualquier nivel,
 # sin importar cómo se llamen los nodos). Deben tener el script jugador.gd.
@@ -48,8 +48,9 @@ func _ready() -> void:
 	dado.iniciar_ronda.call_deferred()
 
 
-# Cambia el modelo de cada jugador por el personaje que eligió en la selección.
-# El jugador 1 (izquierda) recibe su personaje en su nodo, y el 2 (derecha) en el suyo.
+# Pone en cada jugador el personaje que eligió en la selección: el jugador 1
+# (izquierda) recibe su personaje en su nodo, y el 2 (derecha) en el suyo.
+# Los datos de cada personaje (modelo, animaciones y posición) están en personajes.json.
 func _poner_personajes_elegidos() -> void:
 	for jugador in _jugadores:
 		var datos: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
@@ -57,27 +58,31 @@ func _poner_personajes_elegidos() -> void:
 		if indice < 0 or indice >= EstadoJuego.personajes.size():
 			continue
 
-		var ruta: String = str(EstadoJuego.personajes[indice].get("modelo", ""))
+		var personaje: Dictionary = EstadoJuego.personajes[indice]
+		var ruta: String = str(personaje.get("modelo", ""))
 		var escena: PackedScene = load(ruta) as PackedScene
 		if escena == null:
 			push_warning("CicloRonda: no se pudo cargar el modelo '%s'" % ruta)
 			continue
 
 		var nodo: Node = _jugadores[jugador]
-		# Posición/altura con la que el nivel colocó el modelo de este jugador.
-		# El nuevo modelo la hereda (por ejemplo, el jugador 2 va más alto).
-		var transformacion: Transform3D = Transform3D.IDENTITY
-		# El modelo es el hijo que no es colisión ni cámara; lo reemplazamos.
+		# El modelo anterior es el hijo que no es colisión ni cámara; lo quitamos.
 		for hijo in nodo.get_children():
 			if not (hijo is CollisionShape3D or hijo is Camera3D):
-				if hijo is Node3D:
-					transformacion = (hijo as Node3D).transform
 				nodo.remove_child(hijo)
 				hijo.queue_free()
+
 		var modelo: Node3D = escena.instantiate() as Node3D
-		modelo.transform = transformacion
+		# Cada robot tiene su propio desfase para quedar apoyado sobre la casilla.
+		var p: Array = personaje.get("posicion", [0.0, 0.0, 0.0])
+		modelo.position = Vector3(p[0], p[1], p[2])
 		nodo.add_child(modelo)
 		nodo.move_child(modelo, 0)
+
+		# Los nombres de las animaciones cambian de un robot a otro.
+		nodo.set("anim_idle", StringName(personaje.get("anim_idle", "Idle")))
+		nodo.set("anim_victoria", StringName(personaje.get("anim_victoria", "")))
+		nodo.call("usar_modelo", modelo)
 
 
 # El dado ya decidió quién empieza: preguntamos a ese jugador y luego al otro.
@@ -112,13 +117,17 @@ func _preguntar(jugador: int) -> void:
 	Sonidos.pregunta_terminar()
 	Sonidos.sfx("correcto" if es_correcto else "incorrecto")
 
-	# Si fue incorrecto, preguntas.gd ya le restó 1 vida y aquí no se mueve.
 	if es_correcto:
 		EstadoJuego.avanzar(jugador, casillas_por_acierto)
-		# El personaje salta a la siguiente casilla de su camino.
-		_jugadores[jugador].call("avanzar_siguiente_punto")
+		# El personaje celebra y salta a la siguiente casilla. 'await' espera a que
+		# terminen sus animaciones antes de seguir con el turno.
+		await _jugadores[jugador].avanzar_siguiente_punto()
+	else:
+		# preguntas.gd ya le restó 1 vida. El personaje niega con la cabeza (animación
+		# "Negacion") y se espera a que termine.
+		await _jugadores[jugador].responder_incorrecto()
 
-	await get_tree().create_timer(pausa_tras_respuesta, false).timeout
+	await get_tree().create_timer(pausa_tras_animacion, false).timeout
 
 	# ¿Llegó a la meta? Gana ese jugador, aunque el otro no haya contestado aún.
 	if EstadoJuego.obtener_casillas(jugador) >= EstadoJuego.CASILLAS_PARA_GANAR:

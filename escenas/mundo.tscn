@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_5sfon"]
 [ext_resource type="PackedScene" uid="uid://xgxuyh0ev88q" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
-[ext_resource type="PackedScene" uid="uid://c2bk75qajtlpe" path="res://jugadores/jugador_1/robot!_3.tscn" id="2_ly0wt"]
-[ext_resource type="PackedScene" uid="uid://itjo6duu0r72" path="res://jugadores/jugador_2/robot.tscn" id="3_ly0wt"]
+[ext_resource type="PackedScene" path="res://jugadores/jugador_2/ROBOT!_3.glb" id="2_ly0wt"]
+[ext_resource type="PackedScene" path="res://jugadores/jugador_1/Robot.glb" id="3_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://ba0tjdqnfix6t" path="res://interfaz/hud/hud.tscn" id="5_txhqv"]
 [ext_resource type="PackedScene" uid="uid://b8ssryaxprgg8" path="res://interfaz/dado/dado.tscn" id="6_mb57o"]
 [ext_resource type="PackedScene" uid="uid://chqwbv4pvljyl" path="res://interfaz/preguntas/preguntas.tscn" id="7_jh10v"]
@@ -47,6 +47,7 @@ script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 2")
 
 [node name="Robot" parent="Jugador1" unique_id=2120732835 instance=ExtResource("3_ly0wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094946384, 0, 0.13211012)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador1" unique_id=2125524253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 1.581281, 1.284929)
@@ -63,7 +64,7 @@ script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 1")
 
 [node name="ROBOT!_3" parent="Jugador2" unique_id=827052337 instance=ExtResource("2_ly0wt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5620437, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador2" unique_id=337979765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 0.96, 1.284929)

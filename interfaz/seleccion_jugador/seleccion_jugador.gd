@@ -69,21 +69,21 @@ func _refrescar_vista(jugador: int) -> void:
 	var datos: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
 	var indice: int = int(datos["personaje"])
 	var personaje: Dictionary = EstadoJuego.personajes[indice]
-	var color: Color = Color(personaje.get("color", "#ffffff"))
 	var texto: String = str(personaje.get("nombre", "?"))
 	# La ruta del modelo viene de personajes.json (la misma que usa el nivel).
 	var ruta: String = str(personaje.get("modelo", ""))
+	var anim_idle: String = str(personaje.get("anim_idle", ""))
 
 	if jugador == 1:
 		nombre_personaje_1.text = texto
-		_cargar_modelo(contenedor_modelo_1, ruta, color)
+		_cargar_modelo(contenedor_modelo_1, ruta, anim_idle)
 	else:
 		nombre_personaje_2.text = texto
-		_cargar_modelo(contenedor_modelo_2, ruta, color)
+		_cargar_modelo(contenedor_modelo_2, ruta, anim_idle)
 
 
-## Instancia el modelo 3D del personaje y le aplica el color como tinte.
-func _cargar_modelo(contenedor: Node3D, ruta: String, color: Color) -> void:
+## Instancia el modelo 3D del personaje y reproduce su animación de reposo.
+func _cargar_modelo(contenedor: Node3D, ruta: String, anim_idle: String) -> void:
 	# free() en vez de queue_free() para que no se acumulen modelos entre frames.
 	for hijo in contenedor.get_children():
 		hijo.free()
@@ -106,7 +106,13 @@ func _cargar_modelo(contenedor: Node3D, ruta: String, color: Color) -> void:
 	instancia.position = Vector3.ZERO
 	_desactivar_nodos_incasados(instancia)
 	contenedor.add_child(instancia)
-	_aplicar_tinte(instancia, color)
+
+	# Animación de reposo en bucle, como se ve en el juego.
+	for nodo in instancia.find_children("*", "AnimationPlayer", true, false):
+		var reproductor := nodo as AnimationPlayer
+		if reproductor.has_animation(anim_idle):
+			reproductor.get_animation(anim_idle).loop_mode = Animation.LOOP_LINEAR
+			reproductor.play(anim_idle)
 
 
 ## Algunos .blend traen su propia cámara y luces; en el preview usamos las nuestras.
@@ -118,21 +124,6 @@ func _desactivar_nodos_incasados(nodo: Node) -> void:
 		else:
 			_desactivar_nodos_incasados(hijo)
 
-
-## Recorre todos los materiales del modelo y les pone el color de personaje.
-func _aplicar_tinte(nodo: Node, color: Color) -> void:
-	if nodo is MeshInstance3D:
-		var mesh_instance := nodo as MeshInstance3D
-		for i in mesh_instance.get_surface_override_material_count():
-			var mat_original: Material = mesh_instance.get_surface_override_material(i)
-			if mat_original == null and mesh_instance.mesh:
-				mat_original = mesh_instance.mesh.surface_get_material(i)
-			if mat_original is BaseMaterial3D:
-				var mat: BaseMaterial3D = (mat_original as BaseMaterial3D).duplicate()
-				mat.albedo_color = color
-				mesh_instance.set_surface_override_material(i, mat)
-	for hijo in nodo.get_children():
-		_aplicar_tinte(hijo, color)
 
 
 func _actualizar_nick(texto: String, jugador: int) -> void:
