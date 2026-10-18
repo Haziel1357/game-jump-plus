@@ -43,10 +43,9 @@ func _ready() -> void:
 	nick_1.text = EstadoJuego.jugador_1["nombre"]
 	nick_2.text = EstadoJuego.jugador_2["nombre"]
 
-	$Layout/Paneles/PanelJugador1/Contenido/Flechas/BotonAnterior.pressed.connect(_cambiar_personaje.bind(-1, 1))
-	$Layout/Paneles/PanelJugador1/Contenido/Flechas/BotonSiguiente.pressed.connect(_cambiar_personaje.bind(1, 1))
-	$Layout/Paneles/PanelJugador2/Contenido/Flechas/BotonAnterior.pressed.connect(_cambiar_personaje.bind(-1, 2))
-	$Layout/Paneles/PanelJugador2/Contenido/Flechas/BotonSiguiente.pressed.connect(_cambiar_personaje.bind(1, 2))
+	# Flechas deshabilitadas (invisibles) siempre
+	$Layout/Paneles/PanelJugador1/Contenido/Flechas.visible = false
+	$Layout/Paneles/PanelJugador2/Contenido/Flechas.visible = false
 
 	boton_listo_1.pressed.connect(_alternar_listo.bind(1))
 	boton_listo_2.pressed.connect(_alternar_listo.bind(2))
@@ -62,11 +61,6 @@ func _ready() -> void:
 
 	_refrescar_vista(1)
 	_refrescar_vista(2)
-
-	# Con solo 2 personajes las flechas no sirven (cada uno tiene el suyo).
-	if EstadoJuego.personajes.size() <= 2:
-		$Layout/Paneles/PanelJugador1/Contenido/Flechas.visible = false
-		$Layout/Paneles/PanelJugador2/Contenido/Flechas.visible = false
 
 
 func _cambiar_personaje(paso: int, jugador: int) -> void:
@@ -89,17 +83,21 @@ func _cambiar_personaje(paso: int, jugador: int) -> void:
 
 
 func _refrescar_vista(jugador: int) -> void:
-	var datos: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
-	var indice: int = int(datos["personaje"])
+	# INVERTIDO: cada panel muestra el personaje del OTRO jugador
+	var datos_propio: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
+	var datos_otro: Dictionary = EstadoJuego.jugador_2 if jugador == 1 else EstadoJuego.jugador_1
+	var indice: int = int(datos_otro["personaje"])
 	var personaje: Dictionary = EstadoJuego.personajes[indice]
 	var color: Color = Color(personaje.get("color", "#ffffff"))
 	var texto: String = str(personaje.get("nombre", "?"))
 
 	if jugador == 1:
+		# Panel 1 muestra personaje del Jugador 2
 		preview_1.color = color
 		nombre_personaje_1.text = texto
 		_cargar_modelo(contenedor_modelo_1, indice, color)
 	else:
+		# Panel 2 muestra personaje del Jugador 1
 		preview_2.color = color
 		nombre_personaje_2.text = texto
 		_cargar_modelo(contenedor_modelo_2, indice, color)
