@@ -43,10 +43,9 @@ func _ready() -> void:
 	nick_1.text = EstadoJuego.jugador_1["nombre"]
 	nick_2.text = EstadoJuego.jugador_2["nombre"]
 
-	$Layout/Paneles/PanelJugador1/Contenido/Flechas/BotonAnterior.pressed.connect(_cambiar_personaje.bind(-1, 1))
-	$Layout/Paneles/PanelJugador1/Contenido/Flechas/BotonSiguiente.pressed.connect(_cambiar_personaje.bind(1, 1))
-	$Layout/Paneles/PanelJugador2/Contenido/Flechas/BotonAnterior.pressed.connect(_cambiar_personaje.bind(-1, 2))
-	$Layout/Paneles/PanelJugador2/Contenido/Flechas/BotonSiguiente.pressed.connect(_cambiar_personaje.bind(1, 2))
+	# Flechas deshabilitadas (invisibles) siempre
+	$Layout/Paneles/PanelJugador1/Contenido/Flechas.visible = false
+	$Layout/Paneles/PanelJugador2/Contenido/Flechas.visible = false
 
 	boton_listo_1.pressed.connect(_alternar_listo.bind(1))
 	boton_listo_2.pressed.connect(_alternar_listo.bind(2))
@@ -62,11 +61,6 @@ func _ready() -> void:
 
 	_refrescar_vista(1)
 	_refrescar_vista(2)
-
-	# Con solo 2 personajes las flechas no sirven (cada uno tiene el suyo).
-	if EstadoJuego.personajes.size() <= 2:
-		$Layout/Paneles/PanelJugador1/Contenido/Flechas.visible = false
-		$Layout/Paneles/PanelJugador2/Contenido/Flechas.visible = false
 
 
 func _cambiar_personaje(paso: int, jugador: int) -> void:
