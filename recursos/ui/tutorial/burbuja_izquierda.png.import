@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjko2wj53mw0r"
-path="res://.godot/imported/burbuja3_Medio.png-b000830eda8779272ca2f5095c52288b.ctex"
+uid="uid://tus4hn1p88yb"
+path="res://.godot/imported/burbuja_izquierda.png-719376db707d46f5892f03d75ef82625.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://recursos/ui/tutorial/burbuja3_Medio.png"
-dest_files=["res://.godot/imported/burbuja3_Medio.png-b000830eda8779272ca2f5095c52288b.ctex"]
+source_file="res://recursos/ui/tutorial/burbuja_izquierda.png"
+dest_files=["res://.godot/imported/burbuja_izquierda.png-719376db707d46f5892f03d75ef82625.ctex"]
 
 [params]
 

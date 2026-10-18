@@ -5,31 +5,61 @@
 [ext_resource type="Texture2D" uid="uid://bn0aywlqdmaiv" path="res://recursos/ui/botones/boton1_clic.png" id="3_b1c"]
 [ext_resource type="Texture2D" uid="uid://g8xohq4vhb0v" path="res://recursos/ui/botones/boton2_normal.png" id="4_b2n"]
 [ext_resource type="Texture2D" uid="uid://p2l46l8w88kg" path="res://recursos/ui/botones/boton2_clic.png" id="5_b2c"]
-[ext_resource type="Texture2D" uid="uid://gbsdxid1dxw0" path="res://recursos/ui/tutorial/fondo_tutorial.png" id="6_fondo"]
-[ext_resource type="Texture2D" uid="uid://dfngnasvpvjme" path="res://recursos/ui/tutorial/burbuja_izquierda.png" id="7_bizq"]
-[ext_resource type="Texture2D" uid="uid://cc81b8yfmrj7f" path="res://recursos/ui/tutorial/burbuja_derecha.png" id="8_bder"]
-[ext_resource type="Texture2D" uid="uid://btyvcri06fvi4" path="res://recursos/ui/tutorial/burbuja_centro.png" id="9_bcen"]
 
-[sub_resource type="StyleBoxTexture" id="SB_burbuja_izq"]
+[sub_resource type="StyleBoxFlat" id="SB_fondo"]
+bg_color = Color(0.12, 0.1, 0.15, 1)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+
+[sub_resource type="StyleBoxFlat" id="SB_burbuja_izq"]
+bg_color = Color(0.95, 0.92, 0.85, 1)
+border_color = Color(0.6, 0.5, 0.35, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 content_margin_left = 55.0
 content_margin_top = 40.0
 content_margin_right = 55.0
 content_margin_bottom = 50.0
-texture = ExtResource("7_bizq")
 
-[sub_resource type="StyleBoxTexture" id="SB_burbuja_der"]
+[sub_resource type="StyleBoxFlat" id="SB_burbuja_der"]
+bg_color = Color(0.95, 0.92, 0.85, 1)
+border_color = Color(0.6, 0.5, 0.35, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 content_margin_left = 55.0
 content_margin_top = 40.0
 content_margin_right = 55.0
 content_margin_bottom = 50.0
-texture = ExtResource("8_bder")
 
-[sub_resource type="StyleBoxTexture" id="SB_burbuja_cen"]
+[sub_resource type="StyleBoxFlat" id="SB_burbuja_cen"]
+bg_color = Color(0.95, 0.92, 0.85, 1)
+border_color = Color(0.6, 0.5, 0.35, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 content_margin_left = 55.0
 content_margin_top = 40.0
 content_margin_right = 55.0
 content_margin_bottom = 50.0
-texture = ExtResource("9_bcen")
 
 [sub_resource type="StyleBoxTexture" id="SB_b1_normal"]
 content_margin_left = 40.0
@@ -68,14 +98,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tut01")
 
-[node name="Fondo" type="TextureRect" parent="." unique_id=917001956]
+[node name="Fondo" type="ColorRect" parent="." unique_id=917001956]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_fondo")
+color = Color(0.12, 0.1, 0.15, 1)
 
 [node name="Layout" type="VBoxContainer" parent="." unique_id=188235710]
 layout_mode = 1
