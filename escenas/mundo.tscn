@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://dtpd74kd2c7lc"]
 
-[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_5sfon"]
-[ext_resource type="PackedScene" uid="uid://xgxuyh0ev88q" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
+[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://Escenas/jugador/jugador.gd" id="1_5sfon"]
+[ext_resource type="PackedScene" uid="uid://cl24e7lo31v4s" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
 [ext_resource type="PackedScene" uid="uid://c2bk75qajtlpe" path="res://jugadores/jugador_1/robot!_3.tscn" id="2_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://itjo6duu0r72" path="res://jugadores/jugador_2/robot.tscn" id="3_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://ba0tjdqnfix6t" path="res://interfaz/hud/hud.tscn" id="5_txhqv"]
 [ext_resource type="PackedScene" uid="uid://b8ssryaxprgg8" path="res://interfaz/dado/dado.tscn" id="6_mb57o"]
 [ext_resource type="PackedScene" uid="uid://chqwbv4pvljyl" path="res://interfaz/preguntas/preguntas.tscn" id="7_jh10v"]
-[ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="8_jcqeh"]
-[ext_resource type="PackedScene" uid="uid://cdp3nye7apjns" path="res://interfaz/menu_pausa.tscn" id="9_awk8m"]
+[ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://Escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="8_jcqeh"]
 [ext_resource type="PackedScene" uid="uid://ba5guhc0745b6" path="res://interfaz/fin_partida/fin_partida.tscn" id="9_mb57o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mg33e"]
@@ -61,50 +60,64 @@ fov = 70.0
 [node name="Camino plataformas jugador 1" type="Node3D" parent="." unique_id=886244325]
 
 [node name="Marker3D 1" type="Marker3D" parent="Camino plataformas jugador 1" unique_id=2001330650]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7835083, 1.3542931, 3.844028)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7835083, 0.65927076, 3.844028)
 
 [node name="Marker3D 2" type="Marker3D" parent="Camino plataformas jugador 1" unique_id=927880681]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.529617, 1.7729623, 8.348381)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.529617, 1.0583944, 8.348381)
 
 [node name="Marker3D 3" type="Marker3D" parent="Camino plataformas jugador 1" unique_id=872011490]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.402271, 2.1368656, 13.177699)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.402271, 1.5287044, 13.177699)
 
 [node name="Marker3D 4" type="Marker3D" parent="Camino plataformas jugador 1" unique_id=1558542140]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4085937, 2.6773963, 17.163061)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4085937, 2.3675523, 17.691748)
 
 [node name="Marker3D 5" type="Marker3D" parent="Camino plataformas jugador 1" unique_id=301224766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.297388, 4.0480757, 20.459028)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.297388, 3.854186, 20.459028)
 
 [node name="Marker3D 6" type="Marker3D" parent="Camino plataformas jugador 1" unique_id=1570579258]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.517923, 6.6474643, 24.352135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.517923, 6.552468, 24.352135)
 
 [node name="Marker3D 7" type="Marker3D" parent="Camino plataformas jugador 1" unique_id=58465746]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0536747, 6.6856, 27.158741)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0536747, 6.603295, 27.158741)
 
 [node name="Camino plataformas jugador 2" type="Node3D" parent="." unique_id=1591876700]
 
 [node name="Marker3D 1" type="Marker3D" parent="Camino plataformas jugador 2" unique_id=883467657]
-transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, -2.4595885, 1.6533506, 2.8375387)
+transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, -2.4595885, 1.3447664, 2.8375387)
 
 [node name="Marker3D 6" type="Marker3D" parent="Camino plataformas jugador 2" unique_id=1789271639]
-transform = Transform3D(0.99999994, 0, 1.8626451e-09, 0, 1, 0, -1.8626451e-09, 0, 0.99999994, -0.7174084, 3.1013637, 8.084355)
+transform = Transform3D(0.99999994, 0, 1.8626451e-09, 0, 1, 0, -1.8626451e-09, 0, 0.99999994, -0.7174084, 2.666224, 8.084355)
 
 [node name="Marker3D 2" type="Marker3D" parent="Camino plataformas jugador 2" unique_id=1955686006]
-transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, 1.1240017, 4.1275234, 11.840578)
+transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, 1.1240017, 3.9670248, 11.840578)
 
 [node name="Marker3D 3" type="Marker3D" parent="Camino plataformas jugador 2" unique_id=2025090181]
-transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, 2.9013565, 4.3232183, 16.077026)
+transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, 2.9013565, 4.2520995, 16.077026)
 
 [node name="Marker3D 4" type="Marker3D" parent="Camino plataformas jugador 2" unique_id=1429526968]
-transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, 2.4815016, 3.8311958, 20.840586)
+transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, 2.4815016, 3.5903492, 20.840586)
 
 [node name="Marker3D 5" type="Marker3D" parent="Camino plataformas jugador 2" unique_id=403327356]
-transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, 1.6338079, 5.023523, 24.50232)
+transform = Transform3D(0.9996954, 0, 0.024680465, 0, 1, 0, -0.024680465, 0, 0.9996954, 1.6338079, 4.703686, 24.50232)
 
 [node name="Marker3D 7" type="Marker3D" parent="Camino plataformas jugador 2" unique_id=1573100731]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1227427, 6.6274743, 27.118677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1227427, 6.116485, 27.118677)
 
 [node name="Mapa" type="Node3D" parent="." unique_id=42615888]
 
 [node name="Mapa Isla Base2" parent="Mapa" unique_id=462540259 instance=ExtResource("2_bqhdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.73, 16.5)
+
+[node name="Hud" parent="." unique_id=1378635125 instance=ExtResource("5_txhqv")]
+
+[node name="Dado" parent="." unique_id=1442596752 instance=ExtResource("6_mb57o")]
+
+[node name="Preguntas" parent="." unique_id=61489788 instance=ExtResource("7_jh10v")]
+
+[node name="CicloRonda" type="Node" parent="." unique_id=797908663 node_paths=PackedStringArray("jugador_1", "jugador_2", "camara_general")]
+script = ExtResource("8_jcqeh")
+jugador_1 = NodePath("../Jugador1")
+jugador_2 = NodePath("../Jugador2")
+camara_general = NodePath("../Cámara y luz/Camera3D")
+
+[node name="FinPartida" parent="." unique_id=184668014 instance=ExtResource("9_mb57o")]
