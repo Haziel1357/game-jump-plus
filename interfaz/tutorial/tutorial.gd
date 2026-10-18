@@ -6,10 +6,10 @@ const RUTA_NIVEL := "res://escenas/mundo.tscn"
 
 # Estilos de textura reutilizando las texturas del menú, para que todos los
 # estados del botón "Siguiente" se vean siempre con su textura melocotón.
-const TEXTURA_BOTON2_NORMAL := preload("res://recursos/ui/botones/boton_2.png")
-const TEXTURA_BOTON2_CLIC := preload("res://recursos/ui/botones/boton_2_hover.png")
-const TEXTURA_JUGAR_NORMAL := preload("res://recursos/ui/botones/boton_3.png")
-const TEXTURA_JUGAR_CLIC := preload("res://recursos/ui/botones/boton_3_hover.png")
+const TEXTURA_BOTON2_NORMAL := preload("res://recursos/ui/botones/boton2_normal.png")
+const TEXTURA_BOTON2_CLIC := preload("res://recursos/ui/botones/boton2_clic.png")
+const TEXTURA_JUGAR_NORMAL := preload("res://recursos/ui/botones/boton3_normal.png")
+const TEXTURA_JUGAR_CLIC := preload("res://recursos/ui/botones/boton3_clic.png")
 
 @onready var label_titulo: Label = $Layout/Titulo
 @onready var label_pagina: Label = $Layout/IndicadorPagina
