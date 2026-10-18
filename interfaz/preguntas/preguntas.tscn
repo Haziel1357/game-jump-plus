@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://chqwbv4pvljyl"]
 
 [ext_resource type="Script" uid="uid://ds60fbxrw44uo" path="res://interfaz/preguntas/preguntas.gd" id="1_preg01"]
+[ext_resource type="AudioStream" uid="uid://naohehj8qenr" path="res://recursos/audio/efectos/sonido_salto_prueba.mp3" id="2_oqlur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
 content_margin_left = 32.0
@@ -88,6 +89,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="SFXPregunta" type="AudioStreamPlayer2D" parent="Popup/CajaPregunta" unique_id=1473793250]
+stream = ExtResource("2_oqlur")
+
 [node name="Opciones" type="VBoxContainer" parent="Popup" unique_id=1407369458]
 layout_mode = 1
 anchors_preset = 1
@@ -97,6 +101,7 @@ offset_left = -380.0
 offset_top = 340.0
 offset_right = -80.0
 offset_bottom = 580.0
+grow_horizontal = 0
 theme_override_constants/separation = 20
 alignment = 1
 
