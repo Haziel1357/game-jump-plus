@@ -1,13 +1,14 @@
-[gd_scene format=3 uid="uid://bw2py14sk3y6u"]
+[gd_scene format=3 uid="uid://dtpd74kd2c7lc"]
 
-[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_5sfon"]
-[ext_resource type="PackedScene" uid="uid://xgxuyh0ev88q" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
+[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://Escenas/jugador/jugador.gd" id="1_5sfon"]
+[ext_resource type="PackedScene" uid="uid://cl24e7lo31v4s" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
 [ext_resource type="PackedScene" uid="uid://c2bk75qajtlpe" path="res://Jugadores/Jugador 1/robot!_3.tscn" id="2_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://itjo6duu0r72" path="res://Jugadores/Jugador 2/robot.tscn" id="3_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://ba0tjdqnfix6t" path="res://interfaz/hud/hud.tscn" id="5_txhqv"]
 [ext_resource type="PackedScene" uid="uid://b8ssryaxprgg8" path="res://interfaz/dado/dado.tscn" id="6_mb57o"]
 [ext_resource type="PackedScene" uid="uid://chqwbv4pvljyl" path="res://interfaz/preguntas/preguntas.tscn" id="7_jh10v"]
-[ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="8_jcqeh"]
+[ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://Escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="8_jcqeh"]
+[ext_resource type="PackedScene" uid="uid://cdp3nye7apjns" path="res://interfaz/menu_pausa.tscn" id="9_awk8m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mg33e"]
 
@@ -20,7 +21,7 @@ transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.707106
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="Cámara y luz" unique_id=21022145]
-transform = Transform3D(-0.81279975, -0.4000696, 0.42343956, -0.07703366, 0.7943123, 0.60260606, -0.5774276, 0.4571789, -0.67643553, 3.8054404, 9.407942, 0.9805603)
+transform = Transform3D(-0.834821, -0.32214257, 0.44642806, -0.012415919, 0.8217294, 0.56974244, -0.55038136, 0.47009015, -0.6899968, 3.8054404, 9.407942, 0.9805603)
 fov = 92.95577
 
 [node name="Jugador1" type="CharacterBody3D" parent="." unique_id=148476643 node_paths=PackedStringArray("camino_node")]
@@ -106,3 +107,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.73, 16.5)
 script = ExtResource("8_jcqeh")
 jugador_1 = NodePath("../Jugador1")
 jugador_2 = NodePath("../Jugador2")
+
+[node name="MenuPausa" parent="." unique_id=140873011 instance=ExtResource("9_awk8m")]
