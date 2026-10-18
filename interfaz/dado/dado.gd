@@ -68,7 +68,7 @@ func _animar_dado(etiqueta: Label) -> int:
 	while tiempo < duracion_animacion:
 		etiqueta.text = str(randi_range(1, 6))
 		# Esperamos un ratito sin congelar el juego.
-		await get_tree().create_timer(intervalo_numeros).timeout
+		await get_tree().create_timer(intervalo_numeros, false).timeout
 		tiempo += intervalo_numeros
 
 	var numero_final: int = randi_range(1, 6)
@@ -87,6 +87,9 @@ func _mostrar_ganador() -> void:
 	else:
 		ganador = 0
 		etiqueta_resultado.text = "¡Empate! Se repite el dado"
+
+	# El botón dice qué pasará al pulsarlo: empezar la ronda o volver a lanzar.
+	boton_omitir.text = "Iniciar Ronda" if ganador != 0 else "Vuelvan a Lanzar"
 	etiqueta_resultado.show()
 	ventana_resultado.show()
 
