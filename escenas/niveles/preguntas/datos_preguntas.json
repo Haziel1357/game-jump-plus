@@ -1,12 +1,23 @@
 {
 	"preguntas": [
-		"¿A {otro} le gusta la pizza?",
-		"¿{otro} es fan de los videojuegos?",
-		"¿{otro} tiene miedo a las alturas?",
-		"¿{otro} prefiere el mar sobre la montaña?",
-		"¿{otro} nunca ha visto una película de terror?",
-		"¿A {otro} le gusta el chocolate?",
-		"¿{otro} duerme más de 8 horas al día?",
-		"¿{otro} sabe cocinar al menos un plato?"
+		"¿Qué comida le {otro} desagrada?",
+		"¿Al {otro} prefiere Gatos o perros?",
+		"¿Cuál es el pasatiempo de {otro}?",
+		"¿Al {otro} prefiere Películas o series?",
+		"¿Qué actividad odia hacer {otro}?",
+		"¿Qué tan probable es que se  {otro} pierda incluso con mapa?",
+		"¿{otro} te contaría todos los chismes que le lleguen o se los guarda?",
+		"¿Con qué tema {otro}, siempre discute o entra en polémica?",
+		"¿A qué nombre {otro} le tiene un completo desagrado?",
+		"¿En qué se gasta {otro} la mayor parte de su dinero?",
+		"¿Qué frase o gesto siempre hace {otro} al conversar en el día a día?",
+		"¿Qué cosa le pone de mal a {otro} humor inmediatamente?",
+		"¿Qué es lo primero que hace {otro} al despertarse?",
+		"¿Cuál es el miedo absurdo de {otro}?",
+		"¿Qué compra {otro} aunque sepa que no necesita?",
+		"¿Qué canción se sabe de memoria y le da vergüenza admitir a {otro}?",
+		"¿Qué excusa suele poner {otro} cuando no quiere salir?",
+		"¿Qué haría primero si {otro} se ganara la lotería?",
+		"¿Qué situación le da vergüenza ajena a {otro}?"
 	]
 }

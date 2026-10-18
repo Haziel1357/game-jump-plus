@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://b8c4hce36hqx5"]
 
-[ext_resource type="Script" path="res://interfaz/tutorial/tutorial.gd" id="1_tut01"]
-[ext_resource type="Texture2D" path="res://recursos/ui/botones/boton1_normal.png" id="2_b1n"]
-[ext_resource type="Texture2D" path="res://recursos/ui/botones/boton1_clic.png" id="3_b1c"]
-[ext_resource type="Texture2D" path="res://recursos/ui/botones/boton2_normal.png" id="4_b2n"]
-[ext_resource type="Texture2D" path="res://recursos/ui/botones/boton2_clic.png" id="5_b2c"]
-[ext_resource type="Texture2D" path="res://recursos/ui/tutorial/fondo_tutorial.png" id="6_fondo"]
-[ext_resource type="Texture2D" path="res://recursos/ui/tutorial/burbuja_izquierda.png" id="7_bizq"]
-[ext_resource type="Texture2D" path="res://recursos/ui/tutorial/burbuja_derecha.png" id="8_bder"]
-[ext_resource type="Texture2D" path="res://recursos/ui/tutorial/burbuja_centro.png" id="9_bcen"]
+[ext_resource type="Script" uid="uid://qog27hnhvgnp" path="res://interfaz/tutorial/tutorial.gd" id="1_tut01"]
+[ext_resource type="Texture2D" uid="uid://cba2gwyijxiky" path="res://recursos/ui/botones/boton1_normal.png" id="2_b1n"]
+[ext_resource type="Texture2D" uid="uid://bn0aywlqdmaiv" path="res://recursos/ui/botones/boton1_clic.png" id="3_b1c"]
+[ext_resource type="Texture2D" uid="uid://g8xohq4vhb0v" path="res://recursos/ui/botones/boton2_normal.png" id="4_b2n"]
+[ext_resource type="Texture2D" uid="uid://p2l46l8w88kg" path="res://recursos/ui/botones/boton2_clic.png" id="5_b2c"]
+[ext_resource type="Texture2D" uid="uid://cnkg75pxfewjs" path="res://recursos/ui/tutorial/fondo_tutorial.png" id="6_fondo"]
+[ext_resource type="Texture2D" uid="uid://tus4hn1p88yb" path="res://recursos/ui/tutorial/burbuja_izquierda.png" id="7_bizq"]
+[ext_resource type="Texture2D" uid="uid://dlegrdht7ipnu" path="res://recursos/ui/tutorial/burbuja_derecha.png" id="8_bder"]
+[ext_resource type="Texture2D" uid="uid://cjko2wj53mw0r" path="res://recursos/ui/tutorial/burbuja_centro.png" id="9_bcen"]
 
 [sub_resource type="StyleBoxTexture" id="SB_burbuja_izq"]
 content_margin_left = 55.0
@@ -88,12 +88,14 @@ theme_override_constants/separation = 16
 
 [node name="Titulo" type="Label" parent="Layout" unique_id=819294569]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 text = "Historia"
 horizontal_alignment = 1
 
 [node name="IndicadorPagina" type="Label" parent="Layout" unique_id=686996587]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Página 1 / 5"
 horizontal_alignment = 1
