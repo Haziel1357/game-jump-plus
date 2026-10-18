@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 2")
 
-[node name="Robot2" parent="Jugador1" unique_id=1207009762 instance=ExtResource("2_jh10v")]
+[node name="Robot2" parent="Jugador1" unique_id=1207009762 instance=ExtResource("2_ly0wt")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador1" unique_id=2125524253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 1.581281, 1.284929)
@@ -62,12 +62,8 @@ up_direction = Vector3(0.8792703, 0.47632322, 0)
 script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 1")
 
-[node name="ROBOT!_4" parent="Jugador2" unique_id=1198239344 instance=ExtResource("3_jh10v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8303519, 0)
-
-[node name="ROBOT!_3" parent="Jugador2" unique_id=827052337 instance=ExtResource("2_ly0wt")]
+[node name="ROBOT!_3" parent="Jugador2" unique_id=827052337 instance=ExtResource("3_ly0wt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96, 0)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador2" unique_id=337979765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 0.96, 1.284929)
