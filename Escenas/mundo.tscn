@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bw2py14sk3y6u"]
+[gd_scene format=3 uid="uid://dtpd74kd2c7lc"]
 
 [ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_5sfon"]
 [ext_resource type="PackedScene" uid="uid://xgxuyh0ev88q" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
@@ -21,6 +21,7 @@ shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="Cámara y luz" unique_id=21022145]
 transform = Transform3D(-0.81279975, -0.4000696, 0.42343956, -0.07703366, 0.7943123, 0.60260606, -0.5774276, 0.4571789, -0.67643553, 3.8054404, 9.407942, 0.9805603)
+current = true
 fov = 92.95577
 
 [node name="Jugador1" type="CharacterBody3D" parent="." unique_id=148476643 node_paths=PackedStringArray("camino_node")]
@@ -34,16 +35,26 @@ camino_node = NodePath("../Camino plataformas jugador 2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 1.581281, 1.284929)
 shape = SubResource("CapsuleShape3D_mg33e")
 
+[node name="Camera3D" type="Camera3D" parent="Jugador1" unique_id=332973089]
+transform = Transform3D(-1, 0, 0, 0, 0.90630776, 0.42261827, 0, 0.42261827, -0.90630776, 0, 2.5, -4)
+fov = 70.0
+
 [node name="Jugador2" type="CharacterBody3D" parent="." unique_id=951876062 node_paths=PackedStringArray("camino_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7981486, 0.96, 4.1563516)
+up_direction = Vector3(0.8792703, 0.47632322, 0)
 script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 1")
 
 [node name="ROBOT!_3" parent="Jugador2" unique_id=827052337 instance=ExtResource("2_ly0wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador2" unique_id=337979765]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 1.581281, 1.284929)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 0.96, 1.284929)
 shape = SubResource("CapsuleShape3D_mg33e")
+
+[node name="Camera3D" type="Camera3D" parent="Jugador2" unique_id=1516972970]
+transform = Transform3D(-0.7499071, 0.2890721, -0.59504336, -0.08448921, 0.8502616, 0.5195352, 0.65612566, 0.4398778, -0.6131938, -1.9228234, 2.7343767, -1.9876206)
+fov = 70.0
 
 [node name="Camino plataformas jugador 1" type="Node3D" parent="." unique_id=886244325]
 
@@ -102,7 +113,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.73, 16.5)
 
 [node name="Preguntas" parent="." unique_id=61489788 instance=ExtResource("7_jh10v")]
 
-[node name="CicloRonda" type="Node" parent="." unique_id=797908663 node_paths=PackedStringArray("jugador_1", "jugador_2")]
+[node name="CicloRonda" type="Node" parent="." unique_id=797908663 node_paths=PackedStringArray("jugador_1", "jugador_2", "camara_general")]
 script = ExtResource("8_jcqeh")
 jugador_1 = NodePath("../Jugador1")
 jugador_2 = NodePath("../Jugador2")
+camara_general = NodePath("../Cámara y luz/Camera3D")
