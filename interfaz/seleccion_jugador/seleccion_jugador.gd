@@ -11,6 +11,14 @@ const MODELOS := [
 # Compartido con el nivel (isla) para que el coloreado sea idéntico.
 const TintePersonaje := preload("res://scripts/globales/tinte_personaje.gd")
 
+# Texturas de botones del menú para estilo consistente
+const TEXTURA_BOTON1_NORMAL := preload("res://recursos/ui/botones/boton1_normal.png")
+const TEXTURA_BOTON1_CLIC := preload("res://recursos/ui/botones/boton1_clic.png")
+const TEXTURA_BOTON2_NORMAL := preload("res://recursos/ui/botones/boton2_normal.png")
+const TEXTURA_BOTON2_CLIC := preload("res://recursos/ui/botones/boton2_clic.png")
+const TEXTURA_BOTON3_NORMAL := preload("res://recursos/ui/botones/boton3_normal.png")
+const TEXTURA_BOTON3_CLIC := preload("res://recursos/ui/botones/boton3_clic.png")
+
 @onready var preview_1: ColorRect = $Layout/Paneles/PanelJugador1/Contenido/Preview/ColorPersonaje
 @onready var nombre_personaje_1: Label = $Layout/Paneles/PanelJugador1/Contenido/Preview/NombrePersonaje
 @onready var nick_1: LineEdit = $Layout/Paneles/PanelJugador1/Contenido/CampoNick
@@ -46,6 +54,11 @@ func _ready() -> void:
 
 	nick_1.text_changed.connect(_actualizar_nick.bind(1))
 	nick_2.text_changed.connect(_actualizar_nick.bind(2))
+
+	# Estilos de botones con texturas del menú
+	_estilo_boton(boton_listo_1, TEXTURA_BOTON2_NORMAL, TEXTURA_BOTON2_CLIC)
+	_estilo_boton(boton_listo_2, TEXTURA_BOTON2_NORMAL, TEXTURA_BOTON2_CLIC)
+	_estilo_boton(boton_volver, TEXTURA_BOTON1_NORMAL, TEXTURA_BOTON1_CLIC)
 
 	_refrescar_vista(1)
 	_refrescar_vista(2)
@@ -153,22 +166,29 @@ func _alternar_listo(jugador: int) -> void:
 	var boton: Button = boton_listo_1 if jugador == 1 else boton_listo_2
 	if bool(datos["listo"]):
 		boton.text = "¡Listo!"
-		boton.add_theme_stylebox_override("normal", _estilo_listo_activo())
+		# Usa botón 3 (más destacado) para estado "listo"
+		boton.self_modulate = Color(0.85, 0.72, 1.0)
+		_estilo_boton(boton, TEXTURA_BOTON3_NORMAL, TEXTURA_BOTON3_CLIC)
 	else:
 		boton.text = "Listo"
-		boton.remove_theme_stylebox_override("normal")
+		# Vuelve a botón 2 (melocotón)
+		boton.self_modulate = Color(1.0, 0.86, 0.66)
+		_estilo_boton(boton, TEXTURA_BOTON2_NORMAL, TEXTURA_BOTON2_CLIC)
 
 	_comprobar_inicio()
 
 
-func _estilo_listo_activo() -> StyleBoxFlat:
-	var estilo := StyleBoxFlat.new()
-	estilo.bg_color = Color(0.95, 0.75, 0.15)
-	estilo.border_color = Color(0.45, 0.35, 0.05)
-	estilo.set_border_width_all(3)
-	estilo.set_corner_radius_all(12)
-	estilo.set_content_margin_all(20)
-	return estilo
+## Aplica textura a los cuatro estados visibles del botón con márgenes 40/30
+func _estilo_boton(boton: Button, textura_normal: Texture2D, textura_clic: Texture2D) -> void:
+	for estado in ["normal", "hover", "pressed", "focus"]:
+		var textura := textura_normal if estado == "normal" else textura_clic
+		var estilo := StyleBoxTexture.new()
+		estilo.texture = textura
+		estilo.content_margin_left = 40.0
+		estilo.content_margin_top = 30.0
+		estilo.content_margin_right = 40.0
+		estilo.content_margin_bottom = 30.0
+		boton.add_theme_stylebox_override(estado, estilo)
 
 
 func _comprobar_inicio() -> void:
