@@ -17,6 +17,10 @@ extends CharacterBody3D
 # Malla 3D visual (Robot / ROBOT!_3) para rotar sin desplazar la raíz
 @export var nodo_visual: Node3D
 
+# Cámara dinámica de Haziel (la cámara se acerca al jugador mientras actúa).
+# Está APAGADA: el juego usa las cámaras por personaje de Juan (las cambia CicloRonda).
+@export var camara_dinamica: bool = false
+
 # Configuración de Cámara Dinámica
 @export var camera_node: Camera3D
 @export var velocidad_camara: float = 4.0
@@ -29,6 +33,8 @@ var _puntos_path: PackedVector3Array = []
 var _indice_siguiente: int = 0
 var _saltando: bool = false
 var _anim_player: AnimationPlayer = null
+# Posición con la que el nivel colocó el modelo (cada robot tiene su propio desfase).
+var _posicion_visual_base: Vector3 = Vector3.ZERO
 
 # Posición y rotación original de la cámara panorámica del inicio
 static var _pos_camara_inicial: Vector3
@@ -56,11 +62,11 @@ func _ready() -> void:
 			global_position = _puntos_path[0] + Vector3(0, desfase_altura, 0)
 			_indice_siguiente = 1
 
-	if camera_node == null:
+	if camara_dinamica and camera_node == null:
 		camera_node = get_viewport().get_camera_3d()
 
 	# Guardar la transformación panorámica inicial de la cámara principal
-	if camera_node != null and not _camara_inicial_guardada:
+	if camara_dinamica and camera_node != null and not _camara_inicial_guardada:
 		_pos_camara_inicial = camera_node.global_position
 		_rot_camara_inicial = camera_node.global_rotation
 		_camara_inicial_guardada = true
@@ -70,7 +76,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Si este jugador tiene el foco de la cámara durante su movimiento, la cámara se acerca a él
-	if camara_activa and camera_node != null:
+	if camara_dinamica and camara_activa and camera_node != null:
 		var pos_deseada := global_position + (global_transform.basis * distancia_cerca)
 		camera_node.global_position = camera_node.global_position.lerp(pos_deseada, delta * velocidad_camara)
 
@@ -85,7 +91,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Llamar desde la UI al responder CORRECTAMENTE
 func responder_correcto() -> void:
-	camara_activa = true
+	camara_activa = camara_dinamica
 	await avanzar_siguiente_punto()
 	camara_activa = false
 
@@ -96,7 +102,7 @@ func responder_incorrecto() -> void:
 		return
 		
 	_saltando = true
-	camara_activa = true
+	camara_activa = camara_dinamica
 	_resetear_posicion_visual()
 
 	if _anim_player != null and _anim_player.has_animation(anim_negacion):
@@ -174,7 +180,7 @@ func _realizar_secuencia_salto(destino: Vector3, es_victoria: bool) -> void:
 # Función para regresar la cámara a la vista panorámica inicial cuando termina la ronda
 func restablecer_camara_principal() -> void:
 	camara_activa = false
-	if camera_node != null and _camara_inicial_guardada:
+	if camara_dinamica and camera_node != null and _camara_inicial_guardada:
 		var tween := create_tween().set_parallel(true)
 		tween.tween_property(camera_node, "global_position", _pos_camara_inicial, 1.2).set_trans(Tween.TRANS_SINE)
 		tween.tween_property(camera_node, "global_rotation", _rot_camara_inicial, 1.2).set_trans(Tween.TRANS_SINE)
@@ -182,7 +188,16 @@ func restablecer_camara_principal() -> void:
 
 func _resetear_posicion_visual() -> void:
 	if nodo_visual != null:
-		nodo_visual.position = Vector3.ZERO
+		nodo_visual.position = _posicion_visual_base
+
+
+# Asigna el modelo 3D que usa este jugador (por ejemplo, el personaje elegido en la
+# selección) y vuelve a buscar su AnimationPlayer. Lo llama CicloRonda al empezar.
+func usar_modelo(modelo: Node3D) -> void:
+	nodo_visual = modelo
+	_posicion_visual_base = modelo.position
+	_anim_player = _buscar_animation_player(modelo)
+	_reproducir_animacion(anim_idle)
 
 
 func _reproducir_animacion(nombre_anim: StringName) -> void:

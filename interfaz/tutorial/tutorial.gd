@@ -4,6 +4,13 @@ const RUTA_DATOS := "res://interfaz/tutorial/datos_tutorial.json"
 # Actualizado para que al terminar el tutorial dirija a tu escena de la isla
 const RUTA_NIVEL := "res://escenas/mundo.tscn"
 
+# Estilos de textura reutilizando las texturas del menú, para que todos los
+# estados del botón "Siguiente" se vean siempre con su textura melocotón.
+const TEXTURA_BOTON2_NORMAL := preload("res://recursos/ui/botones/boton2_normal.png")
+const TEXTURA_BOTON2_CLIC := preload("res://recursos/ui/botones/boton2_clic.png")
+const TEXTURA_JUGAR_NORMAL := preload("res://recursos/ui/botones/boton3_normal.png")
+const TEXTURA_JUGAR_CLIC := preload("res://recursos/ui/botones/boton3_clic.png")
+
 @onready var label_titulo: Label = $Layout/Titulo
 @onready var label_pagina: Label = $Layout/IndicadorPagina
 @onready var caja_1: Label = $Layout/Cajas/CajaIzquierda/Texto
@@ -50,18 +57,31 @@ func _mostrar_pagina(indice: int) -> void:
 
 	boton_atras.visible = _indice > 0
 
+	# "Siguiente" con tono cálido (ámbar) para no confundirse con "Atrás".
+	boton_siguiente.self_modulate = Color(1.0, 0.86, 0.66)
+
 	var es_ultima: bool = _indice == _paginas.size() - 1
 	if es_ultima:
 		boton_siguiente.text = "¡Jugar!"
-		var estilo_jugar := StyleBoxFlat.new()
-		estilo_jugar.bg_color = Color(0.55, 0.25, 0.85)
-		estilo_jugar.border_color = Color(0.25, 0.1, 0.4)
-		estilo_jugar.set_border_width_all(3)
-		estilo_jugar.set_content_margin_all(24)
-		boton_siguiente.add_theme_stylebox_override("normal", estilo_jugar)
+		boton_siguiente.self_modulate = Color(0.85, 0.72, 1.0)
+		_estilo_boton(boton_siguiente, TEXTURA_JUGAR_NORMAL, TEXTURA_JUGAR_CLIC)
 	else:
 		boton_siguiente.text = "Siguiente"
-		boton_siguiente.remove_theme_stylebox_override("normal")
+		_estilo_boton(boton_siguiente, TEXTURA_BOTON2_NORMAL, TEXTURA_BOTON2_CLIC)
+
+
+## Aplica textura melocotón a los cuatro estados visibles del botón, con los
+## mismos márgenes (40/30) que los estilos del menú principal.
+func _estilo_boton(boton: Button, textura_normal: Texture2D, textura_clic: Texture2D) -> void:
+	for estado in ["normal", "hover", "pressed", "focus"]:
+		var textura := textura_normal if estado == "normal" else textura_clic
+		var estilo := StyleBoxTexture.new()
+		estilo.texture = textura
+		estilo.content_margin_left = 40.0
+		estilo.content_margin_top = 30.0
+		estilo.content_margin_right = 40.0
+		estilo.content_margin_bottom = 30.0
+		boton.add_theme_stylebox_override(estado, estilo)
 
 
 func _pagina_anterior() -> void:

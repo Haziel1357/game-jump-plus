@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://djd65qla3omrh"]
 
 [ext_resource type="Script" uid="uid://buf7qkh3yjwh8" path="res://interfaz/seleccion_jugador/seleccion_jugador.gd" id="1_sel01"]
+[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
+[ext_resource type="Texture2D" path="res://interfaz/seleccion_jugador/fondo_personaje_1.jpeg" id="fondo_1"]
+[ext_resource type="Texture2D" path="res://interfaz/seleccion_jugador/fondo_personaje_2.jpeg" id="fondo_2"]
+[ext_resource type="Texture2D" path="res://recursos/ui/fondos/portada.png" id="portada_fondo"]
 
 [sub_resource type="Environment" id="Environment_preview"]
 ambient_light_source = 2
@@ -43,18 +47,6 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 0.25)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_listo"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0.2, 0.65, 0.35, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.1, 0.3, 0.15, 1)
-
 [node name="SeleccionJugador" type="Control" unique_id=698510560]
 layout_mode = 3
 anchors_preset = 15
@@ -64,14 +56,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sel01")
 
-[node name="Fondo" type="ColorRect" parent="." unique_id=772612672]
+[node name="Fondo" type="TextureRect" parent="." unique_id=772612672]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.13, 0.2, 0.28, 1)
+texture = ExtResource("portada_fondo")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Layout" type="VBoxContainer" parent="." unique_id=1748975315]
 layout_mode = 1
@@ -83,6 +77,9 @@ grow_vertical = 2
 theme_override_constants/separation = 30
 
 [node name="Titulo" type="Label" parent="Layout" unique_id=626362030]
+theme = ExtResource("99_tema")
+theme_type_variation = &"EtiquetaBurbuja"
+size_flags_horizontal = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
 text = "Selecciona tu jugador"
@@ -107,6 +104,9 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="NombreJugador" type="Label" parent="Layout/Paneles/PanelJugador1/Contenido" unique_id=429957180]
+theme = ExtResource("99_tema")
+theme_type_variation = &"EtiquetaBurbujaChica"
+size_flags_horizontal = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Jugador 1"
@@ -118,14 +118,16 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_preview")
 
-[node name="ColorPersonaje" type="ColorRect" parent="Layout/Paneles/PanelJugador1/Contenido/Preview" unique_id=191915255]
+[node name="FondoPersonaje" type="TextureRect" parent="Layout/Paneles/PanelJugador1/Contenido/Preview" unique_id=191915255]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.9, 0.3, 0.3, 1)
+texture = ExtResource("fondo_1")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="ViewportPersonaje" type="SubViewportContainer" parent="Layout/Paneles/PanelJugador1/Contenido/Preview" unique_id=789044732]
 layout_mode = 1
@@ -158,14 +160,22 @@ environment = SubResource("Environment_preview")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="NombrePersonaje" type="Label" parent="Layout/Paneles/PanelJugador1/Contenido/Preview" unique_id=1316743565]
+theme = ExtResource("99_tema")
+theme_type_variation = &"EtiquetaBurbujaChica"
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -100.0
+offset_right = 120.0
+offset_bottom = -24.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 56
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
 text = "Rojo"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -176,12 +186,16 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="BotonAnterior" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido/Flechas" unique_id=1628396726]
-custom_minimum_size = Vector2(80, 60)
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 text = "<"
 
 [node name="BotonSiguiente" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido/Flechas" unique_id=1298908390]
-custom_minimum_size = Vector2(80, 60)
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 text = ">"
 
@@ -193,11 +207,13 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nick")
 placeholder_text = "Escribe tu nick..."
 
 [node name="BotonListo" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido" unique_id=367368950]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2"
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("StyleBoxFlat_listo")
 text = "Listo"
+metadata/sin_clic = true
 
 [node name="PanelJugador2" type="PanelContainer" parent="Layout/Paneles" unique_id=178115574]
 custom_minimum_size = Vector2(720, 820)
@@ -212,6 +228,9 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="NombreJugador" type="Label" parent="Layout/Paneles/PanelJugador2/Contenido" unique_id=1176135866]
+theme = ExtResource("99_tema")
+theme_type_variation = &"EtiquetaBurbujaChica"
+size_flags_horizontal = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Jugador 2"
@@ -223,14 +242,16 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_preview")
 
-[node name="ColorPersonaje" type="ColorRect" parent="Layout/Paneles/PanelJugador2/Contenido/Preview" unique_id=1628360124]
+[node name="FondoPersonaje" type="TextureRect" parent="Layout/Paneles/PanelJugador2/Contenido/Preview" unique_id=1628360124]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.6, 0.85, 1)
+texture = ExtResource("fondo_2")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="ViewportPersonaje" type="SubViewportContainer" parent="Layout/Paneles/PanelJugador2/Contenido/Preview" unique_id=1018013379]
 layout_mode = 1
@@ -263,14 +284,22 @@ environment = SubResource("Environment_preview")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="NombrePersonaje" type="Label" parent="Layout/Paneles/PanelJugador2/Contenido/Preview" unique_id=1088134060]
+theme = ExtResource("99_tema")
+theme_type_variation = &"EtiquetaBurbujaChica"
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -100.0
+offset_right = 120.0
+offset_bottom = -24.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 56
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
 text = "Azul"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -281,12 +310,16 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="BotonAnterior" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido/Flechas" unique_id=957436164]
-custom_minimum_size = Vector2(80, 60)
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 text = "<"
 
 [node name="BotonSiguiente" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido/Flechas" unique_id=134674888]
-custom_minimum_size = Vector2(80, 60)
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 text = ">"
 
@@ -298,13 +331,17 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nick")
 placeholder_text = "Escribe tu nick..."
 
 [node name="BotonListo" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido" unique_id=2054697713]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2"
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("StyleBoxFlat_listo")
 text = "Listo"
+metadata/sin_clic = true
 
 [node name="BotonVolver" type="Button" parent="." unique_id=1799701482]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
 custom_minimum_size = Vector2(220, 64)
 layout_mode = 1
 offset_left = 40.0

@@ -2,11 +2,27 @@
 	"personajes": [
 		{
 			"nombre": "Rojo",
-			"color": "#e74c3c"
+			"color": "#e74c3c",
+			"modelo": "res://jugadores/jugador_1/Robot.glb",
+			"anim_idle": "Idle_Respiracion",
+			"anim_victoria": "salto_Doble_giro",
+			"posicion": [
+				-0.094946384,
+				0.0,
+				0.13211012
+			]
 		},
 		{
 			"nombre": "Azul",
-			"color": "#3498db"
+			"color": "#3498db",
+			"modelo": "res://jugadores/jugador_2/ROBOT!_3.glb",
+			"anim_idle": "Idle",
+			"anim_victoria": "Salto_720",
+			"posicion": [
+				0.0,
+				0.5620437,
+				0.0
+			]
 		}
 	]
 }

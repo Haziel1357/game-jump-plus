@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_5sfon"]
 [ext_resource type="PackedScene" uid="uid://crrj8kuki15kf" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
-[ext_resource type="PackedScene" uid="uid://chs4mt2etjvp" path="res://jugadores/jugador_1/Robot.glb" id="2_jh10v"]
-[ext_resource type="PackedScene" uid="uid://byvtnffk77sxf" path="res://jugadores/jugador_2/ROBOT!_3.glb" id="3_jh10v"]
+[ext_resource type="PackedScene" path="res://jugadores/jugador_2/ROBOT!_3.glb" id="2_ly0wt"]
+[ext_resource type="PackedScene" path="res://jugadores/jugador_1/Robot.glb" id="3_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://ba0tjdqnfix6t" path="res://interfaz/hud/hud.tscn" id="5_txhqv"]
 [ext_resource type="PackedScene" uid="uid://b8ssryaxprgg8" path="res://interfaz/dado/dado.tscn" id="6_mb57o"]
 [ext_resource type="PackedScene" uid="uid://chqwbv4pvljyl" path="res://interfaz/preguntas/preguntas.tscn" id="7_jh10v"]
@@ -53,35 +53,13 @@ transform = Transform3D(-0.69017357, -0.3735421, 0.61977965, 0.031251386, 0.8402
 current = true
 fov = 92.95577
 
-[node name="Jugador1" type="CharacterBody3D" parent="." unique_id=148476643 node_paths=PackedStringArray("camino_node", "camera_node")]
+[node name="Jugador1" type="CharacterBody3D" parent="." unique_id=148476643 node_paths=PackedStringArray("camino_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 2")
-camera_node = NodePath("../Cámara y luz/Camera3D")
 
-[node name="Robot" parent="Jugador1" unique_id=1777678873 instance=ExtResource("2_jh10v")]
+[node name="Robot" parent="Jugador1" unique_id=2120732835 instance=ExtResource("3_ly0wt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.094946384, 0, 0.13211012)
-
-[node name="Skeleton3D" parent="Jugador1/Robot/Armature" parent_id_path=PackedInt32Array(1777678873, 2017577565) index="0" unique_id=765150089]
-bones/0/rotation = Quaternion(-0.7071068, 7.850463e-17, 7.850463e-17, 0.7071068)
-bones/1/rotation = Quaternion(0.7071068, -7.850463e-17, -7.850463e-17, 0.7071068)
-bones/2/rotation = Quaternion(-0.06685747, -0.008352557, 0.00049914693, 0.99772745)
-bones/3/rotation = Quaternion(-0.0067461133, -0.0043819644, -2.9562296e-05, 0.99996763)
-bones/4/rotation = Quaternion(0.57852995, 0.27164802, -0.22983767, 0.73395175)
-bones/5/rotation = Quaternion(0.005311471, 0.6338903, 0.7733786, 0.006357537)
-bones/6/rotation = Quaternion(-0.20809089, 0.009766425, 0.007305384, 0.9780335)
-bones/7/rotation = Quaternion(0.57852995, -0.27164802, 0.22983767, 0.73395175)
-bones/8/rotation = Quaternion(-0.005311471, 0.6338903, 0.7733786, -0.006357537)
-bones/9/rotation = Quaternion(-0.20809089, -0.009766425, -0.007305384, 0.9780335)
-bones/10/rotation = Quaternion(0.16381782, 0.6619436, -0.59396005, 0.4268559)
-bones/11/rotation = Quaternion(0.57141834, 0.4546546, 0.61905277, 0.28903997)
-bones/12/rotation = Quaternion(0.097715706, 0.97357756, 0.19957598, 0.052609682)
-bones/13/rotation = Quaternion(-0.16381782, 0.6619436, -0.59396005, -0.4268559)
-bones/14/rotation = Quaternion(-0.57141834, 0.4546546, 0.61905277, -0.28903997)
-bones/15/rotation = Quaternion(-0.097715706, 0.97357756, 0.19957598, -0.052609682)
-bones/17/rotation = Quaternion(-0.2335917, -0.65535027, 0.6674091, -0.26554865)
-bones/18/rotation = Quaternion(-0.65845877, 0.6584588, 0.25774404, -0.25774407)
-bones/23/rotation = Quaternion(0.6106192, 0.61061937, -0.35657287, -0.3565726)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador1" unique_id=2125524253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 1.581281, 1.284929)
@@ -91,26 +69,14 @@ shape = SubResource("CapsuleShape3D_mg33e")
 transform = Transform3D(-1, 0, 0, 0, 0.90630776, 0.42261827, 0, 0.42261827, -0.90630776, 0, 2.5, -4)
 fov = 70.0
 
-[node name="Jugador2" type="CharacterBody3D" parent="." unique_id=951876062 node_paths=PackedStringArray("camino_node", "camera_node")]
+[node name="Jugador2" type="CharacterBody3D" parent="." unique_id=951876062 node_paths=PackedStringArray("camino_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7981486, 0.96, 4.1563516)
 up_direction = Vector3(0.8792703, 0.47632322, 0)
 script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 1")
-camera_node = NodePath("../Cámara y luz/Camera3D")
 
-[node name="ROBOT!_3" parent="Jugador2" unique_id=1198239344 instance=ExtResource("3_jh10v")]
+[node name="ROBOT!_3" parent="Jugador2" unique_id=827052337 instance=ExtResource("2_ly0wt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5620437, 0)
-
-[node name="Skeleton3D" parent="Jugador2/ROBOT!_3/Armature" parent_id_path=PackedInt32Array(1198239344, 200266211) index="0" unique_id=281582145]
-bones/0/position = Vector3(0, -0.49310154, -0.011256623)
-bones/0/rotation = Quaternion(-0.70902663, 1.2977443e-16, 1.30482e-16, 0.7051818)
-bones/1/rotation = Quaternion(0.70029324, 0.0044885916, -0.009164727, 0.71378237)
-bones/2/rotation = Quaternion(-0.029631928, -0.022273207, -0.45206317, 0.8912154)
-bones/3/rotation = Quaternion(-0.033135995, 0.02049552, 0.4521473, 0.8910919)
-bones/4/position = Vector3(0.428103, -0.22417809, 8.5565166e-10)
-bones/4/rotation = Quaternion(0.99972016, 0.011241049, 0.00023402304, 0.020816652)
-bones/5/position = Vector3(-0.42810306, -0.2241781, -1.8219002e-09)
-bones/5/rotation = Quaternion(0.9995168, -0.011238759, -0.0003258912, 0.028979195)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador2" unique_id=337979765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 0.96, 1.284929)
@@ -194,70 +160,70 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua2" type="MeshInstance3D" parent="." unique_id=1275540994]
+[node name="Agua2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5031128, 1, 299.54495)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua5" type="MeshInstance3D" parent="." unique_id=2049039978]
+[node name="Agua5" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999976, 0.000718916, 0, -0.000718916, 0.99999976, -0.5031128, 1, 585.1199)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua7" type="MeshInstance3D" parent="." unique_id=1334966508]
+[node name="Agua7" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99698365, 0.077612326, 0, -0.077612326, 0.99698365, -0.5031128, 1, 805.5035)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua9" type="MeshInstance3D" parent="." unique_id=967046340]
+[node name="Agua9" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99918216, 0.040433865, 0, -0.040433865, 0.99918216, 282.89346, 1, 805.5035)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua10" type="MeshInstance3D" parent="." unique_id=679836832]
+[node name="Agua10" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999628, 0.027271617, 0, -0.027271617, 0.999628, 282.89346, 1, 488.763)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua8" type="MeshInstance3D" parent="." unique_id=282776101]
+[node name="Agua8" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99698365, 0.077612326, 0, -0.077612326, 0.99698365, -299.60834, 1, 805.5035)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua6" type="MeshInstance3D" parent="." unique_id=528444831]
+[node name="Agua6" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999976, 0.000718916, 0, -0.000718916, 0.99999976, -295.50085, 1, 585.1199)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua3" type="MeshInstance3D" parent="." unique_id=402485005]
+[node name="Agua3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.99942493, 0.03390813, 0, -0.03389535, 0.99904835, 0.02744905, 0.00093074597, -0.027433265, 0.9996232, -300.4598, 6.932495, 297.07623)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="Agua4" type="MeshInstance3D" parent="." unique_id=1615086957]
+[node name="Agua4" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.99785644, 0.035367727, -0.055061053, -0.03340587, 0.99878776, 0.03615243, 0.056272928, -0.03423556, 0.99782825, -295.38873, 1.7508011, -2.0001068)
 material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=89397341]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_v0ik2")
 
 [editable path="Jugador1/Robot"]

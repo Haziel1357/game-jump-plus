@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ba0tjdqnfix6t"]
 
 [ext_resource type="Script" uid="uid://b8ko1wd3jcvhj" path="res://interfaz/hud/hud.gd" id="1_hud01"]
+[ext_resource type="Theme" uid="uid://cod5ws21hnqvm" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 
 [node name="Hud" type="CanvasLayer" unique_id=1378635125]
 script = ExtResource("1_hud01")
@@ -10,9 +11,12 @@ offset_left = 24.0
 offset_top = 16.0
 offset_right = 320.0
 offset_bottom = 72.0
+theme = ExtResource("99_tema")
+theme_type_variation = &"PanelBurbujaChica"
 
 [node name="TextoVidas" type="Label" parent="VidaJugador1" unique_id=1468870598]
 layout_mode = 2
+theme_type_variation = &"TextoOscuro"
 theme_override_font_sizes/font_size = 26
 text = "Jugador 1  ♥♥♥ (3)"
 horizontal_alignment = 1
@@ -26,18 +30,23 @@ offset_top = 16.0
 offset_right = -24.0
 offset_bottom = 72.0
 grow_horizontal = 0
+theme = ExtResource("99_tema")
+theme_type_variation = &"PanelBurbujaChica"
 
 [node name="TextoVidas" type="Label" parent="VidaJugador2" unique_id=236469179]
 layout_mode = 2
+theme_type_variation = &"TextoOscuro"
 theme_override_font_sizes/font_size = 26
 text = "Jugador 2  ♥♥♥ (3)"
 horizontal_alignment = 1
 
 [node name="CasillasJugador1" type="Label" parent="." unique_id=1676764676]
 offset_left = 24.0
-offset_top = 80.0
-offset_right = 320.0
-offset_bottom = 116.0
+offset_top = 112.0
+offset_right = 260.0
+offset_bottom = 201.0
+theme = ExtResource("99_tema")
+theme_type_variation = &"EtiquetaBurbujaChica"
 theme_override_font_sizes/font_size = 26
 text = "Casillas: 0/6"
 
@@ -45,11 +54,13 @@ text = "Casillas: 0/6"
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -320.0
-offset_top = 80.0
+offset_left = -260.0
+offset_top = 112.0
 offset_right = -24.0
-offset_bottom = 116.0
+offset_bottom = 200.0
 grow_horizontal = 0
+theme = ExtResource("99_tema")
+theme_type_variation = &"EtiquetaBurbujaChica"
 theme_override_font_sizes/font_size = 26
 text = "Casillas: 0/6"
 horizontal_alignment = 2
