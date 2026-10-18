@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://btlj0lvg85xei"]
 
 [ext_resource type="Script" uid="uid://dhie1nxeek8f3" path="res://interfaz/creditos/creditos.gd" id="1_cred01"]
+[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 
 [node name="Creditos" type="Control" unique_id=1177417850]
 layout_mode = 3
@@ -47,9 +48,10 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="BotonVolver" type="Button" parent="Centro/Contenido" unique_id=1201489151]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 36
 text = "Volver"

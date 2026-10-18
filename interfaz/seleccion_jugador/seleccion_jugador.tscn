@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://djd65qla3omrh"]
 
 [ext_resource type="Script" uid="uid://buf7qkh3yjwh8" path="res://interfaz/seleccion_jugador/seleccion_jugador.gd" id="1_sel01"]
+[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 
 [sub_resource type="Environment" id="Environment_preview"]
 ambient_light_source = 2
@@ -42,18 +43,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 0.25)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_listo"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0.2, 0.65, 0.35, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.1, 0.3, 0.15, 1)
 
 [node name="SeleccionJugador" type="Control" unique_id=698510560]
 layout_mode = 3
@@ -176,12 +165,16 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="BotonAnterior" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido/Flechas" unique_id=1628396726]
-custom_minimum_size = Vector2(80, 60)
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 text = "<"
 
 [node name="BotonSiguiente" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido/Flechas" unique_id=1298908390]
-custom_minimum_size = Vector2(80, 60)
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 text = ">"
 
@@ -193,10 +186,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nick")
 placeholder_text = "Escribe tu nick..."
 
 [node name="BotonListo" type="Button" parent="Layout/Paneles/PanelJugador1/Contenido" unique_id=367368950]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2"
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("StyleBoxFlat_listo")
 text = "Listo"
 
 [node name="PanelJugador2" type="PanelContainer" parent="Layout/Paneles" unique_id=178115574]
@@ -281,12 +275,16 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="BotonAnterior" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido/Flechas" unique_id=957436164]
-custom_minimum_size = Vector2(80, 60)
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 text = "<"
 
 [node name="BotonSiguiente" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido/Flechas" unique_id=134674888]
-custom_minimum_size = Vector2(80, 60)
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(110, 70)
 layout_mode = 2
 text = ">"
 
@@ -298,13 +296,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nick")
 placeholder_text = "Escribe tu nick..."
 
 [node name="BotonListo" type="Button" parent="Layout/Paneles/PanelJugador2/Contenido" unique_id=2054697713]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2"
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = SubResource("StyleBoxFlat_listo")
 text = "Listo"
 
 [node name="BotonVolver" type="Button" parent="." unique_id=1799701482]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
 custom_minimum_size = Vector2(220, 64)
 layout_mode = 1
 offset_left = 40.0

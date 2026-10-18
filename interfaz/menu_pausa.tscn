@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cdp3nye7apjns"]
 
 [ext_resource type="Script" uid="uid://cn64q5rg4podb" path="res://interfaz/menu_pausa.gd" id="1_vv73t"]
+[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 
 [node name="MenuPausa" type="CanvasLayer" unique_id=1441773630 node_paths=PackedStringArray("boton_reanudar", "boton_reiniciar", "boton_menu")]
 process_mode = 3
@@ -34,16 +35,22 @@ theme_override_constants/separation = 33
 metadata/_edit_use_anchors_ = true
 
 [node name="BotonReanudar" type="Button" parent="VBoxContainer" unique_id=558895950]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton3"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Reanudar juego"
 
 [node name="BotonReiniciar" type="Button" parent="VBoxContainer" unique_id=1859360084]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Reiniciar"
 
 [node name="ButtonBotonMenuPrincipal" type="Button" parent="VBoxContainer" unique_id=359587332]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Menú principal"

@@ -53,15 +53,11 @@ func _mostrar_pagina(indice: int) -> void:
 	var es_ultima: bool = _indice == _paginas.size() - 1
 	if es_ultima:
 		boton_siguiente.text = "¡Jugar!"
-		var estilo_jugar := StyleBoxFlat.new()
-		estilo_jugar.bg_color = Color(0.55, 0.25, 0.85)
-		estilo_jugar.border_color = Color(0.25, 0.1, 0.4)
-		estilo_jugar.set_border_width_all(3)
-		estilo_jugar.set_content_margin_all(24)
-		boton_siguiente.add_theme_stylebox_override("normal", estilo_jugar)
+		# En la última página, el botón pasa a la versión más adornada.
+		boton_siguiente.theme_type_variation = &"Boton3"
 	else:
 		boton_siguiente.text = "Siguiente"
-		boton_siguiente.remove_theme_stylebox_override("normal")
+		boton_siguiente.theme_type_variation = &"Boton2"
 
 
 func _pagina_anterior() -> void:

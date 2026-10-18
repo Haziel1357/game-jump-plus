@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ba5guhc0745b6"]
 
 [ext_resource type="Script" uid="uid://b4wcq1c3xir2q" path="res://interfaz/fin_partida/fin_partida.gd" id="1_ojkwr"]
+[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 
 [node name="FinPartida" type="CanvasLayer" unique_id=184668014]
 layer = 10
@@ -98,12 +99,16 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="BotonReiniciar" type="Button" parent="Botones" unique_id=2063833036]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2"
 custom_minimum_size = Vector2(280, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Reiniciar"
 
 [node name="BotonMenu" type="Button" parent="Botones" unique_id=511252624]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton1"
 custom_minimum_size = Vector2(280, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36

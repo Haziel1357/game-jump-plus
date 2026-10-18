@@ -1,55 +1,23 @@
 [gd_scene format=3 uid="uid://b8ssryaxprgg8"]
 
 [ext_resource type="Script" uid="uid://b4shd62i5cp6b" path="res://interfaz/dado/dado.gd" id="1_p2wwb"]
+[ext_resource type="Texture2D" uid="uid://d1cgwvg04akqr" path="res://interfaz/dado/caras/cara_1.png" id="2_ho1kw"]
+[ext_resource type="Texture2D" uid="uid://da1psl6w32xtw" path="res://interfaz/dado/caras/cara_2.png" id="3_jmjlw"]
+[ext_resource type="Texture2D" uid="uid://cgsj07c5t7r5x" path="res://interfaz/dado/caras/cara_3.png" id="4_g3tsx"]
+[ext_resource type="Texture2D" uid="uid://c5vqmlr6srwpf" path="res://interfaz/dado/caras/cara_4.png" id="5_lejvp"]
+[ext_resource type="Texture2D" uid="uid://ba78r27ymox3i" path="res://interfaz/dado/caras/cara_5.png" id="6_yfrjh"]
+[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kckb2"]
-content_margin_left = 16.0
-content_margin_top = 16.0
-content_margin_right = 16.0
-content_margin_bottom = 16.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.09316083, 0.09316086, 0.093160756, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p6bw2"]
+load_path = "res://.godot/imported/cara_6.png-4214951c117f9c2e325deb8fa5ba4428.ctex"
 
 [node name="Dado" type="CanvasLayer" unique_id=1442596752]
 script = ExtResource("1_p2wwb")
-
-[node name="EtiquetaNumero" type="Label" parent="." unique_id=1237391626]
-offset_right = 120.0
-offset_bottom = 131.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(225, 150)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 72
-theme_override_styles/normal = SubResource("StyleBoxFlat_kckb2")
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EtiquetaNumero2" type="Label" parent="." unique_id=1577873619]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -120.0
-offset_bottom = 131.0
-grow_horizontal = 0
-offset_transform_enabled = true
-offset_transform_position = Vector2(-225, 150)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 72
-theme_override_styles/normal = SubResource("StyleBoxFlat_kckb2")
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
+caras = Array[Texture2D]([ExtResource("2_ho1kw"), ExtResource("3_jmjlw"), ExtResource("4_g3tsx"), ExtResource("5_lejvp"), ExtResource("6_yfrjh"), SubResource("CompressedTexture2D_p6bw2")])
 
 [node name="BotonLanzar" type="Button" parent="." unique_id=112987004]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton3"
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -62,6 +30,8 @@ text = "Lanza el dado jugador 1"
 icon_alignment = 1
 
 [node name="BotonLanzar2" type="Button" parent="." unique_id=753607754]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton3"
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -101,6 +71,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BotonOmitir" type="Button" parent="VentanaResultado" unique_id=1442691183]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton3"
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -115,3 +87,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Iniciar Ronda"
+
+[node name="DadoJugador1" type="TextureRect" parent="." unique_id=1505072608]
+offset_right = 192.0
+offset_bottom = 192.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(250, 150)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DadoJugador2" type="TextureRect" parent="." unique_id=1961144465]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_bottom = 192.0
+grow_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-225, 150)
+expand_mode = 1
+stretch_mode = 5

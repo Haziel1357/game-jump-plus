@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ds60fbxrw44uo" path="res://interfaz/preguntas/preguntas.gd" id="1_preg01"]
 [ext_resource type="AudioStream" uid="uid://naohehj8qenr" path="res://recursos/audio/efectos/sonido_salto_prueba.mp3" id="2_oqlur"]
+[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
 content_margin_left = 32.0
@@ -18,30 +19,6 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_correcto"]
-content_margin_left = 24.0
-content_margin_top = 14.0
-content_margin_right = 24.0
-content_margin_bottom = 14.0
-bg_color = Color(0.2, 0.75, 0.3, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.1, 0.35, 0.15, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_incorrecto"]
-content_margin_left = 24.0
-content_margin_top = 14.0
-content_margin_right = 24.0
-content_margin_bottom = 14.0
-bg_color = Color(0.85, 0.2, 0.2, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.4, 0.08, 0.08, 1)
 
 [node name="Preguntas" type="CanvasLayer" unique_id=61489788]
 layer = 10
@@ -106,17 +83,19 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="BotonCorrecto" type="Button" parent="Popup/Opciones" unique_id=387940476]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2Correcto"
 custom_minimum_size = Vector2(300, 90)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_correcto")
 text = "Correcto"
 
 [node name="BotonIncorrecto" type="Button" parent="Popup/Opciones" unique_id=1166742668]
+theme = ExtResource("99_tema")
+theme_type_variation = &"Boton2Incorrecto"
 custom_minimum_size = Vector2(300, 90)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_incorrecto")
 text = "Incorrecto"
 
 [node name="Banner" type="Label" parent="." unique_id=2101355641]
