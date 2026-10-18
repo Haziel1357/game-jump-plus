@@ -10,7 +10,8 @@
 				-0.094946384,
 				0.0,
 				0.13211012
-			]
+			],
+			"icono_vidas": "res://recursos/ui/hud/personaje_1_icono_vidas.png"
 		},
 		{
 			"nombre": "Azul",
@@ -22,7 +23,8 @@
 				0.0,
 				0.5620437,
 				0.0
-			]
+			],
+			"icono_vidas": "res://recursos/ui/hud/personaje_2_icono_vidas.png"
 		}
 	]
 }
