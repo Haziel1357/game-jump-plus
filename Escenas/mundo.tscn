@@ -1,9 +1,13 @@
-[gd_scene format=3 uid="uid://dtpd74kd2c7lc"]
+[gd_scene format=3 uid="uid://bw2py14sk3y6u"]
 
-[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://Escenas/jugador/jugador.gd" id="1_5sfon"]
+[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_5sfon"]
 [ext_resource type="PackedScene" uid="uid://xgxuyh0ev88q" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
 [ext_resource type="PackedScene" uid="uid://c2bk75qajtlpe" path="res://Jugadores/Jugador 1/robot!_3.tscn" id="2_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://itjo6duu0r72" path="res://Jugadores/Jugador 2/robot.tscn" id="3_ly0wt"]
+[ext_resource type="PackedScene" uid="uid://ba0tjdqnfix6t" path="res://interfaz/hud/hud.tscn" id="5_txhqv"]
+[ext_resource type="PackedScene" uid="uid://b8ssryaxprgg8" path="res://interfaz/dado/dado.tscn" id="6_mb57o"]
+[ext_resource type="PackedScene" uid="uid://chqwbv4pvljyl" path="res://interfaz/preguntas/preguntas.tscn" id="7_jh10v"]
+[ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="8_jcqeh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mg33e"]
 
@@ -19,25 +23,25 @@ shadow_enabled = true
 transform = Transform3D(-0.81279975, -0.4000696, 0.42343956, -0.07703366, 0.7943123, 0.60260606, -0.5774276, 0.4571789, -0.67643553, 3.8054404, 9.407942, 0.9805603)
 fov = 92.95577
 
-[node name="Jugador1" type="CharacterBody3D" parent="." unique_id=951876062 node_paths=PackedStringArray("camino_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_5sfon")
-camino_node = NodePath("../Camino plataformas jugador 1")
-
-[node name="ROBOT!_3" parent="Jugador1" unique_id=827052337 instance=ExtResource("2_ly0wt")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador1" unique_id=337979765]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 1.581281, 1.284929)
-shape = SubResource("CapsuleShape3D_mg33e")
-
-[node name="Jugador2" type="CharacterBody3D" parent="." unique_id=148476643 node_paths=PackedStringArray("camino_node")]
+[node name="Jugador1" type="CharacterBody3D" parent="." unique_id=148476643 node_paths=PackedStringArray("camino_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 2")
 
-[node name="Robot" parent="Jugador2" unique_id=2120732835 instance=ExtResource("3_ly0wt")]
+[node name="Robot" parent="Jugador1" unique_id=2120732835 instance=ExtResource("3_ly0wt")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador2" unique_id=2125524253]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador1" unique_id=2125524253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 1.581281, 1.284929)
+shape = SubResource("CapsuleShape3D_mg33e")
+
+[node name="Jugador2" type="CharacterBody3D" parent="." unique_id=951876062 node_paths=PackedStringArray("camino_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_5sfon")
+camino_node = NodePath("../Camino plataformas jugador 1")
+
+[node name="ROBOT!_3" parent="Jugador2" unique_id=827052337 instance=ExtResource("2_ly0wt")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jugador2" unique_id=337979765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.120045, 1.581281, 1.284929)
 shape = SubResource("CapsuleShape3D_mg33e")
 
@@ -91,3 +95,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1227427, 6.6274743, 27.118
 
 [node name="Mapa Isla Base2" parent="Mapa" unique_id=462540259 instance=ExtResource("2_bqhdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.73, 16.5)
+
+[node name="Hud" parent="." unique_id=1378635125 instance=ExtResource("5_txhqv")]
+
+[node name="Dado" parent="." unique_id=1442596752 instance=ExtResource("6_mb57o")]
+
+[node name="Preguntas" parent="." unique_id=61489788 instance=ExtResource("7_jh10v")]
+
+[node name="CicloRonda" type="Node" parent="." unique_id=797908663 node_paths=PackedStringArray("jugador_1", "jugador_2")]
+script = ExtResource("8_jcqeh")
+jugador_1 = NodePath("../Jugador1")
+jugador_2 = NodePath("../Jugador2")

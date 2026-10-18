@@ -33,32 +33,23 @@ theme_override_font_sizes/font_size = 26
 text = "Jugador 2  ♥♥♥ (3)"
 horizontal_alignment = 1
 
-[node name="Prueba" type="HBoxContainer" parent="." unique_id=1510220890]
-anchors_preset = 12
-anchor_top = 1.0
+[node name="CasillasJugador1" type="Label" parent="." unique_id=1676764676]
+offset_left = 24.0
+offset_top = 80.0
+offset_right = 320.0
+offset_bottom = 116.0
+theme_override_font_sizes/font_size = 26
+text = "Casillas: 0/6"
+
+[node name="CasillasJugador2" type="Label" parent="." unique_id=1165894243]
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -64.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="BotonFallo1" type="Button" parent="Prueba" unique_id=167988513]
-custom_minimum_size = Vector2(140, 48)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Fallo P1"
-
-[node name="BotonPregunta" type="Button" parent="Prueba" unique_id=174839879]
-custom_minimum_size = Vector2(160, 48)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Pregunta"
-
-[node name="BotonFallo2" type="Button" parent="Prueba" unique_id=779531297]
-custom_minimum_size = Vector2(140, 48)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Fallo P2"
+offset_left = -320.0
+offset_top = 80.0
+offset_right = -24.0
+offset_bottom = 116.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 26
+text = "Casillas: 0/6"
+horizontal_alignment = 2

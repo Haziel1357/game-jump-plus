@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://b8ssryaxprgg8"]
+
+[ext_resource type="Script" uid="uid://b4shd62i5cp6b" path="res://interfaz/dado/dado.gd" id="1_p2wwb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kckb2"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.09316083, 0.09316086, 0.093160756, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Dado" type="CanvasLayer" unique_id=1442596752]
+script = ExtResource("1_p2wwb")
+
+[node name="EtiquetaNumero" type="Label" parent="." unique_id=1237391626]
+offset_right = 120.0
+offset_bottom = 131.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(225, 150)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_kckb2")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EtiquetaNumero2" type="Label" parent="." unique_id=1577873619]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_bottom = 131.0
+grow_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-225, 150)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_kckb2")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotonLanzar" type="Button" parent="." unique_id=112987004]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_right = 557.0
+offset_bottom = 40.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Lanza el dado jugador 1"
+icon_alignment = 1
+
+[node name="BotonLanzar2" type="Button" parent="." unique_id=753607754]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -557.0
+offset_top = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Lanza el dado jugador 2"
+
+[node name="EtiquetaResultado" type="Label" parent="." unique_id=631727834]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -116.0
+offset_right = 124.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Resultado"
+horizontal_alignment = 1
+
+[node name="VentanaResultado" type="Panel" parent="." unique_id=1700109993]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BotonOmitir" type="Button" parent="VentanaResultado" unique_id=1442691183]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.5
+offset_top = -15.5
+offset_right = 29.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Iniciar Ronda"

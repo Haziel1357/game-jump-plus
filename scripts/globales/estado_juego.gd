@@ -4,10 +4,17 @@ extends Node
 # y se lee al empezar el nivel. Sobrevive a cambio de escenas (autoload).
 
 signal vidas_cambiadas(jugador: int, vidas: int)
+# Se emite cuando un jugador cambia su número de casillas recorridas.
+signal casillas_cambiadas(jugador: int, total: int)
 
 const VIDAS_INICIALES := 3
+# Casillas que debe recorrer un jugador para ganar la partida.
+const CASILLAS_PARA_GANAR := 6
 
 var personajes: Array = []
+
+# Casillas que lleva recorridas cada jugador. La llave es el número de jugador.
+var casillas_recorridas: Dictionary[int, int] = {1: 0, 2: 0}
 
 var jugador_1: Dictionary = {
 	"nombre": "Jugador 1",
@@ -40,6 +47,7 @@ func cargar_personajes() -> void:
 func reiniciar_seleccion() -> void:
 	jugador_1 = {"nombre": "Jugador 1", "personaje": 0, "listo": false, "vidas": VIDAS_INICIALES}
 	jugador_2 = {"nombre": "Jugador 2", "personaje": 1, "listo": false, "vidas": VIDAS_INICIALES}
+	reiniciar_casillas()
 
 
 func ambos_listos() -> bool:
@@ -68,3 +76,21 @@ func _datos_jugador(jugador: int) -> Dictionary:
 	if jugador == 2:
 		return jugador_2
 	return {}
+
+
+# Suma 'casillas' al jugador indicado (por ejemplo: EstadoJuego.avanzar(1, 1)).
+func avanzar(jugador: int, casillas: int) -> void:
+	casillas_recorridas[jugador] += casillas
+	casillas_cambiadas.emit(jugador, casillas_recorridas[jugador])
+
+
+# Devuelve cuántas casillas lleva recorridas el jugador.
+func obtener_casillas(jugador: int) -> int:
+	return casillas_recorridas[jugador]
+
+
+# Deja a todos los jugadores en la casilla de salida.
+func reiniciar_casillas() -> void:
+	for jugador in casillas_recorridas:
+		casillas_recorridas[jugador] = 0
+		casillas_cambiadas.emit(jugador, 0)

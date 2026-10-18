@@ -33,6 +33,7 @@ interfaz/                 # Menús y HUD
 ├── menu_principal/
 ├── seleccion_jugador/
 ├── creditos/
+├── dado/                 # Lanzamiento de dados de los 2 jugadores
 └── hud/
 
 recursos/                 # Assets compartidos
