@@ -1,10 +1,104 @@
 {
 	"titulo": "Créditos",
-	"equipo": [
-		"Karla Guevara - Directora",
-		"Tadeo Puma - Artista 3D",
-		"Juan Ocaña - Programación",
-		"Diego Ponce - Programación",
-		"Haziel Moncayo - Programación"
+	"columnas": [
+		{
+			"tamano": 26,
+			"alinear": "centro",
+			"ancho": 480,
+			"secciones": [
+				{
+					"rol": "CREATIVE DIRECTOR",
+					"nombres": [
+						"Karla Guevara"
+					]
+				},
+				{
+					"rol": "ART DIRECTOR",
+					"nombres": [
+						"Brenda Celeste Salazar Daza",
+						"Matías Marcayata",
+						"Karla Guevara"
+					]
+				},
+				{
+					"rol": "3D ART",
+					"nombres": [
+						"Tadeo Puma",
+						"Matías Marcayata",
+						"Karla Guevara"
+					]
+				},
+				{
+					"rol": "RIG & 3D ANIMATION",
+					"nombres": [
+						"Kamus"
+					]
+				},
+				{
+					"rol": "UI DESING",
+					"nombres": [
+						"Tadeo Puma"
+					]
+				}
+			]
+		},
+		{
+			"tamano": 26,
+			"alinear": "centro",
+			"ancho": 400,
+			"secciones": [
+				{
+					"rol": "LEAD PROGRAMMER",
+					"nombres": [
+						"Diego Ponce"
+					]
+				},
+				{
+					"rol": "CODING",
+					"nombres": [
+						"Haziel Moncayo",
+						"Diego Ponce",
+						"Arsden"
+					]
+				},
+				{
+					"rol": "MÚSICA",
+					"nombres": [
+						"Manuel Sambour"
+					]
+				},
+				{
+					"rol": "INCINE EXECUTIVE PRODUCER",
+					"nombres": [
+						"Kamus"
+					]
+				}
+			]
+		},
+		{
+			"tamano": 19,
+			"alinear": "izquierda",
+			"ancho": 680,
+			"secciones": [
+				{
+					"rol": "Extras:",
+					"nombres": [
+						"Sounds: https://freesound.org"
+					]
+				},
+				{
+					"rol": "3D Model:",
+					"nombres": [
+						"Title: Low Poly Palm Tree",
+						"Author: eucalyp555 (https://sketchfab.com/eucalyp555)",
+						"Source: https://sketchfab.com/3d-models/low-poly-palm-tree-58f448209beb43659e95ca0e1ad59..."
+					]
+				}
+			]
+		}
+	],
+	"pie": [
+		"Developed as part of GAMEJAM PLUS 2026-2027 PRESENTATION",
+		"QUITO-ECUADOR OCTUBRE 2026"
 	]
 }

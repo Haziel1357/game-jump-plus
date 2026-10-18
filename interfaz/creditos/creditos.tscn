@@ -39,18 +39,25 @@ layout_mode = 2
 
 [node name="Contenido" type="VBoxContainer" parent="Centro/Marco" unique_id=1259405133]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
 [node name="Titulo" type="Label" parent="Centro/Marco/Contenido" unique_id=537486049]
 theme_type_variation = &"TextoOscuro"
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 56
 text = "Créditos"
 horizontal_alignment = 1
 
-[node name="Equipo" type="VBoxContainer" parent="Centro/Marco/Contenido" unique_id=1790918927]
+[node name="Columnas" type="HBoxContainer" parent="Centro/Marco/Contenido"]
 layout_mode = 2
-theme_override_constants/separation = 12
+size_flags_horizontal = 4
+theme_override_constants/separation = 70
+
+[node name="Pie" type="Label" parent="Centro/Marco/Contenido"]
+theme_type_variation = &"TextoOscuro"
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
 
 [node name="Separador" type="Control" parent="Centro/Marco/Contenido" unique_id=1072226155]
 custom_minimum_size = Vector2(0, 20)
