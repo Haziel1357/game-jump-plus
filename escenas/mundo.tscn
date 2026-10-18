@@ -28,6 +28,18 @@ shader_parameter/fuerza_deformacion = 0.4
 [sub_resource type="PlaneMesh" id="PlaneMesh_mg33e"]
 size = Vector2(300, 300)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pnm2c"]
+sky_top_color = Color(0.10980392, 0.49411765, 0.8392157, 1)
+sun_angle_max = 55.46
+sun_curve = 2.854096
+
+[sub_resource type="Sky" id="Sky_l7hni"]
+sky_material = SubResource("ProceduralSkyMaterial_pnm2c")
+
+[sub_resource type="Environment" id="Environment_v0ik2"]
+background_mode = 2
+sky = SubResource("Sky_l7hni")
+
 [node name="Mundo" type="Node3D" unique_id=476666403]
 
 [node name="Cámara y luz" type="Node3D" parent="." unique_id=1172307285]
@@ -37,7 +49,7 @@ transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.707106
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="Cámara y luz" unique_id=21022145]
-transform = Transform3D(-0.8158437, -0.29138872, 0.49949166, 0.031251382, 0.84028584, 0.5412423, -0.5774276, 0.4571789, -0.67643553, 3.8054404, 9.407942, 0.9805603)
+transform = Transform3D(-0.69017357, -0.3735421, 0.61977965, 0.031251386, 0.84028566, 0.54124236, -0.7229687, 0.39292014, -0.56826925, 6.896993, 9.407942, 5.15168)
 current = true
 fov = 92.95577
 
@@ -181,6 +193,72 @@ material_override = SubResource("ShaderMaterial_abslf")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_mg33e")
 script = ExtResource("10_jh10v")
+
+[node name="Agua2" type="MeshInstance3D" parent="." unique_id=1275540994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5031128, 1, 299.54495)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="Agua5" type="MeshInstance3D" parent="." unique_id=2049039978]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0.000718916, 0, -0.000718916, 0.99999976, -0.5031128, 1, 585.1199)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="Agua7" type="MeshInstance3D" parent="." unique_id=1334966508]
+transform = Transform3D(1, 0, 0, 0, 0.99698365, 0.077612326, 0, -0.077612326, 0.99698365, -0.5031128, 1, 805.5035)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="Agua9" type="MeshInstance3D" parent="." unique_id=967046340]
+transform = Transform3D(1, 0, 0, 0, 0.99918216, 0.040433865, 0, -0.040433865, 0.99918216, 282.89346, 1, 805.5035)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="Agua10" type="MeshInstance3D" parent="." unique_id=679836832]
+transform = Transform3D(1, 0, 0, 0, 0.999628, 0.027271617, 0, -0.027271617, 0.999628, 282.89346, 1, 488.763)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="Agua8" type="MeshInstance3D" parent="." unique_id=282776101]
+transform = Transform3D(1, 0, 0, 0, 0.99698365, 0.077612326, 0, -0.077612326, 0.99698365, -299.60834, 1, 805.5035)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="Agua6" type="MeshInstance3D" parent="." unique_id=528444831]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0.000718916, 0, -0.000718916, 0.99999976, -295.50085, 1, 585.1199)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="Agua3" type="MeshInstance3D" parent="." unique_id=402485005]
+transform = Transform3D(0.99942493, 0.03390813, 0, -0.03389535, 0.99904835, 0.02744905, 0.00093074597, -0.027433265, 0.9996232, -300.4598, 6.932495, 297.07623)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="Agua4" type="MeshInstance3D" parent="." unique_id=1615086957]
+transform = Transform3D(0.99785644, 0.035367727, -0.055061053, -0.03340587, 0.99878776, 0.03615243, 0.056272928, -0.03423556, 0.99782825, -295.38873, 1.7508011, -2.0001068)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=89397341]
+environment = SubResource("Environment_v0ik2")
 
 [editable path="Jugador1/Robot"]
 [editable path="Jugador2/ROBOT!_3"]
