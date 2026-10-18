@@ -4,8 +4,8 @@ extends Control
 const RUTA_TUTORIAL := "res://interfaz/tutorial/tutorial.tscn"
 
 const MODELOS := [
-	"res://Jugadores/Jugador 1/robot!_3.tscn",
-	"res://Jugadores/Jugador 2/robot.tscn",
+	"res://jugadores/jugador_1/robot!_3.tscn",
+	"res://jugadores/jugador_2/robot.tscn",
 ]
 
 @onready var preview_1: ColorRect = $Layout/Paneles/PanelJugador1/Contenido/Preview/ColorPersonaje

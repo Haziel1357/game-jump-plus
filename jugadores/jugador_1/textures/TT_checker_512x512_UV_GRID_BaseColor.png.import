@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwlfm7hd58ml7"
-path.s3tc="res://.godot/imported/TT_checker_512x512_UV_GRID_BaseColor.png-c7e9a19c87cd0a438beb21f3f1635582.s3tc.ctex"
+path.s3tc="res://.godot/imported/TT_checker_512x512_UV_GRID_BaseColor.png-4e1f9ce36f5955827d065f4d6b3f62ca.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Jugadores/Jugador 1/textures/TT_checker_512x512_UV_GRID_BaseColor.png"
-dest_files=["res://.godot/imported/TT_checker_512x512_UV_GRID_BaseColor.png-c7e9a19c87cd0a438beb21f3f1635582.s3tc.ctex"]
+source_file="res://jugadores/jugador_1/textures/TT_checker_512x512_UV_GRID_BaseColor.png"
+dest_files=["res://.godot/imported/TT_checker_512x512_UV_GRID_BaseColor.png-4e1f9ce36f5955827d065f4d6b3f62ca.s3tc.ctex"]
 
 [params]
 

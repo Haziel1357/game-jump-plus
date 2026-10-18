@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://ba5guhc0745b6"]
+
+[ext_resource type="Script" uid="uid://b4wcq1c3xir2q" path="res://interfaz/fin_partida/fin_partida.gd" id="1_ojkwr"]
+
+[node name="FinPartida" type="CanvasLayer" unique_id=184668014]
+layer = 10
+script = ExtResource("1_ojkwr")
+
+[node name="PanelJugador1" type="ColorRect" parent="." unique_id=988368896]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -230.0
+offset_right = 700.0
+offset_bottom = 230.0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(80, 0)
+color = Color(0.5254902, 1, 1, 0.56078434)
+
+[node name="Titulo" type="Label" parent="PanelJugador1" unique_id=825345523]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+offset_transform_enabled = true
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resumen" type="Label" parent="PanelJugador1" unique_id=731534049]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(120, 0)
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PanelJugador2" type="ColorRect" parent="." unique_id=1529985223]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -230.0
+offset_bottom = 230.0
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-80, 0)
+color = Color(0.5254902, 1, 1, 0.56078434)
+
+[node name="Titulo" type="Label" parent="PanelJugador2" unique_id=2084891111]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+offset_transform_enabled = true
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resumen" type="Label" parent="PanelJugador2" unique_id=1671336954]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-120, 0)
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Botones" type="HBoxContainer" parent="." unique_id=1201010015]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="BotonReiniciar" type="Button" parent="Botones" unique_id=2063833036]
+custom_minimum_size = Vector2(280, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Reiniciar"
+
+[node name="BotonMenu" type="Button" parent="Botones" unique_id=511252624]
+custom_minimum_size = Vector2(280, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Menú Principal"

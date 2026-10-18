@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwgy8kslbg564"
-path="res://.godot/imported/checker_map_gravity.png-4397aa8024fe8aa204967ce2124ea465.ctex"
+path="res://.godot/imported/checker_map_gravity.png-a8910132c14ad099d6e395f5dc7e0151.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Jugadores/Jugador 1/textures/checker_map_gravity.png"
-dest_files=["res://.godot/imported/checker_map_gravity.png-4397aa8024fe8aa204967ce2124ea465.ctex"]
+source_file="res://jugadores/jugador_1/textures/checker_map_gravity.png"
+dest_files=["res://.godot/imported/checker_map_gravity.png-a8910132c14ad099d6e395f5dc7e0151.ctex"]
 
 [params]
 

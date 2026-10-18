@@ -18,10 +18,11 @@ extends Node
 # Cámara general del nivel. Si no se asigna, se queda la última que esté activa.
 @export var camara_general: Camera3D
 
-# Los dos nodos hermanos de este nodo dentro de la escena del nivel.
+# Los nodos hermanos de este nodo dentro de la escena del nivel.
 @onready var dado: Dado = $"../Dado"
 # Sin tipo a propósito: preguntas.gd no tiene class_name.
 @onready var preguntas = $"../Preguntas"
+@onready var fin_partida: FinPartida = $"../FinPartida"
 
 var _partida_terminada: bool = false
 # Los nodos de los personajes, por número de jugador (se llena en _ready).
@@ -88,12 +89,12 @@ func _preguntar(jugador: int) -> void:
 		_terminar_partida(2 if jugador == 1 else 1)
 
 
-# Muestra quién ganó junto con las casillas de cada jugador.
+# Muestra las pantallas finales: "¡Ganaste!" para uno y "Perdiste" para el otro.
 func _terminar_partida(ganador: int) -> void:
 	_partida_terminada = true
-	var casillas_1: int = EstadoJuego.obtener_casillas(1)
-	var casillas_2: int = EstadoJuego.obtener_casillas(2)
-	dado.mostrar_fin("¡Gana el jugador %d!\nCasillas J1: %d | J2: %d\n(ESC para volver al menú)" % [ganador, casillas_1, casillas_2])
+	# Volvemos a la vista general para que se vean las dos ventanas.
+	_poner_camara_general()
+	fin_partida.mostrar(ganador)
 
 
 # Activa la cámara hija del personaje indicado ("Camera3D" dentro del nodo).
