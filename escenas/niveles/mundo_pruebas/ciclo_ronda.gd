@@ -15,6 +15,9 @@ extends Node
 @export var jugador_1: Node
 @export var jugador_2: Node
 
+# Cámara general del nivel. Si no se asigna, se queda la última que esté activa.
+@export var camara_general: Camera3D
+
 # Los dos nodos hermanos de este nodo dentro de la escena del nivel.
 @onready var dado: Dado = $"../Dado"
 # Sin tipo a propósito: preguntas.gd no tiene class_name.
@@ -35,6 +38,8 @@ func _ready() -> void:
 		_jugadores[jugador].set("habilita_tecla_prueba", false)
 
 	dado.ronda_terminada.connect(_al_terminar_dado)
+	if camara_general != null:
+		camara_general.make_current()
 	# call_deferred espera a que todos los nodos estén listos antes de empezar.
 	dado.iniciar_ronda.call_deferred()
 
@@ -42,6 +47,9 @@ func _ready() -> void:
 # El dado ya decidió quién empieza: preguntamos a ese jugador y luego al otro.
 func _al_terminar_dado(ganador: int) -> void:
 	var otro: int = 2 if ganador == 1 else 1
+
+	# Empieza el ganador: su cámara es la primera en usarse.
+	_poner_camara(ganador)
 
 	await _preguntar(ganador)
 	if _partida_terminada:
@@ -52,11 +60,14 @@ func _al_terminar_dado(ganador: int) -> void:
 		return
 
 	# Los dos ya jugaron y nadie ganó: volvemos a tirar el dado.
+	_poner_camara_general()
 	dado.iniciar_ronda()
 
 
 # Pregunta a un jugador y aplica el resultado.
 func _preguntar(jugador: int) -> void:
+	# La cámara se cambia al jugador que está respondiendo.
+	_poner_camara(jugador)
 	preguntas.mostrar_pregunta(jugador)
 	# Esperamos a que marquen Correcto/Incorrecto; la señal trae la respuesta.
 	var es_correcto: bool = await preguntas.resultado_marcado
@@ -83,3 +94,19 @@ func _terminar_partida(ganador: int) -> void:
 	var casillas_1: int = EstadoJuego.obtener_casillas(1)
 	var casillas_2: int = EstadoJuego.obtener_casillas(2)
 	dado.mostrar_fin("¡Gana el jugador %d!\nCasillas J1: %d | J2: %d\n(ESC para volver al menú)" % [ganador, casillas_1, casillas_2])
+
+
+# Activa la cámara hija del personaje indicado ("Camera3D" dentro del nodo).
+func _poner_camara(jugador: int) -> void:
+	var nodo: Node = _jugadores.get(jugador)
+	if nodo == null:
+		return
+	var camara := nodo.get_node_or_null("Camera3D") as Camera3D
+	if camara != null:
+		camara.make_current()
+
+
+# Vuelve a la cámara general (si el nivel tiene una asignada).
+func _poner_camara_general() -> void:
+	if camara_general != null:
+		camara_general.make_current()

@@ -54,5 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90
 
 [node name="Dado" parent="." unique_id=1442596752 instance=ExtResource("5_y5x3w")]
 
-[node name="CicloRonda" type="Node" parent="." unique_id=1206825484]
+[node name="CicloRonda" type="Node" parent="." unique_id=1206825484 node_paths=PackedStringArray("jugador_1", "jugador_2")]
 script = ExtResource("6_iupyu")
+jugador_1 = NodePath("../Jugador")
+jugador_2 = NodePath("../Jugador2")
