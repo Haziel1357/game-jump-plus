@@ -1,19 +1,63 @@
 [gd_scene format=3 uid="uid://b8c4hce36hqx5"]
 
-[ext_resource type="Script" uid="uid://qog27hnhvgnp" path="res://interfaz/tutorial/tutorial.gd" id="1_tut01"]
-[ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
+[ext_resource type="Script" path="res://interfaz/tutorial/tutorial.gd" id="1_tut01"]
+[ext_resource type="Texture2D" path="res://recursos/ui/botones/boton_1.png" id="2_b1n"]
+[ext_resource type="Texture2D" path="res://recursos/ui/botones/boton_1_hover.png" id="3_b1c"]
+[ext_resource type="Texture2D" path="res://recursos/ui/botones/boton_2.png" id="4_b2n"]
+[ext_resource type="Texture2D" path="res://recursos/ui/botones/boton_2_hover.png" id="5_b2c"]
+[ext_resource type="Texture2D" path="res://recursos/ui/tutorial/fondo_tutorial.png" id="6_fondo"]
+[ext_resource type="Texture2D" path="res://recursos/ui/tutorial/burbuja_izquierda.png" id="7_bizq"]
+[ext_resource type="Texture2D" path="res://recursos/ui/tutorial/burbuja_derecha.png" id="8_bder"]
+[ext_resource type="Texture2D" path="res://recursos/ui/tutorial/burbuja_centro.png" id="9_bcen"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_caja"]
-bg_color = Color(0.2, 0.35, 0.75, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.1, 0.15, 0.35, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="StyleBoxTexture" id="SB_burbuja_izq"]
+content_margin_left = 55.0
+content_margin_top = 40.0
+content_margin_right = 55.0
+content_margin_bottom = 50.0
+texture = ExtResource("7_bizq")
+
+[sub_resource type="StyleBoxTexture" id="SB_burbuja_der"]
+content_margin_left = 55.0
+content_margin_top = 40.0
+content_margin_right = 55.0
+content_margin_bottom = 50.0
+texture = ExtResource("8_bder")
+
+[sub_resource type="StyleBoxTexture" id="SB_burbuja_cen"]
+content_margin_left = 55.0
+content_margin_top = 40.0
+content_margin_right = 55.0
+content_margin_bottom = 50.0
+texture = ExtResource("9_bcen")
+
+[sub_resource type="StyleBoxTexture" id="SB_b1_normal"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+texture = ExtResource("2_b1n")
+
+[sub_resource type="StyleBoxTexture" id="SB_b1_clic"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+texture = ExtResource("3_b1c")
+
+[sub_resource type="StyleBoxTexture" id="SB_b2_normal"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+texture = ExtResource("4_b2n")
+
+[sub_resource type="StyleBoxTexture" id="SB_b2_clic"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+texture = ExtResource("5_b2c")
 
 [node name="Tutorial" type="Control" unique_id=769514744]
 layout_mode = 3
@@ -24,14 +68,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tut01")
 
-[node name="Fondo" type="ColorRect" parent="." unique_id=917001956]
+[node name="Fondo" type="TextureRect" parent="." unique_id=917001956]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.3, 0.72, 0.35, 1)
+texture = ExtResource("6_fondo")
 
 [node name="Layout" type="VBoxContainer" parent="." unique_id=188235710]
 layout_mode = 1
@@ -60,14 +104,16 @@ size_flags_vertical = 3
 
 [node name="CajaIzquierda" type="PanelContainer" parent="Layout/Cajas" unique_id=1215062873]
 layout_mode = 1
-offset_left = 80.0
-offset_top = 20.0
-offset_right = 620.0
-offset_bottom = 320.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_caja")
+offset_left = 40.0
+offset_top = 6.0
+offset_right = 658.0
+offset_bottom = 429.0
+theme_override_styles/panel = SubResource("SB_burbuja_izq")
 
 [node name="Texto" type="Label" parent="Layout/Cajas/CajaIzquierda" unique_id=1627037274]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
 text = "Texto de la narrativa"
 horizontal_alignment = 1
@@ -79,14 +125,17 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -620.0
-offset_top = 20.0
-offset_right = -80.0
-offset_bottom = 320.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_caja")
+offset_left = -650.0
+offset_top = -41.0
+offset_right = -35.0
+offset_bottom = 419.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("SB_burbuja_der")
 
 [node name="Texto" type="Label" parent="Layout/Cajas/CajaDerecha" unique_id=2020853604]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
 text = "Texto de la narrativa"
 horizontal_alignment = 1
@@ -98,14 +147,17 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -320.0
-offset_top = 280.0
-offset_right = 320.0
-offset_bottom = 620.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_caja")
+offset_left = -360.0
+offset_top = 263.0
+offset_right = 351.0
+offset_bottom = 669.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("SB_burbuja_cen")
 
 [node name="Texto" type="Label" parent="Layout/Cajas/CajaCentro" unique_id=998076756]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
 text = "Texto de la narrativa"
 horizontal_alignment = 1
@@ -113,23 +165,31 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="BotonAtras" type="Button" parent="." unique_id=1446640554]
-theme = ExtResource("99_tema")
-theme_type_variation = &"Boton1"
+custom_minimum_size = Vector2(240, 90)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
-offset_top = -100.0
+offset_top = -128.0
 offset_right = 280.0
-offset_bottom = -28.0
+offset_bottom = -38.0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.13, 0.05, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.38, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("SB_b1_normal")
+theme_override_styles/pressed = SubResource("SB_b1_clic")
+theme_override_styles/hover = SubResource("SB_b1_clic")
+theme_override_styles/disabled = SubResource("SB_b1_normal")
+theme_override_styles/focus = SubResource("SB_b1_clic")
 text = "Atrás"
 
 [node name="BotonSiguiente" type="Button" parent="." unique_id=1455466724]
-theme = ExtResource("99_tema")
-theme_type_variation = &"Boton2"
+custom_minimum_size = Vector2(240, 90)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -137,10 +197,20 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -280.0
-offset_top = -100.0
+offset_top = -128.0
 offset_right = -40.0
-offset_bottom = -28.0
+offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.13, 0.05, 0.02, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.38, 1)
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("SB_b2_normal")
+theme_override_styles/pressed = SubResource("SB_b2_clic")
+theme_override_styles/hover = SubResource("SB_b2_clic")
+theme_override_styles/disabled = SubResource("SB_b2_normal")
+theme_override_styles/focus = SubResource("SB_b2_clic")
 text = "Siguiente"

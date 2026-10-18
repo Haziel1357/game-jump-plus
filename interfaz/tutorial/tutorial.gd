@@ -4,6 +4,13 @@ const RUTA_DATOS := "res://interfaz/tutorial/datos_tutorial.json"
 # Actualizado para que al terminar el tutorial dirija a tu escena de la isla
 const RUTA_NIVEL := "res://escenas/mundo.tscn"
 
+# Estilos de textura reutilizando las texturas del menú, para que todos los
+# estados del botón "Siguiente" se vean siempre con su textura melocotón.
+const TEXTURA_BOTON2_NORMAL := preload("res://recursos/ui/botones/boton_2.png")
+const TEXTURA_BOTON2_CLIC := preload("res://recursos/ui/botones/boton_2_hover.png")
+const TEXTURA_JUGAR_NORMAL := preload("res://recursos/ui/botones/boton_3.png")
+const TEXTURA_JUGAR_CLIC := preload("res://recursos/ui/botones/boton_3_hover.png")
+
 @onready var label_titulo: Label = $Layout/Titulo
 @onready var label_pagina: Label = $Layout/IndicadorPagina
 @onready var caja_1: Label = $Layout/Cajas/CajaIzquierda/Texto
@@ -50,14 +57,31 @@ func _mostrar_pagina(indice: int) -> void:
 
 	boton_atras.visible = _indice > 0
 
+	# "Siguiente" con tono cálido (ámbar) para no confundirse con "Atrás".
+	boton_siguiente.self_modulate = Color(1.0, 0.86, 0.66)
+
 	var es_ultima: bool = _indice == _paginas.size() - 1
 	if es_ultima:
 		boton_siguiente.text = "¡Jugar!"
-		# En la última página, el botón pasa a la versión más adornada.
-		boton_siguiente.theme_type_variation = &"Boton3"
+		boton_siguiente.self_modulate = Color(0.85, 0.72, 1.0)
+		_estilo_boton(boton_siguiente, TEXTURA_JUGAR_NORMAL, TEXTURA_JUGAR_CLIC)
 	else:
 		boton_siguiente.text = "Siguiente"
-		boton_siguiente.theme_type_variation = &"Boton2"
+		_estilo_boton(boton_siguiente, TEXTURA_BOTON2_NORMAL, TEXTURA_BOTON2_CLIC)
+
+
+## Aplica textura melocotón a los cuatro estados visibles del botón, con los
+## mismos márgenes (40/30) que los estilos del menú principal.
+func _estilo_boton(boton: Button, textura_normal: Texture2D, textura_clic: Texture2D) -> void:
+	for estado in ["normal", "hover", "pressed", "focus"]:
+		var textura := textura_normal if estado == "normal" else textura_clic
+		var estilo := StyleBoxTexture.new()
+		estilo.texture = textura
+		estilo.content_margin_left = 40.0
+		estilo.content_margin_top = 30.0
+		estilo.content_margin_right = 40.0
+		estilo.content_margin_bottom = 30.0
+		boton.add_theme_stylebox_override(estado, estilo)
 
 
 func _pagina_anterior() -> void:
