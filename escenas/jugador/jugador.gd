@@ -1,11 +1,17 @@
 extends CharacterBody3D
 
+# Compartido con la selección de jugador para que el color sea el mismo.
+const TintePersonaje := preload("res://scripts/globales/tinte_personaje.gd")
+
 @export var camino_node: Node3D
 @export var duracion_salto: float = 0.6
 @export var altura_salto: float = 1.2
 @export var desfase_altura: float = 0.5
 @export var habilita_tecla_prueba: bool = true
 @export var tecla_salto: StringName = &"ui_accept"
+# Número de jugador (1 o 2) cuyo color de selección debe pintar este modelo.
+# 0 = no pintar nada. Se asigna en el Inspector de la escena del nivel.
+@export var numero_jugador: int = 0
 
 var _puntos_path: PackedVector3Array = []
 var _indice_siguiente: int = 0
@@ -34,6 +40,16 @@ func _ready() -> void:
 			_indice_siguiente = 1
 	else:
 		push_warning("Asigna un nodo de camino en el Inspector para este jugador.")
+
+	# Coloreado temporal dentro de la isla (ver tinte_personaje.gd).
+	_pintar_modelo()
+
+
+## Pinta el modelo de este personaje con el color elegido en la selección.
+func _pintar_modelo() -> void:
+	if numero_jugador <= 0:
+		return
+	TintePersonaje.aplicar(self, EstadoJuego.color_de(numero_jugador))
 
 
 func _unhandled_input(event: InputEvent) -> void:

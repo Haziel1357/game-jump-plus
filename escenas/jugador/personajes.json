@@ -7,6 +7,14 @@
 		{
 			"nombre": "Azul",
 			"color": "#3498db"
+		},
+		{
+			"nombre": "Verde",
+			"color": "#2ecc71"
+		},
+		{
+			"nombre": "Amarillo",
+			"color": "#f1c40f"
 		}
 	]
 }

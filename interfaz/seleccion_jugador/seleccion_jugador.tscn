@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" uid="uid://buf7qkh3yjwh8" path="res://interfaz/seleccion_jugador/seleccion_jugador.gd" id="1_sel01"]
 
-[sub_resource type="Environment" id="Environment_preview"]
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.6
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.16, 0.18, 0.22, 0.92)
 border_width_left = 3
@@ -30,6 +25,11 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="Environment" id="Environment_preview"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nick"]
 content_margin_left = 16.0
@@ -147,11 +147,11 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1.8, 4.5)
 fov = 50.0
 
-[node name="LuzPreview" type="DirectionalLight3D" parent="Layout/Paneles/PanelJugador1/Contenido/Preview/ViewportPersonaje/SubViewport"]
-rotation_degrees = Vector3(-45, -30, 0)
+[node name="LuzPreview" type="DirectionalLight3D" parent="Layout/Paneles/PanelJugador1/Contenido/Preview/ViewportPersonaje/SubViewport" unique_id=599124681]
+transform = Transform3D(0.8660254, 0.35355338, -0.35355338, 0, 0.70710677, 0.70710677, 0.5, -0.6123724, 0.6123724, 0, 0, 0)
 light_energy = 1.2
 
-[node name="AmbientePreview" type="WorldEnvironment" parent="Layout/Paneles/PanelJugador1/Contenido/Preview/ViewportPersonaje/SubViewport"]
+[node name="AmbientePreview" type="WorldEnvironment" parent="Layout/Paneles/PanelJugador1/Contenido/Preview/ViewportPersonaje/SubViewport" unique_id=1141421834]
 environment = SubResource("Environment_preview")
 
 [node name="ContenedorModelo" type="Node3D" parent="Layout/Paneles/PanelJugador1/Contenido/Preview/ViewportPersonaje/SubViewport" unique_id=139276789]
@@ -252,11 +252,11 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1.8, 4.5)
 fov = 50.0
 
-[node name="LuzPreview" type="DirectionalLight3D" parent="Layout/Paneles/PanelJugador2/Contenido/Preview/ViewportPersonaje/SubViewport"]
-rotation_degrees = Vector3(-45, -30, 0)
+[node name="LuzPreview" type="DirectionalLight3D" parent="Layout/Paneles/PanelJugador2/Contenido/Preview/ViewportPersonaje/SubViewport" unique_id=1330299070]
+transform = Transform3D(0.8660254, 0.35355338, -0.35355338, 0, 0.70710677, 0.70710677, 0.5, -0.6123724, 0.6123724, 0, 0, 0)
 light_energy = 1.2
 
-[node name="AmbientePreview" type="WorldEnvironment" parent="Layout/Paneles/PanelJugador2/Contenido/Preview/ViewportPersonaje/SubViewport"]
+[node name="AmbientePreview" type="WorldEnvironment" parent="Layout/Paneles/PanelJugador2/Contenido/Preview/ViewportPersonaje/SubViewport" unique_id=61587668]
 environment = SubResource("Environment_preview")
 
 [node name="ContenedorModelo" type="Node3D" parent="Layout/Paneles/PanelJugador2/Contenido/Preview/ViewportPersonaje/SubViewport" unique_id=442464772]
@@ -307,9 +307,9 @@ text = "Listo"
 [node name="BotonVolver" type="Button" parent="." unique_id=1799701482]
 custom_minimum_size = Vector2(220, 64)
 layout_mode = 1
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 260.0
-offset_bottom = 104.0
+offset_left = 49.0
+offset_top = 19.0
+offset_right = 269.0
+offset_bottom = 83.0
 theme_override_font_sizes/font_size = 28
 text = "Volver"

@@ -1,6 +1,22 @@
-[gd_scene format=3 uid="uid://btlj0lvg85xei"]
+[gd_scene load_steps=6 format=3 uid="uid://btlj0lvg85xei"]
 
 [ext_resource type="Script" uid="uid://dhie1nxeek8f3" path="res://interfaz/creditos/creditos.gd" id="1_cred01"]
+[ext_resource type="Texture2D" uid="uid://cba2gwyijxiky" path="res://recursos/ui/botones/boton1_normal.png" id="2_b1n"]
+[ext_resource type="Texture2D" uid="uid://bn0aywlqdmaiv" path="res://recursos/ui/botones/boton1_clic.png" id="3_b1c"]
+
+[sub_resource type="StyleBoxTexture" id="SB_b1_normal"]
+texture = ExtResource("2_b1n")
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="SB_b1_clic"]
+texture = ExtResource("3_b1c")
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
 
 [node name="Creditos" type="Control" unique_id=1177417850]
 layout_mode = 3
@@ -42,14 +58,36 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Separador" type="Control" parent="Centro/Contenido" unique_id=1072226155]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
+[node name="MargenVolver" type="MarginContainer" parent="." unique_id=1974826350]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -175.0
+offset_right = 340.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
-[node name="BotonVolver" type="Button" parent="Centro/Contenido" unique_id=1201489151]
-custom_minimum_size = Vector2(300, 80)
+[node name="BotonVolver" type="Button" parent="MargenVolver" unique_id=1201489151]
+custom_minimum_size = Vector2(300, 135)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 36
+size_flags_vertical = 4
 text = "Volver"
+theme_override_colors/font_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.38, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.13, 0.05, 0.02, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("SB_b1_normal")
+theme_override_styles/focus = SubResource("SB_b1_clic")
+theme_override_styles/hover = SubResource("SB_b1_clic")
+theme_override_styles/normal = SubResource("SB_b1_normal")
+theme_override_styles/pressed = SubResource("SB_b1_clic")

@@ -1,87 +1,55 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" uid="uid://d18husgp8ty4a" path="res://interfaz/menu_principal/menu_principal.gd" id="1_menu01"]
 [ext_resource type="Texture2D" path="res://interfaz/menu_principal/fondo_menu.png" id="2_fondo"]
+[ext_resource type="Texture2D" uid="uid://cba2gwyijxiky" path="res://recursos/ui/botones/boton1_normal.png" id="3_b1n"]
+[ext_resource type="Texture2D" uid="uid://bn0aywlqdmaiv" path="res://recursos/ui/botones/boton1_clic.png" id="4_b1c"]
+[ext_resource type="Texture2D" uid="uid://g8xohq4vhb0v" path="res://recursos/ui/botones/boton2_normal.png" id="5_b2n"]
+[ext_resource type="Texture2D" uid="uid://p2l46l8w88kg" path="res://recursos/ui/botones/boton2_clic.png" id="6_b2c"]
+[ext_resource type="Texture2D" uid="uid://dqofjcxjn5xrg" path="res://recursos/ui/botones/boton3_normal.png" id="7_b3n"]
+[ext_resource type="Texture2D" uid="uid://bf4bimx5vuhxv" path="res://recursos/ui/botones/boton3_clic.png" id="8_b3c"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
-bg_color = Color(0.95, 0.45, 0.2, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.25, 0.12, 0.05, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
+[sub_resource type="StyleBoxTexture" id="SB_b1_normal"]
+texture = ExtResource("3_b1n")
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
-bg_color = Color(1, 0.68, 0.25, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.25, 0.12, 0.05, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
+[sub_resource type="StyleBoxTexture" id="SB_b1_clic"]
+texture = ExtResource("4_b1c")
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
-content_margin_left = 26.0
-content_margin_top = 14.0
-content_margin_right = 22.0
-content_margin_bottom = 10.0
-bg_color = Color(0.75, 0.3, 0.1, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.25, 0.12, 0.05, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
+[sub_resource type="StyleBoxTexture" id="SB_b2_normal"]
+texture = ExtResource("5_b2n")
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_disabled"]
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
-bg_color = Color(0.45, 0.48, 0.5, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.2, 0.2, 0.22, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
+[sub_resource type="StyleBoxTexture" id="SB_b2_clic"]
+texture = ExtResource("6_b2c")
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_focus"]
-content_margin_left = 24.0
-content_margin_top = 12.0
-content_margin_right = 24.0
-content_margin_bottom = 12.0
-bg_color = Color(1, 0.68, 0.25, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0.95, 0.6, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
+[sub_resource type="StyleBoxTexture" id="SB_b3_normal"]
+texture = ExtResource("7_b3n")
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="SB_b3_clic"]
+texture = ExtResource("8_b3c")
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 30.0
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -116,50 +84,52 @@ layout_mode = 2
 theme_override_constants/separation = 24
 
 [node name="BotonNuevoJuego" type="Button" parent="Centro/Botones"]
-custom_minimum_size = Vector2(420, 90)
+custom_minimum_size = Vector2(380, 170)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Nuevo Juego"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_disabled_color = Color(0.75, 0.78, 0.8, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.95, 0.9, 0.85, 1)
-theme_override_font_sizes/font_size = 36
-theme_override_styles/disabled = SubResource("StyleBoxFlat_disabled")
-theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
-theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_colors/font_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.38, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.13, 0.05, 0.02, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("SB_b1_normal")
+theme_override_styles/focus = SubResource("SB_b1_clic")
+theme_override_styles/hover = SubResource("SB_b1_clic")
+theme_override_styles/normal = SubResource("SB_b1_normal")
+theme_override_styles/pressed = SubResource("SB_b1_clic")
 
 [node name="BotonCreditos" type="Button" parent="Centro/Botones"]
-custom_minimum_size = Vector2(420, 90)
+custom_minimum_size = Vector2(380, 170)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Créditos"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_disabled_color = Color(0.75, 0.78, 0.8, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.95, 0.9, 0.85, 1)
-theme_override_font_sizes/font_size = 36
-theme_override_styles/disabled = SubResource("StyleBoxFlat_disabled")
-theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
-theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_colors/font_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.38, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.13, 0.05, 0.02, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("SB_b2_normal")
+theme_override_styles/focus = SubResource("SB_b2_clic")
+theme_override_styles/hover = SubResource("SB_b2_clic")
+theme_override_styles/normal = SubResource("SB_b2_normal")
+theme_override_styles/pressed = SubResource("SB_b2_clic")
 
 [node name="BotonSalir" type="Button" parent="Centro/Botones"]
-custom_minimum_size = Vector2(420, 90)
+custom_minimum_size = Vector2(380, 170)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Salir"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.95, 0.9, 0.85, 1)
-theme_override_font_sizes/font_size = 36
-theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
-theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_colors/font_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.38, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.08, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.13, 0.05, 0.02, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/disabled = SubResource("SB_b3_normal")
+theme_override_styles/focus = SubResource("SB_b3_clic")
+theme_override_styles/hover = SubResource("SB_b3_clic")
+theme_override_styles/normal = SubResource("SB_b3_normal")
+theme_override_styles/pressed = SubResource("SB_b3_clic")

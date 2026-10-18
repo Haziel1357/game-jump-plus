@@ -77,6 +77,29 @@ func nombre_de(jugador: int) -> String:
 	return str(_datos_jugador(jugador).get("nombre", ""))
 
 
+## Color del personaje elegido por el jugador en la selección.
+## Devuelve blanco si el jugador no existe o el índice no está en la lista.
+func color_de(jugador: int) -> Color:
+	var datos: Dictionary = _datos_jugador(jugador)
+	if datos.is_empty() or personajes.is_empty():
+		return Color.WHITE
+
+	var indice: int = clampi(int(datos.get("personaje", 0)), 0, personajes.size() - 1)
+	var personaje: Dictionary = personajes[indice]
+	return Color(str(personaje.get("color", "#ffffff")))
+
+
+## Nombre del personaje elegido por el jugador en la selección.
+func personaje_de(jugador: int) -> String:
+	var datos: Dictionary = _datos_jugador(jugador)
+	if datos.is_empty() or personajes.is_empty():
+		return ""
+
+	var indice: int = clampi(int(datos.get("personaje", 0)), 0, personajes.size() - 1)
+	var personaje: Dictionary = personajes[indice]
+	return str(personaje.get("nombre", ""))
+
+
 func _datos_jugador(jugador: int) -> Dictionary:
 	if jugador == 1:
 		return jugador_1

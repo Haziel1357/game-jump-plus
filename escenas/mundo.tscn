@@ -29,6 +29,7 @@ fov = 92.95577
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_5sfon")
 camino_node = NodePath("../Camino plataformas jugador 2")
+numero_jugador = 1
 
 [node name="Robot" parent="Jugador1" unique_id=2120732835 instance=ExtResource("3_ly0wt")]
 

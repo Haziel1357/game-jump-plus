@@ -8,6 +8,9 @@ const MODELOS := [
 	"res://jugadores/jugador_2/robot.tscn",
 ]
 
+# Compartido con el nivel (isla) para que el coloreado sea idéntico.
+const TintePersonaje := preload("res://scripts/globales/tinte_personaje.gd")
+
 @onready var preview_1: ColorRect = $Layout/Paneles/PanelJugador1/Contenido/Preview/ColorPersonaje
 @onready var nombre_personaje_1: Label = $Layout/Paneles/PanelJugador1/Contenido/Preview/NombrePersonaje
 @onready var nick_1: LineEdit = $Layout/Paneles/PanelJugador1/Contenido/CampoNick
@@ -95,25 +98,32 @@ func _cargar_modelo(contenedor: Node3D, indice: int, color: Color) -> void:
 	for hijo in contenedor.get_children():
 		hijo.free()
 
-	if indice < 0 or indice >= MODELOS.size():
-		push_warning("Índice de modelo fuera de rango: %d" % indice)
+	if MODELOS.is_empty():
+		push_warning("No hay modelos de personaje definidos en MODELOS.")
+		return
+	if indice < 0 or indice >= EstadoJuego.personajes.size():
+		push_warning("Índice de personaje fuera de rango: %d" % indice)
 		return
 
+	# Hay más personajes (colores) que modelos: se reciclan con el resto
+	# para que Verde vuelva a usar el modelo 0 y Amarillo el modelo 1.
+	var indice_modelo: int = indice % MODELOS.size()
+
 	var modelo: PackedScene
-	if _modelos_cargados.has(indice):
-		modelo = _modelos_cargados[indice]
+	if _modelos_cargados.has(indice_modelo):
+		modelo = _modelos_cargados[indice_modelo]
 	else:
-		modelo = load(MODELOS[indice])
+		modelo = load(MODELOS[indice_modelo])
 		if modelo == null:
-			push_error("No se pudo cargar: " + MODELOS[indice])
+			push_error("No se pudo cargar: " + MODELOS[indice_modelo])
 			return
-		_modelos_cargados[indice] = modelo
+		_modelos_cargados[indice_modelo] = modelo
 
 	var instancia: Node3D = modelo.instantiate()
 	instancia.position = Vector3.ZERO
 	_desactivar_nodos_incasados(instancia)
 	contenedor.add_child(instancia)
-	_aplicar_tinte(instancia, color)
+	TintePersonaje.aplicar(instancia, color)
 
 
 ## Algunos .blend traen su propia cámara y luces; en el preview usamos las nuestras.
@@ -124,22 +134,6 @@ func _desactivar_nodos_incasados(nodo: Node) -> void:
 			hijo.free()
 		else:
 			_desactivar_nodos_incasados(hijo)
-
-
-## Recorre todos los materiales del modelo y les pone el color de personaje.
-func _aplicar_tinte(nodo: Node, color: Color) -> void:
-	if nodo is MeshInstance3D:
-		var mesh_instance := nodo as MeshInstance3D
-		for i in mesh_instance.get_surface_override_material_count():
-			var mat_original: Material = mesh_instance.get_surface_override_material(i)
-			if mat_original == null and mesh_instance.mesh:
-				mat_original = mesh_instance.mesh.surface_get_material(i)
-			if mat_original is BaseMaterial3D:
-				var mat: BaseMaterial3D = (mat_original as BaseMaterial3D).duplicate()
-				mat.albedo_color = color
-				mesh_instance.set_surface_override_material(i, mat)
-	for hijo in nodo.get_children():
-		_aplicar_tinte(hijo, color)
 
 
 func _actualizar_nick(texto: String, jugador: int) -> void:
