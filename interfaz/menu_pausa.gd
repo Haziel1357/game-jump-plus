@@ -47,6 +47,8 @@ func _on_reanudar_pressed() -> void:
 
 func _on_reiniciar_pressed() -> void:
 	get_tree().paused = false
+	# Sin esto, las vidas y casillas de la partida anterior se conservarían.
+	EstadoJuego.reiniciar_partida()
 	get_tree().reload_current_scene()
 
 

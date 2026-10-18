@@ -1,16 +1,32 @@
 [gd_scene format=3 uid="uid://dtpd74kd2c7lc"]
 
-[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://Escenas/jugador/jugador.gd" id="1_5sfon"]
-[ext_resource type="PackedScene" uid="uid://cl24e7lo31v4s" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
+[ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_5sfon"]
+[ext_resource type="PackedScene" uid="uid://xgxuyh0ev88q" path="res://mapa/mapa_isla_base.tscn" id="2_bqhdr"]
 [ext_resource type="PackedScene" uid="uid://c2bk75qajtlpe" path="res://jugadores/jugador_1/robot!_3.tscn" id="2_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://itjo6duu0r72" path="res://jugadores/jugador_2/robot.tscn" id="3_ly0wt"]
 [ext_resource type="PackedScene" uid="uid://ba0tjdqnfix6t" path="res://interfaz/hud/hud.tscn" id="5_txhqv"]
 [ext_resource type="PackedScene" uid="uid://b8ssryaxprgg8" path="res://interfaz/dado/dado.tscn" id="6_mb57o"]
 [ext_resource type="PackedScene" uid="uid://chqwbv4pvljyl" path="res://interfaz/preguntas/preguntas.tscn" id="7_jh10v"]
-[ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://Escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="8_jcqeh"]
+[ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="8_jcqeh"]
 [ext_resource type="PackedScene" uid="uid://ba5guhc0745b6" path="res://interfaz/fin_partida/fin_partida.tscn" id="9_mb57o"]
+[ext_resource type="Shader" uid="uid://bnkxq0hf37pdp" path="res://mapa/agua.gdshader" id="10_jcqeh"]
+[ext_resource type="Script" uid="uid://dr0a6tgtbvq66" path="res://escenas/objetos/agua/agua.gd" id="10_jh10v"]
+[ext_resource type="PackedScene" uid="uid://cdp3nye7apjns" path="res://interfaz/menu_pausa.tscn" id="10_kckb2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mg33e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abslf"]
+render_priority = 0
+shader = ExtResource("10_jcqeh")
+shader_parameter/color_profundo = Color(0.01, 0.12, 0.42, 0.95)
+shader_parameter/color_superficie = Color(0.08, 0.48, 0.78, 0.88)
+shader_parameter/color_crestas = Color(0.4, 0.85, 0.95, 0.6)
+shader_parameter/velocidad = 0.8
+shader_parameter/escala_onda = 16.0
+shader_parameter/fuerza_deformacion = 0.4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mg33e"]
+size = Vector2(300, 300)
 
 [node name="Mundo" type="Node3D" unique_id=476666403]
 
@@ -121,3 +137,12 @@ jugador_2 = NodePath("../Jugador2")
 camara_general = NodePath("../Cámara y luz/Camera3D")
 
 [node name="FinPartida" parent="." unique_id=184668014 instance=ExtResource("9_mb57o")]
+
+[node name="MenuPausa" parent="." unique_id=1441773630 instance=ExtResource("10_kckb2")]
+
+[node name="Agua" type="MeshInstance3D" parent="." unique_id=1626942058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_abslf")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
