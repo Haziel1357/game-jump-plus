@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dy4rqud38c6sh"
-path="res://.godot/imported/Mapa Isla Base (1).blend-8451fe521187ff58a21f46feb8563181.scn"
+uid="uid://domxwfuo2p21c"
+path="res://.godot/imported/Robot.blend-bac4ce73d72d0481fd27fc59d907326a.scn"
 
 [deps]
 
-source_file="res://Jugadores/Jugador 1/Mapa Isla Base (1).blend"
-dest_files=["res://.godot/imported/Mapa Isla Base (1).blend-8451fe521187ff58a21f46feb8563181.scn"]
+source_file="res://Jugadores/Jugador 2/Robot.blend"
+dest_files=["res://.godot/imported/Robot.blend-bac4ce73d72d0481fd27fc59d907326a.scn"]
 
 [params]
 

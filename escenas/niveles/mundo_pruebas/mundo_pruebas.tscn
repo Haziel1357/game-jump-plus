@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtpd74kd2c7lc"]
+[gd_scene format=3 uid="uid://dtpd74kd2c7lc"]
 
 [ext_resource type="Script" uid="uid://dpxpsogn20jx8" path="res://escenas/jugador/jugador.gd" id="1_6ba58"]
-[ext_resource type="Script" path="res://escenas/niveles/mundo_pruebas/mundo_pruebas.gd" id="2_nivel"]
-[ext_resource type="PackedScene" path="res://interfaz/hud/hud.tscn" id="3_hud"]
-[ext_resource type="PackedScene" path="res://interfaz/preguntas/preguntas.tscn" id="4_preg"]
+[ext_resource type="Script" uid="uid://cixruy246w60k" path="res://escenas/niveles/mundo_pruebas/mundo_pruebas.gd" id="2_nivel"]
+[ext_resource type="PackedScene" uid="uid://ba0tjdqnfix6t" path="res://interfaz/hud/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" uid="uid://chqwbv4pvljyl" path="res://interfaz/preguntas/preguntas.tscn" id="4_preg"]
+[ext_resource type="PackedScene" uid="uid://b8ssryaxprgg8" path="res://interfaz/dado/dado.tscn" id="5_y5x3w"]
+[ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="6_iupyu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_012i1"]
 
@@ -46,6 +48,11 @@ shape = SubResource("CapsuleShape3D_mg33e")
 [node name="Camera3D" type="Camera3D" parent="Jugador2" unique_id=762332105]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 3, 5)
 
-[node name="Hud" parent="." instance=ExtResource("3_hud")]
+[node name="Hud" parent="." unique_id=74987772 instance=ExtResource("3_hud")]
 
-[node name="Preguntas" parent="." instance=ExtResource("4_preg")]
+[node name="Preguntas" parent="." unique_id=192389599 instance=ExtResource("4_preg")]
+
+[node name="Dado" parent="." unique_id=1442596752 instance=ExtResource("5_y5x3w")]
+
+[node name="CicloRonda" type="Node" parent="." unique_id=1206825484]
+script = ExtResource("6_iupyu")
