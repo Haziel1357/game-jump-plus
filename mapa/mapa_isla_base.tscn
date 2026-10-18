@@ -1,19 +1,5 @@
-[gd_scene format=3 uid="uid://cl24e7lo31v4s"]
+[gd_scene format=3 uid="uid://crrj8kuki15kf"]
 
-[ext_resource type="PackedScene" uid="uid://dta5q501bjl6u" path="res://mapa/Mapa Isla Base.blend" id="1_hyrgi"]
-[ext_resource type="Shader" uid="uid://bnkxq0hf37pdp" path="res://mapa/agua.gdshader" id="2_g5jlp"]
+[ext_resource type="PackedScene" uid="uid://qi3t5sjtsocq" path="res://mapa/Mapa Isla Base.blend" id="1_hyrgi"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_utsv8"]
-render_priority = 0
-shader = ExtResource("2_g5jlp")
-shader_parameter/color_profundo = Color(0, 0.35, 0.75, 0.85)
-shader_parameter/color_superficie = Color(0.1, 0.75, 0.95, 0.7)
-shader_parameter/color_crestas = Color(0.4, 0.85, 0.95, 0.6)
-shader_parameter/velocidad = 0.4
-shader_parameter/escala_onda = 8.0
-shader_parameter/fuerza_deformacion = 0.4
-
-[node name="Mapa Isla Base" unique_id=1322831823 instance=ExtResource("1_hyrgi")]
-
-[node name="agua" parent="." index="0" unique_id=395794825]
-material_override = SubResource("ShaderMaterial_utsv8")
+[node name="Mapa Isla Base" unique_id=573246268 instance=ExtResource("1_hyrgi")]
