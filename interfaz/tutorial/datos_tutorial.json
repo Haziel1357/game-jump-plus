@@ -3,17 +3,17 @@
 		{
 			"titulo": "Bienvenida",
 			"cajas": [
-				"!Prepárate para la aventura!",
-				"!Pero cuidado con el agua! Empieza a subir y corres peligro",
+				"¡Prepárate para la aventura!",
+				"¡Pero cuidado con el agua! Empieza a subir y corres peligro.",
 				"Exploren la isla, recorran sus caminos y compitan por llegar a la cima"
 			]
 		},
 		{
 			"titulo": "Historia",
 			"cajas": [
-				"En una pequeña isla remota, se lleva  acabo una antigua tradición.",
-				"Lo importante es demostrar cuanto se conocen el uno al otro.",
-				"Cuando dos personas quieren saber si se conocen realmente, !aceptarán este reto! "
+				"En una pequeña isla remota, se lleva a cabo una antigua tradición.",
+				"Lo importante es demostrar cuánto se conocen el uno al otro.",
+				"Cuando dos personas quieren saber si se conocen realmente, ¡aceptarán este reto!"
 			]
 		},
 		{
@@ -21,26 +21,23 @@
 			"cajas": [
 				"Cada inicio de ronda, ambos lanzarán el dado.",
 				"Tu suerte puede darte la ventaja, pero tus respuestas y decisiones son las que te mantendrán",
-				"!Quien obtenga el número mayor empieza!"
-				
+				"¡Quien obtenga el número mayor empieza!"
 			]
 		},
 		{
 			"titulo": "Preguntas",
 			"cajas": [
-				"Responde preguntas sobre tu compañero.!Pero ojo! Tu rival será quien decida si tu respuesta es correcta o no.",
-				"!Demuestra tus afinados conocimientos sobre tu compañero!!",
+				"Responde preguntas sobre tu compañero. ¡Pero ojo! Tu rival será quien decida si tu respuesta es correcta o no.",
+				"¡Demuestra tus afinados conocimientos sobre tu compañero!",
 				"Si aciertas, avanzas una casilla. Si fallas, permanecerás en el mismo lugar."
-				
 			]
 		},
 		{
 			"titulo": "¡A jugar! Tu objetivo es llegar a la cima",
 			"cajas": [
-				"Si logras 3 respuestas correctas seguidas, !avanzarás dos casillas seguidas!",
-				"!Pulsen Jugar cuando estén preparados!",
-				"Y cuida tus corazones, si los pierdes todos quedarás fuera de la partida. !Y no olvides que el agua te puede llevar!"
-				
+				"Si logras 3 respuestas correctas seguidas, ¡avanzarás dos casillas seguidas!",
+				"¡Pulsen Jugar cuando estén preparados!",
+				"Y cuida tus corazones, si los pierdes todos quedarás fuera de la partida. ¡Y no olvides que el agua te puede llevar!"
 			]
 		}
 	]
