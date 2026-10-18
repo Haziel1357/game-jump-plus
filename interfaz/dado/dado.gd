@@ -46,18 +46,6 @@ func iniciar_ronda() -> void:
 	boton_lanzar_1.show()
 
 
-# Muestra un mensaje final (por ejemplo, quién ganó la partida) y oculta el resto.
-func mostrar_fin(texto: String) -> void:
-	visible = true
-	etiqueta_numero_1.hide()
-	etiqueta_numero_2.hide()
-	boton_lanzar_1.hide()
-	boton_lanzar_2.hide()
-	ventana_resultado.hide()
-	etiqueta_resultado.text = texto
-	etiqueta_resultado.show()
-
-
 func _lanzar_jugador_1() -> void:
 	boton_lanzar_1.hide()
 	# 'await' espera a que termine la animación antes de seguir con la línea siguiente.

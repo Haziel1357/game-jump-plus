@@ -50,6 +50,13 @@ func reiniciar_seleccion() -> void:
 	reiniciar_casillas()
 
 
+# Vuelve a empezar la partida conservando nombres y personajes elegidos.
+func reiniciar_partida() -> void:
+	jugador_1["vidas"] = VIDAS_INICIALES
+	jugador_2["vidas"] = VIDAS_INICIALES
+	reiniciar_casillas()
+
+
 func ambos_listos() -> bool:
 	return jugador_1["listo"] and jugador_2["listo"]
 
