@@ -87,6 +87,9 @@ func _mostrar_ganador() -> void:
 	else:
 		ganador = 0
 		etiqueta_resultado.text = "¡Empate! Se repite el dado"
+
+	# El botón dice qué pasará al pulsarlo: empezar la ronda o volver a lanzar.
+	boton_omitir.text = "Iniciar Ronda" if ganador != 0 else "Vuelvan a Lanzar"
 	etiqueta_resultado.show()
 	ventana_resultado.show()
 
