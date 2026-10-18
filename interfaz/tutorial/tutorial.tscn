@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bn0aywlqdmaiv" path="res://recursos/ui/botones/boton1_clic.png" id="3_b1c"]
 [ext_resource type="Texture2D" uid="uid://g8xohq4vhb0v" path="res://recursos/ui/botones/boton2_normal.png" id="4_b2n"]
 [ext_resource type="Texture2D" uid="uid://p2l46l8w88kg" path="res://recursos/ui/botones/boton2_clic.png" id="5_b2c"]
-[ext_resource type="Texture2D" uid="uid://gbsdxid1dxw0" path="res://recursos/ui/tutorial/fondo_tutorial.png" id="6_fondo"]
+[ext_resource type="Texture2D" uid="uid://cnkg75pxfewjs" path="res://recursos/ui/tutorial/fondo_tutorial.png" id="6_fondo"]
 [ext_resource type="Texture2D" uid="uid://tus4hn1p88yb" path="res://recursos/ui/tutorial/burbuja_izquierda.png" id="7_bizq"]
 [ext_resource type="Texture2D" uid="uid://dlegrdht7ipnu" path="res://recursos/ui/tutorial/burbuja_derecha.png" id="8_bder"]
 [ext_resource type="Texture2D" uid="uid://cjko2wj53mw0r" path="res://recursos/ui/tutorial/burbuja_centro.png" id="9_bcen"]
