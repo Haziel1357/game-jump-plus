@@ -4,6 +4,7 @@
 [ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 [ext_resource type="Texture2D" path="res://interfaz/seleccion_jugador/fondo_personaje_1.jpeg" id="fondo_1"]
 [ext_resource type="Texture2D" path="res://interfaz/seleccion_jugador/fondo_personaje_2.jpeg" id="fondo_2"]
+[ext_resource type="Texture2D" path="res://recursos/ui/fondos/portada.png" id="portada_fondo"]
 
 [sub_resource type="Environment" id="Environment_preview"]
 ambient_light_source = 2
@@ -55,14 +56,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sel01")
 
-[node name="Fondo" type="ColorRect" parent="." unique_id=772612672]
+[node name="Fondo" type="TextureRect" parent="." unique_id=772612672]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.13, 0.2, 0.28, 1)
+texture = ExtResource("portada_fondo")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Layout" type="VBoxContainer" parent="." unique_id=1748975315]
 layout_mode = 1

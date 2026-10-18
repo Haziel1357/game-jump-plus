@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" uid="uid://d18husgp8ty4a" path="res://interfaz/menu_principal/menu_principal.gd" id="1_menu01"]
-[ext_resource type="Texture2D" path="res://interfaz/menu_principal/fondo_menu.png" id="2_fondo"]
+[ext_resource type="Texture2D" path="res://recursos/ui/fondos/portada.png" id="2_fondo"]
 [ext_resource type="Texture2D" path="res://interfaz/menu_principal/titulo_juego.png" id="3_titulo"]
 [ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
 

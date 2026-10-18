@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhie1nxeek8f3" path="res://interfaz/creditos/creditos.gd" id="1_cred01"]
 [ext_resource type="Theme" path="res://recursos/ui/tema_juego.tres" id="99_tema"]
+[ext_resource type="Texture2D" path="res://recursos/ui/fondos/portada.png" id="portada_fondo"]
 
 [node name="Creditos" type="Control" unique_id=1177417850]
 layout_mode = 3
@@ -12,14 +13,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cred01")
 
-[node name="Fondo" type="ColorRect" parent="." unique_id=942594366]
+[node name="Fondo" type="TextureRect" parent="." unique_id=942594366]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.12, 0.22, 0.3, 1)
+texture = ExtResource("portada_fondo")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Centro" type="CenterContainer" parent="." unique_id=1269014837]
 layout_mode = 1
