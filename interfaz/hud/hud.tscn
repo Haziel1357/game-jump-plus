@@ -32,3 +32,24 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Jugador 2  ♥♥♥ (3)"
 horizontal_alignment = 1
+
+[node name="CasillasJugador1" type="Label" parent="." unique_id=1676764676]
+offset_left = 24.0
+offset_top = 80.0
+offset_right = 320.0
+offset_bottom = 116.0
+theme_override_font_sizes/font_size = 26
+text = "Casillas: 0/6"
+
+[node name="CasillasJugador2" type="Label" parent="." unique_id=1165894243]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 80.0
+offset_right = -24.0
+offset_bottom = 116.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 26
+text = "Casillas: 0/6"
+horizontal_alignment = 2

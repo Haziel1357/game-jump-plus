@@ -50,27 +50,6 @@ transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90
 
 [node name="Hud" parent="." unique_id=74987772 instance=ExtResource("3_hud")]
 
-[node name="CasillasJugador1" type="Label" parent="Hud" unique_id=1676764676]
-offset_left = 24.0
-offset_top = 80.0
-offset_right = 172.0
-offset_bottom = 116.0
-theme_override_font_sizes/font_size = 26
-text = "Casillas: 0/6"
-
-[node name="CasillasJugador2" type="Label" parent="Hud" unique_id=1165894243]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -91.0
-offset_bottom = 23.0
-grow_horizontal = 0
-offset_transform_enabled = true
-offset_transform_position = Vector2(-24, 80)
-theme_override_font_sizes/font_size = 26
-text = "Casillas: 0/6"
-horizontal_alignment = 2
-
 [node name="Preguntas" parent="." unique_id=192389599 instance=ExtResource("4_preg")]
 
 [node name="Dado" parent="." unique_id=1442596752 instance=ExtResource("5_y5x3w")]

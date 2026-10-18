@@ -10,15 +10,30 @@ extends Node
 # Pausa tras marcar la respuesta, para que se vea el banner de "CORRECTO/INCORRECTO".
 @export var pausa_tras_respuesta: float = 1.8
 
+# Los personajes se asignan en el Inspector (así sirve en cualquier nivel,
+# sin importar cómo se llamen los nodos). Deben tener el script jugador.gd.
+@export var jugador_1: Node
+@export var jugador_2: Node
+
 # Los dos nodos hermanos de este nodo dentro de la escena del nivel.
 @onready var dado: Dado = $"../Dado"
 # Sin tipo a propósito: preguntas.gd no tiene class_name.
 @onready var preguntas = $"../Preguntas"
 
 var _partida_terminada: bool = false
+# Los nodos de los personajes, por número de jugador (se llena en _ready).
+var _jugadores: Dictionary = {}
 
 
 func _ready() -> void:
+	if jugador_1 == null or jugador_2 == null:
+		push_error("CicloRonda: asigna Jugador 1 y Jugador 2 en el Inspector.")
+		return
+	_jugadores = {1: jugador_1, 2: jugador_2}
+	# Los jugadores ya no se mueven con la tecla de prueba: solo al acertar.
+	for jugador in _jugadores:
+		_jugadores[jugador].set("habilita_tecla_prueba", false)
+
 	dado.ronda_terminada.connect(_al_terminar_dado)
 	# call_deferred espera a que todos los nodos estén listos antes de empezar.
 	dado.iniciar_ronda.call_deferred()
@@ -49,6 +64,8 @@ func _preguntar(jugador: int) -> void:
 	# Si fue incorrecto, preguntas.gd ya le restó 1 vida y aquí no se mueve.
 	if es_correcto:
 		EstadoJuego.avanzar(jugador, casillas_por_acierto)
+		# El personaje salta a la siguiente casilla de su camino.
+		_jugadores[jugador].call("avanzar_siguiente_punto")
 
 	await get_tree().create_timer(pausa_tras_respuesta).timeout
 

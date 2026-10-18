@@ -2,15 +2,49 @@
 
 [ext_resource type="Script" uid="uid://b4shd62i5cp6b" path="res://interfaz/dado/dado.gd" id="1_p2wwb"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kckb2"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.09316083, 0.09316086, 0.093160756, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [node name="Dado" type="CanvasLayer" unique_id=1442596752]
 script = ExtResource("1_p2wwb")
 
 [node name="EtiquetaNumero" type="Label" parent="." unique_id=1237391626]
-anchors_preset = -1
-offset_top = 150.0
-offset_right = 320.0
-offset_bottom = 180.0
-theme_override_font_sizes/font_size = 48
+offset_right = 120.0
+offset_bottom = 131.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(225, 150)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_kckb2")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EtiquetaNumero2" type="Label" parent="." unique_id=1577873619]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_bottom = 131.0
+grow_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-225, 150)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_kckb2")
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -26,17 +60,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Lanza el dado jugador 1"
 icon_alignment = 1
-
-[node name="EtiquetaNumero2" type="Label" parent="." unique_id=324552387]
-anchors_preset = -1
-offset_left = 1600.0
-offset_top = 150.0
-offset_right = 1920.0
-offset_bottom = 230.0
-theme_override_font_sizes/font_size = 48
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="BotonLanzar2" type="Button" parent="." unique_id=753607754]
 anchors_preset = 6
