@@ -23,6 +23,8 @@ extends Node
 # Sin tipo a propósito: preguntas.gd no tiene class_name.
 @onready var preguntas = $"../Preguntas"
 @onready var fin_partida: FinPartida = $"../FinPartida"
+# El agua es opcional: si el nivel no tiene un nodo "Agua", el juego funciona igual.
+@onready var agua: Agua = get_node_or_null("../Agua") as Agua
 
 var _partida_terminada: bool = false
 # Los nodos de los personajes, por número de jugador (se llena en _ready).
@@ -83,17 +85,24 @@ func _preguntar(jugador: int) -> void:
 
 	# ¿Llegó a la meta? Gana ese jugador, aunque el otro no haya contestado aún.
 	if EstadoJuego.obtener_casillas(jugador) >= EstadoJuego.CASILLAS_PARA_GANAR:
-		_terminar_partida(jugador)
-	# ¿Se quedó sin vidas? Gana el otro.
+		await _terminar_partida(jugador)
+	# ¿Se quedó sin vidas? Gana el otro y el agua se lleva a este jugador.
 	elif EstadoJuego.vidas_de(jugador) <= 0:
-		_terminar_partida(2 if jugador == 1 else 1)
+		await _terminar_partida(2 if jugador == 1 else 1, jugador)
 
 
 # Muestra las pantallas finales: "¡Ganaste!" para uno y "Perdiste" para el otro.
-func _terminar_partida(ganador: int) -> void:
+# Si 'jugador_ahogado' no es 0, antes el agua sube hasta su casilla.
+func _terminar_partida(ganador: int, jugador_ahogado: int = 0) -> void:
 	_partida_terminada = true
-	# Volvemos a la vista general para que se vean las dos ventanas.
+	# Volvemos a la vista general para ver toda la isla (y las dos ventanas).
 	_poner_camara_general()
+
+	if jugador_ahogado != 0 and agua != null:
+		var nodo: Node3D = _jugadores[jugador_ahogado]
+		# Esperamos a que el agua termine de subir antes de mostrar la pantalla final.
+		await agua.inundar_hasta(nodo.global_position.y)
+
 	fin_partida.mostrar(ganador)
 
 

@@ -9,8 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://chqwbv4pvljyl" path="res://interfaz/preguntas/preguntas.tscn" id="7_jh10v"]
 [ext_resource type="Script" uid="uid://b0fiwcni1ljqm" path="res://escenas/niveles/mundo_pruebas/ciclo_ronda.gd" id="8_jcqeh"]
 [ext_resource type="PackedScene" uid="uid://ba5guhc0745b6" path="res://interfaz/fin_partida/fin_partida.tscn" id="9_mb57o"]
+[ext_resource type="Script" uid="uid://dr0a6tgtbvq66" path="res://escenas/objetos/agua/agua.gd" id="10_jh10v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mg33e"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mg33e"]
+size = Vector2(300, 300)
 
 [node name="Mundo" type="Node3D" unique_id=476666403]
 
@@ -121,3 +125,9 @@ jugador_2 = NodePath("../Jugador2")
 camara_general = NodePath("../Cámara y luz/Camera3D")
 
 [node name="FinPartida" parent="." unique_id=184668014 instance=ExtResource("9_mb57o")]
+
+[node name="Agua" type="MeshInstance3D" parent="." unique_id=1626942058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mg33e")
+script = ExtResource("10_jh10v")
