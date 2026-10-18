@@ -95,10 +95,10 @@ func _marcarResultado(es_correcto: bool) -> void:
 func _mostrar_banner(es_correcto: bool) -> void:
 	if es_correcto:
 		banner.text = "CORRECTO"
-		banner.add_theme_color_override("font_color", Color(0.25, 0.85, 0.35))
+		banner.add_theme_color_override("font_color", Color(0.05, 0.38, 0.12))
 	else:
 		banner.text = "INCORRECTO"
-		banner.add_theme_color_override("font_color", Color(0.95, 0.3, 0.3))
+		banner.add_theme_color_override("font_color", Color(0.65, 0.08, 0.08))
 
 	banner.visible = true
 	var timer := get_tree().create_timer(1.5)

@@ -6,14 +6,16 @@ extends CanvasLayer
 
 const RUTA_MENU := "res://interfaz/menu_principal/menu_principal.tscn"
 
-# Colores de fondo de cada ventana. Se pueden cambiar desde el Inspector.
-@export var color_fondo_gana: Color = Color(0.1, 0.6, 0.2, 0.92)
-@export var color_fondo_pierde: Color = Color(0.7, 0.12, 0.12, 0.92)
-# Color del texto, para que se lea bien sobre el fondo verde o rojo.
-@export var color_texto: Color = Color.WHITE
+# Tinte de la burbuja de cada ventana: se multiplica con el color de la imagen,
+# así que valores claros dejan la burbuja casi crema con un toque verde o rojo.
+@export var tinte_gana: Color = Color(0.6, 1.0, 0.65)
+@export var tinte_pierde: Color = Color(1.0, 0.6, 0.55)
+# Color del título de cada ventana (oscuro, para que se lea sobre la burbuja).
+@export var color_titulo_gana: Color = Color(0.05, 0.38, 0.12)
+@export var color_titulo_pierde: Color = Color(0.65, 0.08, 0.08)
 
-@onready var panel_1: ColorRect = $PanelJugador1
-@onready var panel_2: ColorRect = $PanelJugador2
+@onready var panel_1: Panel = $PanelJugador1
+@onready var panel_2: Panel = $PanelJugador2
 @onready var titulo_1: Label = $PanelJugador1/Titulo
 @onready var resumen_1: Label = $PanelJugador1/Resumen
 @onready var titulo_2: Label = $PanelJugador2/Titulo
@@ -37,13 +39,16 @@ func mostrar(ganador: int) -> void:
 	boton_reiniciar.grab_focus()
 
 
-# Pinta la ventana de un jugador (verde si ganó, roja si perdió) y escribe
+# Pinta la burbuja de un jugador (verdosa si ganó, rojiza si perdió) y escribe
 # su título y su resumen.
-func _rellenar(panel: ColorRect, titulo: Label, resumen: Label, jugador: int, gano: bool) -> void:
-	panel.color = color_fondo_gana if gano else color_fondo_pierde
+func _rellenar(panel: Panel, titulo: Label, resumen: Label, jugador: int, gano: bool) -> void:
+	# Copiamos el estilo del tema para teñir solo esta ventana y no la otra.
+	var estilo := panel.get_theme_stylebox("panel").duplicate() as StyleBoxTexture
+	estilo.modulate_color = tinte_gana if gano else tinte_pierde
+	panel.add_theme_stylebox_override("panel", estilo)
+
 	titulo.text = "¡Ganaste!" if gano else "Perdiste"
-	titulo.add_theme_color_override("font_color", color_texto)
-	resumen.add_theme_color_override("font_color", color_texto)
+	titulo.add_theme_color_override("font_color", color_titulo_gana if gano else color_titulo_pierde)
 
 	var vidas: int = EstadoJuego.vidas_de(jugador)
 	var vidas_perdidas: int = EstadoJuego.VIDAS_INICIALES - vidas

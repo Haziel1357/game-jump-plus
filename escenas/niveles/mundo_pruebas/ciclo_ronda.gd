@@ -7,8 +7,8 @@ extends Node
 
 # Casillas que avanza un jugador cuando su respuesta es correcta.
 @export var casillas_por_acierto: int = 1
-# Pausa tras marcar la respuesta, para que se vea el banner de "CORRECTO/INCORRECTO".
-@export var pausa_tras_respuesta: float = 1.8
+# Pausa breve al terminar la animación del personaje, antes de seguir con el turno.
+@export var pausa_tras_animacion: float = 0.4
 
 # Los personajes se asignan en el Inspector (así sirve en cualquier nivel,
 # sin importar cómo se llamen los nodos). Deben tener el script jugador.gd.
@@ -36,6 +36,7 @@ func _ready() -> void:
 		push_error("CicloRonda: asigna Jugador 1 y Jugador 2 en el Inspector.")
 		return
 	_jugadores = {1: jugador_1, 2: jugador_2}
+	_poner_personajes_elegidos()
 	# Los jugadores ya no se mueven con la tecla de prueba: solo al acertar.
 	for jugador in _jugadores:
 		_jugadores[jugador].set("habilita_tecla_prueba", false)
@@ -45,6 +46,43 @@ func _ready() -> void:
 		camara_general.make_current()
 	# call_deferred espera a que todos los nodos estén listos antes de empezar.
 	dado.iniciar_ronda.call_deferred()
+
+
+# Pone en cada jugador el personaje que eligió en la selección: el jugador 1
+# (izquierda) recibe su personaje en su nodo, y el 2 (derecha) en el suyo.
+# Los datos de cada personaje (modelo, animaciones y posición) están en personajes.json.
+func _poner_personajes_elegidos() -> void:
+	for jugador in _jugadores:
+		var datos: Dictionary = EstadoJuego.jugador_1 if jugador == 1 else EstadoJuego.jugador_2
+		var indice: int = int(datos["personaje"])
+		if indice < 0 or indice >= EstadoJuego.personajes.size():
+			continue
+
+		var personaje: Dictionary = EstadoJuego.personajes[indice]
+		var ruta: String = str(personaje.get("modelo", ""))
+		var escena: PackedScene = load(ruta) as PackedScene
+		if escena == null:
+			push_warning("CicloRonda: no se pudo cargar el modelo '%s'" % ruta)
+			continue
+
+		var nodo: Node = _jugadores[jugador]
+		# El modelo anterior es el hijo que no es colisión ni cámara; lo quitamos.
+		for hijo in nodo.get_children():
+			if not (hijo is CollisionShape3D or hijo is Camera3D):
+				nodo.remove_child(hijo)
+				hijo.queue_free()
+
+		var modelo: Node3D = escena.instantiate() as Node3D
+		# Cada robot tiene su propio desfase para quedar apoyado sobre la casilla.
+		var p: Array = personaje.get("posicion", [0.0, 0.0, 0.0])
+		modelo.position = Vector3(p[0], p[1], p[2])
+		nodo.add_child(modelo)
+		nodo.move_child(modelo, 0)
+
+		# Los nombres de las animaciones cambian de un robot a otro.
+		nodo.set("anim_idle", StringName(personaje.get("anim_idle", "Idle")))
+		nodo.set("anim_victoria", StringName(personaje.get("anim_victoria", "")))
+		nodo.call("usar_modelo", modelo)
 
 
 # El dado ya decidió quién empieza: preguntamos a ese jugador y luego al otro.
@@ -72,16 +110,24 @@ func _preguntar(jugador: int) -> void:
 	# La cámara se cambia al jugador que está respondiendo.
 	_poner_camara(jugador)
 	preguntas.mostrar_pregunta(jugador)
+	# Mientras la pregunta está en pantalla suena su loop y baja la música de fondo.
+	Sonidos.pregunta_empezar()
 	# Esperamos a que marquen Correcto/Incorrecto; la señal trae la respuesta.
 	var es_correcto: bool = await preguntas.resultado_marcado
+	Sonidos.pregunta_terminar()
+	Sonidos.sfx("correcto" if es_correcto else "incorrecto")
 
-	# Si fue incorrecto, preguntas.gd ya le restó 1 vida y aquí no se mueve.
 	if es_correcto:
 		EstadoJuego.avanzar(jugador, casillas_por_acierto)
-		# El personaje salta a la siguiente casilla de su camino.
-		_jugadores[jugador].call("avanzar_siguiente_punto")
+		# El personaje celebra y salta a la siguiente casilla. 'await' espera a que
+		# terminen sus animaciones antes de seguir con el turno.
+		await _jugadores[jugador].avanzar_siguiente_punto()
+	else:
+		# preguntas.gd ya le restó 1 vida. El personaje niega con la cabeza (animación
+		# "Negacion") y se espera a que termine.
+		await _jugadores[jugador].responder_incorrecto()
 
-	await get_tree().create_timer(pausa_tras_respuesta, false).timeout
+	await get_tree().create_timer(pausa_tras_animacion, false).timeout
 
 	# ¿Llegó a la meta? Gana ese jugador, aunque el otro no haya contestado aún.
 	if EstadoJuego.obtener_casillas(jugador) >= EstadoJuego.CASILLAS_PARA_GANAR:
@@ -120,3 +166,9 @@ func _poner_camara(jugador: int) -> void:
 func _poner_camara_general() -> void:
 	if camara_general != null:
 		camara_general.make_current()
+
+
+# Si se sale del nivel a mitad de una pregunta (por ejemplo, al reiniciar desde la
+# pausa), hay que devolver la música a su volumen y apagar el loop.
+func _exit_tree() -> void:
+	Sonidos.pregunta_terminar()

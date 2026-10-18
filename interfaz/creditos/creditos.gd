@@ -2,33 +2,17 @@ extends Control
 
 const RUTA_DATOS := "res://interfaz/creditos/datos_creditos.json"
 
-@onready var label_titulo: Label = $Centro/Contenido/Titulo
-@onready var lista_equipo: VBoxContainer = $Centro/Contenido/Equipo
-@onready var boton_volver: Button = $MargenVolver/BotonVolver
+@onready var label_titulo: Label = $Centro/Marco/Contenido/Titulo
+@onready var lista_equipo: VBoxContainer = $Centro/Marco/Contenido/Equipo
+@onready var boton_volver: Button = $Centro/Marco/Contenido/BotonVolver
 
 
 func _ready() -> void:
+	# El loop de créditos reemplaza la música de fondo mientras esta pantalla esté abierta.
+	Sonidos.creditos_empezar()
 	cargar_creditos()
 	boton_volver.pressed.connect(_on_boton_volver_pressed)
-
-	# Sin foco inicial: así el botón no arranca resaltado.
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	# La navegación con teclado empieza al primer intento, pero sin marcar
-	# foco mientras el usuario no lo pida (ni al cargar la escena).
-	if get_viewport().gui_get_focus_owner() != null:
-		return
-
-	if (
-		event.is_action_pressed("ui_up")
-		or event.is_action_pressed("ui_down")
-		or event.is_action_pressed("ui_left")
-		or event.is_action_pressed("ui_right")
-		or event.is_action_pressed("ui_accept")
-	):
-		boton_volver.grab_focus()
-		get_viewport().set_input_as_handled()
+	boton_volver.grab_focus()
 
 
 func cargar_creditos() -> void:
@@ -49,8 +33,14 @@ func cargar_creditos() -> void:
 		label.text = nombre
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.add_theme_font_size_override("font_size", 32)
+		label.theme_type_variation = &"TextoOscuro"
 		lista_equipo.add_child(label)
 
 
 func _on_boton_volver_pressed() -> void:
 	get_tree().change_scene_to_file("res://interfaz/menu_principal/menu_principal.tscn")
+
+
+# Al salir de los créditos (por cualquier camino) vuelve la música de fondo.
+func _exit_tree() -> void:
+	Sonidos.creditos_terminar()

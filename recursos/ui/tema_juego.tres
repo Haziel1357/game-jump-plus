@@ -1,0 +1,190 @@
+[gd_resource type="Theme" format=3 uid="uid://cod5ws21hnqvm"]
+
+[ext_resource type="Texture2D" uid="uid://cutlssf3ikf7n" path="res://recursos/ui/fondos/burbuja.png" id="burbuja"]
+[ext_resource type="Texture2D" uid="uid://dfmq6qn3ldebg" path="res://recursos/ui/botones/boton_1_hover.png" id="h1"]
+[ext_resource type="Texture2D" uid="uid://cmp11jt3d6xog" path="res://recursos/ui/botones/boton_2_hover.png" id="h2"]
+[ext_resource type="Texture2D" uid="uid://dbw0l2q0h5d1y" path="res://recursos/ui/botones/boton_3_hover.png" id="h3"]
+[ext_resource type="Texture2D" uid="uid://b1644jqmbcpmp" path="res://recursos/ui/botones/boton_1.png" id="n1"]
+[ext_resource type="Texture2D" uid="uid://dcc7c0dfn5wrc" path="res://recursos/ui/botones/boton_2.png" id="n2"]
+[ext_resource type="Texture2D" uid="uid://dlx4vcik3xbh6" path="res://recursos/ui/botones/boton_3.png" id="n3"]
+
+[sub_resource type="StyleBoxTexture" id="disabled1"]
+texture = ExtResource("n1")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 28.0
+texture_margin_bottom = 28.0
+modulate_color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="StyleBoxEmpty" id="vacio"]
+
+[sub_resource type="StyleBoxTexture" id="hover1"]
+texture = ExtResource("h1")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 28.0
+texture_margin_bottom = 28.0
+
+[sub_resource type="StyleBoxTexture" id="pressed1"]
+texture = ExtResource("h1")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 28.0
+texture_margin_bottom = 28.0
+modulate_color = Color(0.85, 0.85, 0.85, 1)
+
+[sub_resource type="StyleBoxTexture" id="normal1"]
+texture = ExtResource("n1")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 28.0
+texture_margin_bottom = 28.0
+
+[sub_resource type="StyleBoxTexture" id="disabled2"]
+texture = ExtResource("n2")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 52.0
+texture_margin_bottom = 48.0
+modulate_color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="StyleBoxTexture" id="hover2"]
+texture = ExtResource("h2")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 52.0
+texture_margin_bottom = 48.0
+
+[sub_resource type="StyleBoxTexture" id="pressed2"]
+texture = ExtResource("h2")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 52.0
+texture_margin_bottom = 48.0
+modulate_color = Color(0.85, 0.85, 0.85, 1)
+
+[sub_resource type="StyleBoxTexture" id="normal2"]
+texture = ExtResource("n2")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 52.0
+texture_margin_bottom = 48.0
+
+[sub_resource type="StyleBoxTexture" id="disabled3"]
+texture = ExtResource("n3")
+texture_margin_left = 52.0
+texture_margin_top = 48.0
+texture_margin_right = 52.0
+texture_margin_bottom = 48.0
+modulate_color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="StyleBoxTexture" id="hover3"]
+texture = ExtResource("h3")
+texture_margin_left = 52.0
+texture_margin_top = 48.0
+texture_margin_right = 52.0
+texture_margin_bottom = 48.0
+
+[sub_resource type="StyleBoxTexture" id="pressed3"]
+texture = ExtResource("h3")
+texture_margin_left = 52.0
+texture_margin_top = 48.0
+texture_margin_right = 52.0
+texture_margin_bottom = 48.0
+modulate_color = Color(0.85, 0.85, 0.85, 1)
+
+[sub_resource type="StyleBoxTexture" id="normal3"]
+texture = ExtResource("n3")
+texture_margin_left = 52.0
+texture_margin_top = 48.0
+texture_margin_right = 52.0
+texture_margin_bottom = 48.0
+
+[sub_resource type="StyleBoxTexture" id="estilo_burbuja"]
+content_margin_left = 70.0
+content_margin_top = 40.0
+content_margin_right = 70.0
+content_margin_bottom = 40.0
+texture = ExtResource("burbuja")
+texture_margin_left = 90.0
+texture_margin_top = 55.0
+texture_margin_right = 90.0
+texture_margin_bottom = 55.0
+
+[sub_resource type="StyleBoxTexture" id="estilo_burbuja_chica"]
+content_margin_left = 44.0
+content_margin_top = 26.0
+content_margin_right = 44.0
+content_margin_bottom = 26.0
+texture = ExtResource("burbuja")
+texture_margin_left = 50.0
+texture_margin_top = 28.0
+texture_margin_right = 50.0
+texture_margin_bottom = 28.0
+
+[resource]
+Boton1/base_type = &"Button"
+Boton1/colors/font_color = Color(0.22, 0.1, 0.05, 1)
+Boton1/colors/font_disabled_color = Color(0.22, 0.1, 0.05, 0.5)
+Boton1/colors/font_focus_color = Color(0.22, 0.1, 0.05, 1)
+Boton1/colors/font_hover_color = Color(0.22, 0.1, 0.05, 1)
+Boton1/colors/font_hover_pressed_color = Color(0.22, 0.1, 0.05, 1)
+Boton1/colors/font_pressed_color = Color(0.22, 0.1, 0.05, 1)
+Boton1/styles/disabled = SubResource("disabled1")
+Boton1/styles/focus = SubResource("vacio")
+Boton1/styles/hover = SubResource("hover1")
+Boton1/styles/hover_pressed = SubResource("pressed1")
+Boton1/styles/normal = SubResource("normal1")
+Boton1/styles/pressed = SubResource("pressed1")
+Boton2/base_type = &"Button"
+Boton2/colors/font_color = Color(0.22, 0.1, 0.05, 1)
+Boton2/colors/font_disabled_color = Color(0.22, 0.1, 0.05, 0.5)
+Boton2/colors/font_focus_color = Color(0.22, 0.1, 0.05, 1)
+Boton2/colors/font_hover_color = Color(0.22, 0.1, 0.05, 1)
+Boton2/colors/font_hover_pressed_color = Color(0.22, 0.1, 0.05, 1)
+Boton2/colors/font_pressed_color = Color(0.22, 0.1, 0.05, 1)
+Boton2/styles/disabled = SubResource("disabled2")
+Boton2/styles/focus = SubResource("vacio")
+Boton2/styles/hover = SubResource("hover2")
+Boton2/styles/hover_pressed = SubResource("pressed2")
+Boton2/styles/normal = SubResource("normal2")
+Boton2/styles/pressed = SubResource("pressed2")
+Boton2Correcto/base_type = &"Boton2"
+Boton2Correcto/colors/font_color = Color(0.05, 0.38, 0.12, 1)
+Boton2Correcto/colors/font_focus_color = Color(0.05, 0.38, 0.12, 1)
+Boton2Correcto/colors/font_hover_color = Color(0.05, 0.38, 0.12, 1)
+Boton2Correcto/colors/font_hover_pressed_color = Color(0.05, 0.38, 0.12, 1)
+Boton2Correcto/colors/font_pressed_color = Color(0.05, 0.38, 0.12, 1)
+Boton2Incorrecto/base_type = &"Boton2"
+Boton2Incorrecto/colors/font_color = Color(0.65, 0.08, 0.08, 1)
+Boton2Incorrecto/colors/font_focus_color = Color(0.65, 0.08, 0.08, 1)
+Boton2Incorrecto/colors/font_hover_color = Color(0.65, 0.08, 0.08, 1)
+Boton2Incorrecto/colors/font_hover_pressed_color = Color(0.65, 0.08, 0.08, 1)
+Boton2Incorrecto/colors/font_pressed_color = Color(0.65, 0.08, 0.08, 1)
+Boton3/base_type = &"Button"
+Boton3/colors/font_color = Color(0.22, 0.1, 0.05, 1)
+Boton3/colors/font_disabled_color = Color(0.22, 0.1, 0.05, 0.5)
+Boton3/colors/font_focus_color = Color(0.22, 0.1, 0.05, 1)
+Boton3/colors/font_hover_color = Color(0.22, 0.1, 0.05, 1)
+Boton3/colors/font_hover_pressed_color = Color(0.22, 0.1, 0.05, 1)
+Boton3/colors/font_pressed_color = Color(0.22, 0.1, 0.05, 1)
+Boton3/styles/disabled = SubResource("disabled3")
+Boton3/styles/focus = SubResource("vacio")
+Boton3/styles/hover = SubResource("hover3")
+Boton3/styles/hover_pressed = SubResource("pressed3")
+Boton3/styles/normal = SubResource("normal3")
+Boton3/styles/pressed = SubResource("pressed3")
+Burbuja/base_type = &"Panel"
+Burbuja/styles/panel = SubResource("estilo_burbuja")
+EtiquetaBurbuja/base_type = &"Label"
+EtiquetaBurbuja/colors/font_color = Color(0.22, 0.1, 0.05, 1)
+EtiquetaBurbuja/styles/normal = SubResource("estilo_burbuja")
+EtiquetaBurbujaChica/base_type = &"Label"
+EtiquetaBurbujaChica/colors/font_color = Color(0.22, 0.1, 0.05, 1)
+EtiquetaBurbujaChica/styles/normal = SubResource("estilo_burbuja_chica")
+PanelBurbuja/base_type = &"PanelContainer"
+PanelBurbuja/styles/panel = SubResource("estilo_burbuja")
+PanelBurbujaChica/base_type = &"PanelContainer"
+PanelBurbujaChica/styles/panel = SubResource("estilo_burbuja_chica")
+TextoOscuro/base_type = &"Label"
+TextoOscuro/colors/font_color = Color(0.22, 0.1, 0.05, 1)

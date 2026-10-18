@@ -6,6 +6,8 @@ const RUTA_MUSICA := "res://recursos/audio/musica/Game Jam - Track 1.wav"
 
 
 func _ready() -> void:
+	# Crea el gestor de efectos y loops (scripts/globales/sonidos.gd).
+	Sonidos.iniciar(self)
 	add_child(_reproductor)
 	var stream: AudioStream = load(RUTA_MUSICA)
 	if stream == null:
@@ -13,11 +15,11 @@ func _ready() -> void:
 		return
 
 	if stream is AudioStreamWAV:
-		var bytes_por_muestra: int = 1 if stream.format == AudioStreamWAV.FORMAT_8_BITS else 2
-		var canales: int = 2 if stream.stereo else 1
 		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
 		stream.loop_begin = 0
-		stream.loop_end = stream.data.size() / (bytes_por_muestra * canales)
+		# Duración real en muestras: el tamaño en bytes no sirve porque Godot
+		# importa los WAV comprimidos (antes la pista se reiniciaba a los 19 s).
+		stream.loop_end = int(stream.get_length() * stream.mix_rate)
 
 	_reproductor.stream = stream
 	_reproductor.volume_db = 0.0
